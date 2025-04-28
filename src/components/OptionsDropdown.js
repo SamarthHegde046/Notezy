@@ -3,16 +3,28 @@ import React from 'react';
 import './OptionsDropdown.css';
 
 const OptionsDropdown = ({ onSelect }) => {
+  const options = [
+    'Science',
+    'Mathematics',
+    'History',
+    'Geography',
+    'Programming',
+    'Arts'
+  ];
+
+  const handleChange = (e) => {
+    onSelect(e.target.value);
+  };
+
   return (
-    <div className="dropdown-container">
-      <select onChange={(e) => onSelect(e.target.value)} className="dropdown">
-        <option value="">Select an Option</option>
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-        <option value="Option 4">Option 4</option>
-        <option value="Option 5">Option 5</option>
-        <option value="Option 6">Option 6</option>
+    <div className="options-dropdown">
+      <select onChange={handleChange} defaultValue="">
+        <option value="" disabled>Select a category</option>
+        {options.map((opt, idx) => (
+          <option key={idx} value={opt}>
+            {opt}
+          </option>
+        ))}
       </select>
     </div>
   );
