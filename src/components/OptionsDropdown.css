@@ -2,11 +2,13 @@
 .options-dropdown {
     margin: 20px auto;
     text-align: center;
+    width: 50%; /* Half the screen */
   }
   
   .options-dropdown select {
-    padding: 10px 15px;
-    font-size: 1rem;
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 1.1rem;
     border: 2px solid #6c5ce7; /* Purple border */
     border-radius: 12px;
     background: linear-gradient(145deg, #f5f7fa, #c3cfe2);
@@ -16,7 +18,7 @@
   }
   
   .options-dropdown select:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     border-color: #fdcb6e; /* Yellow on hover */
   }
   
