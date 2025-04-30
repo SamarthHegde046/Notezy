@@ -1,0 +1,13 @@
+.subject-dropdown {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .subject-dropdown:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  

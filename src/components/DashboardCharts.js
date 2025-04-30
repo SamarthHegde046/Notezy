@@ -15,18 +15,18 @@ const DashboardCharts = ({ notes }) => {
     const subjectMap = {};
   
     notes.forEach(note => {
-      const subject = note.subject?.toUpperCase();
+      const sem = note.sem?.toUpperCase();
       const downloads = Number(note.downloadCount) || 0; // Ensure it's a number
   
-      if (subject in subjectMap) {
-        subjectMap[subject] += downloads;
+      if (sem in subjectMap) {
+        subjectMap[sem] += downloads;
       } else {
-        subjectMap[subject] = downloads;
+        subjectMap[sem] = downloads;
       }
     });
   
-    return Object.entries(subjectMap).map(([subject, downloads]) => ({
-      name: subject,
+    return Object.entries(subjectMap).map(([sem, downloads]) => ({
+      name: sem,
       downloads
     }));
   };

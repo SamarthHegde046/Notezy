@@ -4,7 +4,7 @@ import axios from 'axios';
 const API_BASE_URL = process.env.REACT_APP_API_BASE;
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: 'http://localhost:5000/api',
   withCredentials: true,
 });
 
@@ -23,15 +23,16 @@ export const loginAdmin = (data) => api.post('/auth/login', data);
 export const verifyAdmin = () => api.get('/auth/verify');
 
 // Note APIs
-export const getAllNotes = async () => {
+export const getAllNotes = async (filters = {}) => {
   try {
-    const res = await api.get('/notes');
-    return res.data; 
+    const res = await api.get('/notes', { params: filters });
+    return res.data;
   } catch (err) {
     console.error("Failed to fetch notes:", err);
     return [];
   }
 };
+
 
   
 export const getNoteById = (id) => api.get(`/notes/${id}`);

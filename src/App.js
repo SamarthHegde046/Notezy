@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from 'react-router-dom';
+import SemPage from './pages/SemPage'
+import { SEM_OPTIONS } from './components/sems';
+import DepartmentPage from './pages/DepartmentPage';
+
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -36,6 +40,15 @@ function App() {
             />
             <Route path="/note/:id" element={<NoteCard />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/" element={<Home />} />
+            {SEM_OPTIONS.map(option => (
+              <Route
+                key={option.value}
+                path={`/${option.value}`}
+                element={<SemPage />}
+              />
+            ))}
+            <Route path="/:sem/:department" element={<DepartmentPage/>} />
           </Routes>
           <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />
         </main>
