@@ -8,7 +8,7 @@ const fs = require('fs');
 // Upload new note (admin only)
 const uploadNote = async (req, res) => {
   try {
-    const { title, subject, course } = req.body;
+    const { title, subject, course,sem,department } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ message: 'No file uploaded' });
@@ -40,6 +40,8 @@ const uploadNote = async (req, res) => {
       title,
       subject,
       course,
+      sem,
+      department,
       fileUrl: result.secure_url,
       publicId: result.public_id,
     });
@@ -88,10 +90,20 @@ const getDashboardData = asyncHandler(async (req, res) => {
 // Get all notes
 const getAllNotes = async (req, res) => {
   try {
-    const notes = await Note.find().sort({ createdAt: -1 });
-    res.json(notes);
+    const semQuery = req.query.sem?.toLowerCase().replace(/\s+/g, '');
+    const deptQuery = req.query.department?.toLowerCase().replace(/\s+/g, '');
+
+    const notes = await Note.find().lean();
+
+    const filteredNotes = notes.filter(note =>
+      note.sem?.toLowerCase().replace(/\s+/g, '') === semQuery &&
+      note.department?.toLowerCase().replace(/\s+/g, '') === deptQuery
+    );
+
+    res.json(filteredNotes);
   } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch notes' });
+    console.error('Fetch notes error:', error);
+    res.status(500).json({ message: 'Server error while fetching notes' });
   }
 };
 
