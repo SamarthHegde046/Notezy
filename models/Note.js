@@ -1,4 +1,3 @@
-// models/Note.js
 const mongoose = require('mongoose');
 
 const noteSchema = new mongoose.Schema(
@@ -26,6 +25,14 @@ const noteSchema = new mongoose.Schema(
     downloadCount: {
       type: Number,
       default: 0
+    },
+    sem: {
+      type: String,
+      required: true
+    },
+    department: {
+      type: String,
+      required: true
     }
   },
   {
