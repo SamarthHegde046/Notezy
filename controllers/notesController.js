@@ -90,22 +90,23 @@ const getDashboardData = asyncHandler(async (req, res) => {
 // Get all notes
 const getAllNotes = async (req, res) => {
   try {
-    const semQuery = req.query.sem?.toLowerCase().replace(/\s+/g, '');
-    const deptQuery = req.query.department?.toLowerCase().replace(/\s+/g, '');
+    const { department, sem, subject } = req.query;
 
-    const notes = await Note.find().lean();
+    const query = {};
 
-    const filteredNotes = notes.filter(note =>
-      note.sem?.toLowerCase().replace(/\s+/g, '') === semQuery &&
-      note.department?.toLowerCase().replace(/\s+/g, '') === deptQuery
-    );
+    if (department) query.department = { $regex: new RegExp(`^${department}$`, 'i') };
+    if (sem) query.sem = { $regex: new RegExp(`^${sem}$`, 'i') };
+    if (subject) query.subject = { $regex: new RegExp(`^${subject}$`, 'i') };
 
-    res.json(filteredNotes);
+    const notes = await Note.find(query).sort({ createdAt: -1 });
+
+    res.json(notes);
   } catch (error) {
     console.error('Fetch notes error:', error);
     res.status(500).json({ message: 'Server error while fetching notes' });
   }
 };
+
 
 // Get single note
 const getNoteById = async (req, res) => {
