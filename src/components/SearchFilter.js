@@ -1,4 +1,4 @@
-// src/components/SearchBar.jsx
+// src/components/SearchFilter.js
 import React, { useState } from 'react';
 import './SearchFilter.css';
 

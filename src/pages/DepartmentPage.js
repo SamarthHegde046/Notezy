@@ -55,7 +55,7 @@ const DepartmentPage = () => {
   return (
     <div className="department-page">
       <h1>{properDepartment}</h1>
-      <h2>Semester: {normalizedSem}</h2>
+      <h2>{normalizedSem}</h2>
 
       <div className="filter-bar">
         <SearchFilter onSearch={setSearchQuery} />

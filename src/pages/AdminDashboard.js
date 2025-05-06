@@ -5,6 +5,7 @@ import './AdminDashboard.css';
 import UploadModal from '../components/UploadModal';
 import DashboardCharts from '../components/DashboardCharts';
 import { useNavigate } from 'react-router-dom';
+import SearchFilter from '../components/SearchFilter';
 
 
 const AdminDashboard = () => {
@@ -16,6 +17,13 @@ const AdminDashboard = () => {
   const closeModal = () => setIsUploadOpen(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [department, setDepartment] = useState('');
+  const [semester, setSemester] = useState('');
+  const [subject, setSubject] = useState('');
+  const [subjects, setSubjects] = useState([]); // dynamic subjects
+  const [filteredNotes, setFilteredNotes] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [displayedNotes, setDisplayedNotes] = useState([]);
 
 
   const token = localStorage.getItem('token');
@@ -23,6 +31,32 @@ const AdminDashboard = () => {
     alert('You must be logged in to access this.');
     navigate('/login');
   }
+  const fetchFilteredNotes = async () => {
+    if (!department || !semester || !subject) {
+      toast.info('Please select all filters');
+      return;
+    }
+  
+    setLoading(true);
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE}/notes`, {
+        params: {
+          department,
+          sem: semester,
+          subject
+        },
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setFilteredNotes(res.data); // full backend filtered
+      setDisplayedNotes(res.data); // displayed + searchable
+    } catch (error) {
+      toast.error('Failed to fetch filtered notes');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  
 
   useEffect(() => {
     if (!token) return;
@@ -69,6 +103,16 @@ const AdminDashboard = () => {
       }
     }, 400);
   };
+
+    
+useEffect(() => {
+  const filtered = filteredNotes.filter(note =>
+    note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    note.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  setDisplayedNotes(filtered);
+}, [searchQuery, filteredNotes]);
+
   
   if (loading) {
     return <div className="spinner">Loading dashboard...</div>;
@@ -100,10 +144,6 @@ const AdminDashboard = () => {
             <li key={admin._id}>{admin.email}</li>
           ))}
         </ul>
-      </div>
-
-      <div className="note-listdash">
-        <h4>Uploaded Notes</h4>
         <button onClick={openModal} style={{
         backgroundColor: '#3f51b5',
         color: 'white',
@@ -116,24 +156,114 @@ const AdminDashboard = () => {
         }}>
         + Upload Note
         </button>
+      </div>
+      <div className="filter-bar">
+  <SearchFilter onSearch={setSearchQuery} />
+
+  <select value={department} onChange={(e) => {
+    setDepartment(e.target.value);
+    setSemester('');
+    setSubject('');
+    setSubjects([]);
+  }}>
+    <option value="">Select Department</option>
+    <option value="computerengineering">Computer Engineering</option>
+    <option value='informationtechnology'>Information Technology</option>
+    <option value="electronics">Electronics</option>
+    <option value="mechanical">Mechanical</option>
+    <option value="civil">Civil</option>
+  </select>
+
+  <select
+  value={semester}
+  onChange={async (e) => {
+    const sem = e.target.value;
+    setSemester(sem);
+    setSubject('');
+    setSubjects([]);
+    
+    if (department && sem) {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE}/notes/subjects`, {
+          params: { department, sem },
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setSubjects(res.data);
+      } catch (err) {
+        toast.error('Failed to fetch subjects');
+      }
+    }
+  }}
+  disabled={!department}>
+
+    <option value="">Select Semester</option>
+    {['Sem1', 'Sem2', 'Sem3', 'Sem4', 'Sem5', 'Sem6'].map((sem, idx) => (
+      <option key={idx} value={sem}>{sem}</option>
+    ))}
+  </select>
+
+  <select value={subject} onChange={(e) => setSubject(e.target.value)} disabled={!semester}>
+    <option value="">Select Subject</option>
+    {subjects.map((sub, idx) => (
+      <option key={idx} value={sub}>{sub}</option>
+    ))}
+  </select>
+  <button
+  onClick={fetchFilteredNotes}
+  disabled={!department || !semester || !subject}
+  style={{
+    padding: '8px 16px',
+    backgroundColor: '#2196f3',
+    color: 'white',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    marginLeft: '10px'
+  }}
+>
+  Search Notes
+</button>
+
+</div>
+
+      <div className="note-listdash">
 
         <UploadModal
         isOpen={isUploadOpen}
         onClose={closeModal}
         onSuccess={() => window.location.reload()}
         />
-        {notes.map((note) => (
-          <div className="note-card" key={note._id}>
-            <p><strong>{note.title}</strong> ({note.subject})</p>
-            <p>Downloads: {note.downloadCount}</p>
-            <button
-            style={{ float: 'right', background: 'crimson', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '5px' }}
-            onClick={() => handleDelete(note._id)}
-            >
-            Delete
-            </button>
-          </div>
-        ))}
+        <h4>Uploaded Notes:-</h4>
+        {department && semester && subject ? (
+  displayedNotes.length > 0 ? (
+    displayedNotes.map((note) => (
+      <div className="note-card" key={note._id} id={`note-${note._id}`}>
+        <p><strong>{note.title}</strong> ({note.subject})</p>
+        <p>Downloads: {note.downloadCount}</p>
+        <button
+          style={{
+            float: 'right',
+            background: 'crimson',
+            color: 'white',
+            border: 'none',
+            padding: '5px 10px',
+            borderRadius: '5px'
+          }}
+          onClick={() => handleDelete(note._id)}
+        >
+          Delete
+        </button>
+      </div>
+    ))
+  ) : (
+    <p>No notes found for the selected filters.</p>
+  )
+) : (
+  <p style={{ color: 'gray' }}>
+    Please select department, semester and subject to view notes.
+  </p>
+)}
+
       </div>
       <DashboardCharts notes={notes} />
     </div>

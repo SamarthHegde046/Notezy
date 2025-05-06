@@ -49,12 +49,12 @@ const DashboardCharts = ({ notes }) => {
 
   return (
     <div style={{ marginTop: '40px' }}>
-      <h2 style={{ marginBottom: '10px' }}>Analytics Overview</h2>
+      <h2 style={{ marginBottom: '10px'}}>Analytics Overview</h2>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
         {/* Downloads Chart */}
         <div style={{ flex: 1, minWidth: '300px' }}>
-          <h4>Downloads per Subject</h4>
+          <h4>Downloads per Sem</h4>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={downloadData}>
               <CartesianGrid strokeDasharray="3 3" />

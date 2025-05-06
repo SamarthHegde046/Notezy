@@ -1,3 +1,4 @@
+//src/components/DepartmentList.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DepartmentList.css';

@@ -41,5 +41,6 @@ export const uploadNote = (data) => api.post('/notes', data);
 
 // Analytics APIs
 export const getAdminStats = () => api.get('/auth/active-admins');
+export const submitContactMessage = (data) => api.post('/contact', data);
 
 export default api;

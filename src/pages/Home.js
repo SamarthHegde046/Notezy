@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="homepage">
-      <h1>All Study Notes</h1>
+      <h1>All VTU Notes & Qp's</h1>
       {/* ADD OPTIONS DROPDOWN HERE ✅ */}
       <OptionsDropdown onSelect={handleSelect} />
     </div>

@@ -1,3 +1,5 @@
+
+//src/components/sems.js
 export const SEM_OPTIONS = [
   { label: 'Sem 1', value: 'Sem1' },
   { label: 'Sem 2', value: 'Sem2' },

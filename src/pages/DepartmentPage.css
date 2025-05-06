@@ -6,12 +6,10 @@
   .department-page h1 {
     font-size: 2.2rem;
     margin-bottom: 10px;
-    color: #2c3e50;
   }
   
   .department-page h2 {
     font-size: 1.3rem;
-    color: #555;
     margin-bottom: 30px;
   }
   
@@ -34,11 +32,17 @@
     .notes-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    .select-message{
+      margin-left: 100px;
+    }
   }
   
   @media (min-width: 900px) {
     .notes-grid {
       grid-template-columns: repeat(3, 1fr);
+    }
+    .select-message{
+      right: 100px;
     }
   }
   
@@ -68,7 +72,7 @@
     border: 1px solid #ccc;
   }
   .select-message {
-    position: fixed;
+    position: absolute;
     top: 60%;
     left: 35%;
     font-size: 1.5rem;

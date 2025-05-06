@@ -1,11 +1,11 @@
-body, html {
+body {
   margin: 0;
-  padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  scroll-behavior: smooth;
+  background: var(--bg-color); /* supports gradient or solid */
+  color: var(--text-color);
+  min-height: 100vh;
 }
+
 
 main {
   padding: 20px;
@@ -24,4 +24,55 @@ button {
 input, select, textarea {
   font-family: inherit;
 }
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f5f5f5;
+  --nav-bg: #eaeaea;
+  --btn-bg: #007bff;
+  --btn-text: #ffffff;
+  --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15); /* black shadow for light theme */
+}
+
+[data-theme="dark"] {
+  --bg-color: linear-gradient(to bottom right, #1c1c1c, #2e2e2e);
+  --text-color: #fdfafa;
+  --card-bg: #2a2a2a;
+  --nav-bg: #1e1e1e;
+  --btn-bg: #444;
+  --btn-text: #ffffff;
+  --box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.08); /* light shadow for dark theme */
+}
+
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+.note-card, .modal {
+  background: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 8px;
+}
+
+.navbar, .modal-box{
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+.navbar-links li a,.modal-title, .modal-content, .modal-close, .close-btn{
+  color: var(--text-color);
+}
+.note-card h3,.note-card p,.download-count{
+  color: var(--text-color);
+}
+.dipartment-page h2,.dipartment-page h1,.admin-list li,.admin-list h4,.note-listdash h4{
+  color: var(--text-color);
+}
+.dashboard-container {
+  background: var(--bg-color);
+}
+
 

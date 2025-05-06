@@ -26,15 +26,15 @@ const NoteCard = ({ note }) => {
     <div className="note-card">
       <h3>{note.title}</h3>
       <p>Subject: {note.subject}</p>
-      <p>Downloads: {note.downloadCount}</p>
 
       <div className="note-buttons">
         <a href={note.fileUrl} target="_blank" rel="noopener noreferrer" className="preview-btn">
           Preview
         </a>
         <button onClick={handleDownload} className="download-btn">
-          Download
+          Download 
         </button>
+        <span className="download-count">[{note.downloadCount}]</span>
       </div>
     </div>
   );

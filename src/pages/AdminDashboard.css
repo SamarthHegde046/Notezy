@@ -2,7 +2,6 @@
     max-width: 1100px;
     margin: auto;
     padding: 30px 20px;
-    background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     animation: fadeIn 0.6s ease-in-out;
@@ -57,7 +56,6 @@
   .note-list h4 {
     font-size: 20px;
     margin-bottom: 15px;
-    color: #333;
     border-left: 4px solid #3f51b5;
     padding-left: 10px;
   }
@@ -115,7 +113,6 @@
     grid-template-columns: repeat(8, 1fr); /* 8 cards per row */
     gap: 16px;
   }
-  
   @media (max-width: 1400px) {
     .note-listdash {
       grid-template-columns: repeat(4, 1fr);
@@ -149,6 +146,24 @@
     opacity: 0;
     transform: scale(0.95);
     transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .filter-bar select,
+  .filter-bar button {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  .filter-bar select:disabled {
+    background-color: #f0f0f0;
   }
   
   

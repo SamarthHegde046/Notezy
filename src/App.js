@@ -6,6 +6,8 @@ import { Navigate } from 'react-router-dom';
 import SemPage from './pages/SemPage'
 import { SEM_OPTIONS } from './components/sems';
 import DepartmentPage from './pages/DepartmentPage';
+import Footer from './components/Footer';
+import { ThemeProvider } from './context/ThemeContext';
 
 
 import Navbar from './components/Navbar';
@@ -20,6 +22,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
+    <ThemeProvider>
     <Router>
       <div className="App">
         <Navbar />
@@ -51,9 +54,11 @@ function App() {
             <Route path="/:sem/:department" element={<DepartmentPage/>} />
           </Routes>
           <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />
+          <Footer />
         </main>
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

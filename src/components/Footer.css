@@ -1,0 +1,36 @@
+.footer {
+    background: #1c1c1c;
+    color: #eee;
+    padding: 2rem;
+    text-align: center;
+    margin-left: -40px;
+    margin-right: -20px;
+    margin-top: 280px;
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .footer-links li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links li:hover {
+    color: #00bcd4;
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+  }
+  
