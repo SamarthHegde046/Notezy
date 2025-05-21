@@ -72,12 +72,6 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Course"
-          value={course}
-          onChange={(e) => setCourse(e.target.value)}
-        />
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         <select value={sem} onChange={(e) => setSem(e.target.value)}>
           <option value="">Select Semester</option>
@@ -91,11 +85,13 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
 
         <select value={department} onChange={(e) => setDepartment(e.target.value)}>
           <option value="">Select Department</option>
-          <option value="Computer Engineering">Computer Engineering</option>
+          <option value="Computer Engineering">Computer Science</option>
           <option value="Electronics">Electronics</option>
-          <option value="Mechanical">Mechanical</option>
-          <option value="Civil">Civil</option>
+          <option value="AIML">AIML</option>
+          <option value="CSE(AIML)">CSE(AIML)</option>
           <option value="Information Technology">Information Technology</option>
+          <option value="AIDS">AIDS</option>
+
         </select>
 
 

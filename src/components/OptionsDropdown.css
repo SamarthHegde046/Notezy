@@ -1,29 +1,44 @@
-/* src/components/OptionsDropdown.css */
-.options-dropdown {
-    margin: 20px auto;
-    text-align: center;
-    width: 100%; /* Half the screen */
+.sem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
   }
   
-  .options-dropdown select {
-    width: 80%;
-    padding: 12px 18px;
-    font-size: 1.1rem;
-    border: 2px solid #6c5ce7; /* Purple border */
-    border-radius: 12px;
-    background: linear-gradient(145deg, #f5f7fa, #c3cfe2);
-    color: #2d3436;
-    transition: all 0.1s ease;
+  .sem-card {
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
   }
   
-  .options-dropdown select:hover {
-    transform: scale(1.01);
-    border-color: #fdcb6e; /* Yellow on hover */
+  .sem-card:hover {
+    transform: scale(1.002);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   
-  .options-dropdown select:focus {
-    outline: none;
-    border-color: #00cec9;
+  .sem-card h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .sem-card h2 {
+      font-size: 1.5rem;
+    }
+    .sem-card{
+      width: 140%;
+      padding: 1px;
+      margin-left: -40px;
+    }
   }
   

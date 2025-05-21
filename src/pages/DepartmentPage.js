@@ -1,3 +1,4 @@
+// src/pages/DepartmentPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteCard from '../components/NoteCard';
@@ -18,9 +19,10 @@ const DepartmentPage = () => {
   const departmentMap = {
     computerengineering: 'Computer Engineering',
     electronics: 'Electronics',
-    mechanical: 'Mechanical',
-    civil: 'Civil',
-    informationtechnology: 'Information Technology'
+    aiml: 'AIML',
+    cseaiml: 'CSE(AIML)',
+    informationtechnology: 'Information Technology',
+    aids: 'AIDS'
   };
 
   const properDepartment = departmentMap[department.toLowerCase()];
@@ -55,7 +57,9 @@ const DepartmentPage = () => {
   return (
     <div className="department-page">
       <h1>{properDepartment}</h1>
-      <h2>{normalizedSem}</h2>
+      <p className="info-note">
+        📌 Please select subject as <strong>subjectname_q</strong> for question papers.
+      </p>
 
       <div className="filter-bar">
         <SearchFilter onSearch={setSearchQuery} />
@@ -70,7 +74,7 @@ const DepartmentPage = () => {
         {notes.length === 0 ? (
           <BookAnimation />
         ) : !selectedSubject ? (
-          <p className="select-message">Select any subject first.</p>
+          <p className="select-message">Select any subject to see notes</p>
         ) : filteredNotes.length > 0 ? (
           filteredNotes.map(note => <NoteCard key={note._id} note={note} />)
         ) : (

@@ -74,13 +74,9 @@
   }
   
   .search-empty-message h3 {
-    color: #333;
     margin-bottom: 0.5rem;
   }
-  
-  .search-empty-message p {
-    color: #666;
-  }
+
   
   @keyframes shelfBounce {
     0%, 100% { transform: rotate(0deg); }

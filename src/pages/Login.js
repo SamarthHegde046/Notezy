@@ -24,7 +24,7 @@ const Login = () => {
       login(res.data.token);
       toast.success('Logged in successfully!');
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/dashboard123');
       }, 1000);
     } catch (err) {
       const msg = err.response?.data?.message || 'Login failed.';

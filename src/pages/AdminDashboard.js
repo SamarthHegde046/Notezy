@@ -170,8 +170,9 @@ useEffect(() => {
     <option value="computerengineering">Computer Engineering</option>
     <option value='informationtechnology'>Information Technology</option>
     <option value="electronics">Electronics</option>
-    <option value="mechanical">Mechanical</option>
-    <option value="civil">Civil</option>
+    <option value="aiml">AIML</option>
+    <option value="cseaiml">CSE(AIML)</option>
+    <option value="aids">AIDS</option>
   </select>
 
   <select

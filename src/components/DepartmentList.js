@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import './DepartmentList.css';
 
 const departments = [
-  'Computer Engineering',
+  'Computer Science',
   'Electronics',
-  'Mechanical',
-  'Civil',
-  'Information Technology'
+  'AIML',
+  'CSE(AIML)',
+  'Information Technology',
+  'AIDS'
 ];
 
 const DepartmentList = ({ sem }) => {

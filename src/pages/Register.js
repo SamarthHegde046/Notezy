@@ -25,7 +25,7 @@ const Register = () => {
       toast.success('registered successfully!');
 
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/dashboard123');
       }, 1000);
     } catch (err) {
       const msg = err.response?.data?.message || 'Login failed.';

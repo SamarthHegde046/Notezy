@@ -8,7 +8,7 @@ const SemPage = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>{sem} - Departments</h1>
+      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>{sem} - Branches</h1>
       <DepartmentList sem={sem} />
     </div>
   );

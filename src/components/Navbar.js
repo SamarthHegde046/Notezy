@@ -49,12 +49,11 @@ const Navbar = () => {
 
         {!isAdmin ? (
           <>
-            <li><Link to="/login" onClick={closeMenu}>Login</Link></li>
-            <li><Link to="/register" onClick={closeMenu}>Register</Link></li>
+            <li><Link to="https://results.vtu.ac.in/" onClick={closeMenu}>vtu results</Link></li>
           </>
         ) : (
           <>
-            <li><Link to="/dashboard" onClick={closeMenu}>Dashboard</Link></li>
+            <li><Link to="/dashboard123" onClick={closeMenu}>Dashboard</Link></li>
             <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
           </>
         )}
