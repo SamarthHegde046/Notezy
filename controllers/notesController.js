@@ -39,7 +39,6 @@ const uploadNote = async (req, res) => {
     const newNote = await Note.create({
       title,
       subject,
-      course,
       sem,
       department,
       fileUrl: result.secure_url,

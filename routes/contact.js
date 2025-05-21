@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
 
   try {
     const response = await resend.emails.send({
-      from: 'Your App <onboarding@resend.dev>',
+      from: 'Notesbuddy <onboarding@resend.dev>',
       to: process.env.ADMIN_EMAIL,            
       subject: 'New Contact Message',
       html: `<p><strong>From:</strong> ${email}</p><p>${message}</p>`,

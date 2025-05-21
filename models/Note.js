@@ -10,10 +10,6 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    course: {
-      type: String,
-      required: true
-    },
     fileUrl: {
       type: String,
       required: true
