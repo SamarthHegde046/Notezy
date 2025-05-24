@@ -8,19 +8,29 @@ const NoteCard = ({ note }) => {
     return parts[0] + '/upload/fl_attachment/' + parts[1];
   };
 
-  const handleDownload = async() => {
-    // Increment download count in the backend
-    try{
+    const handleDownload = async () => {
+    try {
       await incrementDownload(note._id);
 
+      const downloadUrl = getDownloadUrl(note.fileUrl);
 
-    // Trigger download via Cloudinary
-    const downloadUrl = getDownloadUrl(note.fileUrl);
-    window.open(downloadUrl, '_blank');
-  }
-  catch(error){
-    console.error('Download failed:', error);
-  }};
+      const response = await fetch(downloadUrl);
+      const blob = await response.blob();
+
+      const fileName = `${note.title.trim().replace(/\s+/g, '_')}.pdf`;
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
+
 
   return (
     <div className="note-card">
