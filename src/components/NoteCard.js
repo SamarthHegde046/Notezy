@@ -1,4 +1,4 @@
-import React from 'react';
+import { toast } from 'react-toastify';
 import './NoteCard.css';
 import { incrementDownload } from '../services/api';
 
@@ -9,27 +9,35 @@ const NoteCard = ({ note }) => {
   };
 
     const handleDownload = async () => {
-    try {
-      await incrementDownload(note._id);
+  try {
+    await incrementDownload(note._id);
 
-      const downloadUrl = getDownloadUrl(note.fileUrl);
+    const downloadUrl = getDownloadUrl(note.fileUrl);
+    const response = await fetch(downloadUrl);
+    const blob = await response.blob();
 
-      const response = await fetch(downloadUrl);
-      const blob = await response.blob();
+    const fileName = `${note.title.trim().replace(/\s+/g, '_')}.pdf`;
 
-      const fileName = `${note.title.trim().replace(/\s+/g, '_')}.pdf`;
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+    toast.success('Downloaded successfully!', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  } catch (error) {
+    console.error('Download failed:', error);
+    toast.error('Download failed. Please try again.', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  }
+};
 
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-    } catch (error) {
-      console.error('Download failed:', error);
-    }
-  };
 
 
   return (
