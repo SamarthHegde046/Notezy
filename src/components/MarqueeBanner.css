@@ -1,0 +1,105 @@
+.marquee-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #e8fcfc;
+  border: 1px solid #84f5f5;
+  padding: 10px 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;           
+  min-height: 50px;      
+  box-sizing: border-box;
+}
+
+.title-with-dot {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.blinking-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #05f355;
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.update-text {
+  font-weight: bold;
+  color: #166534;
+  font-size: 1rem;
+}
+
+.scrolling-text {
+  overflow: hidden;
+  flex: 1;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.scrolling-text p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 15s linear infinite;
+  font-size: 0.95rem;
+  color: #065f46;
+  font-weight: 500;
+}
+
+@keyframes scrollText {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .title-with-dot {
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  .update-text {
+    font-size: 0.95rem;
+  }
+
+  .scrolling-text p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-banner {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px 2px;
+    width: 120%; 
+    left: -12%;         
+  }
+
+  .scrolling-text p {
+    font-size: 0.85rem;
+    top: 10%;
+  }
+  .update-text{
+    margin-top: 16%;
+  }
+  .blinking-dot{
+    margin-top: 15%;
+  }
+}
