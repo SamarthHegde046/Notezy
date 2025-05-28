@@ -33,7 +33,7 @@ const Navbar = () => {
         <Link to="/" onClick={closeMenu}>
           <img src={logo} alt="StudyNotes Logo" className="logo-img" />
         </Link>
-        <Link to="/" className="brand-name" onClick={closeMenu}>NoteBuddy</Link>
+        <Link to="/" className="brand-name" onClick={closeMenu}>Notezy</Link>
       </div>
 
       <div className="hamburger" onClick={toggleMenu}>
