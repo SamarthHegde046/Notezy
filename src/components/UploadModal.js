@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 const UploadModal = ({ isOpen, onClose, onSuccess }) => {
   const [title, setTitle] = useState('');
   const [subject, setSubject] = useState('');
-  const [course, setCourse] = useState('');
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -23,7 +22,6 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('subject', subject);
-    formData.append('course', course);
     formData.append('file', file);
     formData.append('sem', sem);
     formData.append('department', department);
@@ -85,12 +83,12 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
 
         <select value={department} onChange={(e) => setDepartment(e.target.value)}>
           <option value="">Select Department</option>
-          <option value="Computer Engineering">Computer Science</option>
-          <option value="Electronics">Electronics</option>
-          <option value="AIML">AIML</option>
-          <option value="CSE(AIML)">CSE(AIML)</option>
-          <option value="Information Technology">Information Technology</option>
-          <option value="AIDS">AIDS</option>
+          <option value="computerengineering">Computer Science</option>
+          <option value="electronics">Electronics</option>
+          <option value="aiml">AIML</option>
+          <option value="cseaiml">CSE(AIML)</option>
+          <option value="informationtechnology">Information Technology</option>
+          <option value="aids">AIDS</option>
 
         </select>
 

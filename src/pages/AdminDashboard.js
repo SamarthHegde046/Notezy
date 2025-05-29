@@ -29,7 +29,7 @@ const AdminDashboard = () => {
   const token = localStorage.getItem('token');
   if (!token) {
     alert('You must be logged in to access this.');
-    navigate('/login');
+    navigate('/login2005');
   }
   const fetchFilteredNotes = async () => {
     if (!department || !semester || !subject) {
@@ -168,10 +168,10 @@ useEffect(() => {
   }}>
     <option value="">Select Department</option>
     <option value="computerengineering">Computer Engineering</option>
-    <option value='informationtechnology'>Information Technology</option>
-    <option value="electronics">Electronics</option>
+    <option value='electronics'>Electronics</option>
     <option value="aiml">AIML</option>
     <option value="cseaiml">CSE(AIML)</option>
+    <option value="informationtechnology">Information Technology</option>
     <option value="aids">AIDS</option>
   </select>
 
@@ -190,6 +190,7 @@ useEffect(() => {
           headers: { Authorization: `Bearer ${token}` }
         });
         setSubjects(res.data);
+        console.log('Fetched subjects:', res.data);
       } catch (err) {
         toast.error('Failed to fetch subjects');
       }
