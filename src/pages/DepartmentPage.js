@@ -17,7 +17,7 @@ const DepartmentPage = () => {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   const departmentMap = {
-    computerengineering: 'Computer Engineering',
+    computerengineering: 'Computer Science',
     electronics: 'Electronics',
     aiml: 'AIML',
     cseaiml: 'CSE(AIML)',
@@ -25,19 +25,21 @@ const DepartmentPage = () => {
     aids: 'AIDS'
   };
 
-  const properDepartment = departmentMap[department.toLowerCase()];
+  const normalizedDepartment = department.toLowerCase(); // already an internal key
   const normalizedSem = decodeURIComponent(sem);
+  const displayDepartment = departmentMap[normalizedDepartment];
+
 
   useEffect(() => {
     const fetchNotes = async () => {
-      const data = await getAllNotes({ sem: normalizedSem, department: properDepartment });
+      const data = await getAllNotes({ sem: normalizedSem, department: normalizedDepartment });
       setNotes(data);
       const uniqueSubjects = [...new Set(data.map(note => note.subject))];
       setSubjects(uniqueSubjects);
     };
 
     fetchNotes();
-  }, [normalizedSem, properDepartment]);
+  }, [normalizedSem, normalizedDepartment]);
 
   useEffect(() => {
     if (!selectedSubject) {
@@ -56,7 +58,7 @@ const DepartmentPage = () => {
 
   return (
     <div className="department-page">
-      <h1>{properDepartment}</h1>
+      <h1>{department.toUpperCase()}</h1>
       <p className="info-note">
         📌 Please select subject as <strong>subjectname_q</strong> for question papers.
       </p>

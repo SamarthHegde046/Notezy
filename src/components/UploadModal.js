@@ -60,6 +60,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
         <h3>Upload New Note</h3>
         <input
           type="text"
+          autoComplete="on"
           placeholder="Note Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -67,6 +68,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
         <input
           type="text"
           placeholder="Subject"
+          autoComplete="on"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
@@ -89,8 +91,8 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           <option value="cseaiml">CSE(AIML)</option>
           <option value="informationtechnology">Information Technology</option>
           <option value="aids">AIDS</option>
-
         </select>
+
 
 
 
