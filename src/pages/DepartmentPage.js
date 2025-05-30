@@ -17,7 +17,7 @@ const DepartmentPage = () => {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   const departmentMap = {
-    computerengineering: 'Computer Science',
+    computerscience: 'Computer Science',
     electronics: 'Electronics',
     aiml: 'AIML',
     cseaiml: 'CSE(AIML)',
@@ -27,8 +27,6 @@ const DepartmentPage = () => {
 
   const normalizedDepartment = department.toLowerCase(); // already an internal key
   const normalizedSem = decodeURIComponent(sem);
-  const displayDepartment = departmentMap[normalizedDepartment];
-
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -58,7 +56,7 @@ const DepartmentPage = () => {
 
   return (
     <div className="department-page">
-      <h1>{department.toUpperCase()}</h1>
+      <h2>{department.toUpperCase()}</h2>
       <p className="info-note">
         📌 Please select subject as <strong>subjectname_q</strong> for question papers.
       </p>

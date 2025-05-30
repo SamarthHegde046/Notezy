@@ -85,7 +85,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
 
         <select value={department} onChange={(e) => setDepartment(e.target.value)}>
           <option value="">Select Department</option>
-          <option value="computerengineering">Computer Science</option>
+          <option value="computerscience">Computer Science</option>
           <option value="electronics">Electronics</option>
           <option value="aiml">AIML</option>
           <option value="cseaiml">CSE(AIML)</option>
