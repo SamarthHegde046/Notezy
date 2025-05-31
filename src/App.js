@@ -18,7 +18,9 @@ import AdminDashboard from './pages/AdminDashboard';
 import NoteCard from './components/NoteCard';
 import './App.css';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import AboutUs from './pages/AboutUs';
+import TermsConditions from './pages/TermsConditions';
 
 function App() {
   return (
@@ -44,6 +46,10 @@ function App() {
             <Route path="/note/:id" element={<NoteCard />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/" element={<Home />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/terms-and-conditions" element={<TermsConditions />} />
+
             {SEM_OPTIONS.map(option => (
               <Route
                 key={option.value}
