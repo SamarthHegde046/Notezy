@@ -39,22 +39,22 @@ const Footer = () => {
   return (
     <>
       <footer className="footer">
-  <ul className="footer-links">
-    <li onClick={() => handleOpen('privacy')}>
-      <FaLock className="icon" /> Privacy Policy
-    </li>
-    <li onClick={() => handleOpen('terms')}>
-      <FaFileContract className="icon" /> Terms & Conditions
-    </li>
-    <li onClick={() => handleOpen('about')}>
-      <FaInfoCircle className="icon" /> About Us
-    </li>
-    <li onClick={() => handleOpen('contact')}>
-      <FaEnvelope className="icon" /> Contact Us
-    </li>
-  </ul>
-  <p className="footer-copy">© {new Date().getFullYear()} NoteBuddy. All rights reserved.</p>
-</footer>
+          <ul className="footer-links">
+            <li onClick={() => handleOpen('privacy')}>
+              <FaLock className="icon" /> Privacy Policy
+            </li>
+            <li onClick={() => handleOpen('terms')}>
+              <FaFileContract className="icon" /> Terms & Conditions
+            </li>
+            <li onClick={() => handleOpen('about')}>
+              <FaInfoCircle className="icon" /> About Us
+            </li>
+            <li onClick={() => handleOpen('contact')}>
+              <FaEnvelope className="icon" /> Contact Us
+            </li>
+          </ul>
+          <p className="footer-copy">© {new Date().getFullYear()} Notezy. All rights reserved.</p>
+        </footer>
 
 
       {/* Standard Modals */}

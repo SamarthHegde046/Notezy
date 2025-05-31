@@ -86,6 +86,7 @@
     .book-animation-container{
       height: 300px;
       width: 200px;
-      right: -20px;
+      right: -60px;
+      top: 60px;
     }
   }
