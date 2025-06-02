@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
-import logo from './favicon.png';
+import logo from './feather-pen.png';
 import { ThemeContext } from '../context/ThemeContext';
 
 const Navbar = () => {

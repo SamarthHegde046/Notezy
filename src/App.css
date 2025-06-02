@@ -1,3 +1,4 @@
+/*App.css*/
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -31,7 +32,8 @@ input, select, textarea {
   --nav-bg: #eaeaea;
   --btn-bg: #007bff;
   --btn-text: #ffffff;
-  --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15); /* black shadow for light theme */
+  --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15); 
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 [data-theme="dark"] {
@@ -41,7 +43,8 @@ input, select, textarea {
   --nav-bg: #1e1e1e;
   --btn-bg: #444;
   --btn-text: #ffffff;
-  --box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.08); /* light shadow for dark theme */
+  --box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.08); 
+  --bg-gradient: linear-gradient(135deg, #0e0d0d 0%, #3c334d 100%);
 }
 
 
