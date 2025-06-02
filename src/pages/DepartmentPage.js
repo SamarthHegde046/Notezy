@@ -1,4 +1,3 @@
-// src/pages/DepartmentPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteCard from '../components/NoteCard';
@@ -15,6 +14,7 @@ const DepartmentPage = () => {
   const [selectedSubject, setSelectedSubject] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredNotes, setFilteredNotes] = useState([]);
+  const [loading, setLoading] = useState(true); // <- NEW
 
   const departmentMap = {
     computerscience: 'Computer Science',
@@ -30,10 +30,17 @@ const DepartmentPage = () => {
 
   useEffect(() => {
     const fetchNotes = async () => {
-      const data = await getAllNotes({ sem: normalizedSem, department: normalizedDepartment });
-      setNotes(data);
-      const uniqueSubjects = [...new Set(data.map(note => note.subject))];
-      setSubjects(uniqueSubjects);
+      setLoading(true); // start loading
+      try {
+        const data = await getAllNotes({ sem: normalizedSem, department: normalizedDepartment });
+        setNotes(data);
+        const uniqueSubjects = [...new Set(data.map(note => note.subject))];
+        setSubjects(uniqueSubjects);
+      } catch (err) {
+        console.error('Failed to fetch notes:', err);
+      } finally {
+        setLoading(false); // stop loading
+      }
     };
 
     fetchNotes();
@@ -71,7 +78,9 @@ const DepartmentPage = () => {
       </div>
 
       <div className="notes-grid">
-        {notes.length === 0 ? (
+        {loading ? (
+          <div className="loading-animation">Loading notes...</div> // ✅ Loading animation
+        ) : notes.length === 0 ? (
           <BookAnimation />
         ) : !selectedSubject ? (
           <p className="select-message">Select any subject to see notes</p>

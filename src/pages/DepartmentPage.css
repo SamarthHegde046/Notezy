@@ -72,3 +72,11 @@
     transform: translateY(0);
   }
 }
+.loading-animation {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #444;
+  text-align: center;
+  margin-top: 40px;
+}
+
