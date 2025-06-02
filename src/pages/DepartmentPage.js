@@ -6,6 +6,7 @@ import { getAllNotes } from '../services/api';
 import SearchFilter from '../components/SearchFilter';
 import BookAnimation from '../components/BookAnimation';
 import SubjectDropdown from '../components/SubjectDropdown';
+import LoadingSpinner from '../components/LoadingSpinner'; 
 
 const DepartmentPage = () => {
   const { sem, department } = useParams();
@@ -64,9 +65,6 @@ const DepartmentPage = () => {
   return (
     <div className="department-page">
       <h2>{department.toUpperCase()}</h2>
-      <p className="info-note">
-        📌 Please select subject as <strong>subjectname_q</strong> for question papers.
-      </p>
 
       <div className="filter-bar">
         <SearchFilter onSearch={setSearchQuery} />
@@ -79,7 +77,7 @@ const DepartmentPage = () => {
 
       <div className="notes-grid">
         {loading ? (
-          <div className="loading-animation">Loading notes...</div> // ✅ Loading animation
+          <LoadingSpinner/>
         ) : notes.length === 0 ? (
           <BookAnimation />
         ) : !selectedSubject ? (

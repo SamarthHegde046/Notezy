@@ -1,0 +1,24 @@
+/* src/components/LoadingSpinner.css */
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  color: #444;
+}
+
+.spinner {
+  width: 2px;
+  height: 2px;
+  border: 5px solid #eee;
+  border-top: 5px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
