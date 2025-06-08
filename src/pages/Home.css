@@ -247,37 +247,69 @@
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
   background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
 }
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .homepage,
+  .hero-section,
+  .selection-section,
+  .features-section,
+  .cta-section {
+    padding-inline: 1rem;
   }
-  
-  .cta-content {
-    padding: 2rem 1.5rem;
+}
+
+/* Hero Section adjustments */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.5rem;
   }
 }
 
-/* Additional animations */
-.selection-section,
-.features-section,
-.cta-section {
-  animation: slideInUp 0.6s ease-out;
-  animation-fill-mode: both;
+/* Features */
+@media (max-width: 768px) {
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .feature-title {
+    font-size: 1.1rem;
+  }
+
+  .feature-description {
+    font-size: 0.95rem;
+  }
+
+  .feature-icon {
+    width: 50px;
+    height: 50px;
+  }
 }
 
-.selection-section {
-  animation-delay: 0.2s;
-}
+/* CTA Section */
+@media (max-width: 768px) {
+  .cta-content h3 {
+    font-size: 1.6rem;
+  }
 
-.features-section {
-  animation-delay: 0.4s;
-}
+  .cta-content p {
+    font-size: 1rem;
+  }
 
-.cta-section {
-  animation-delay: 0.6s;
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.6rem;
+  }
 }
 
 @keyframes slideInUp {
