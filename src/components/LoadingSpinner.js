@@ -7,6 +7,7 @@ const LoadingSpinner = () => {
     <div className="spinner-container">
       <div className="spinner" />
       <p>Loading notes...</p>
+      <p>Usually it will take 8-12 seconds</p>
     </div>
   );
 };
