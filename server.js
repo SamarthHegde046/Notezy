@@ -3,11 +3,21 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const { errorHandler } = require('./middleware/errorMiddleware');
-
 const authRoutes = require('./routes/authRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const contactRoutes = require('./routes/contact');
 
+const uploadRoute = require("./routes/uploadRoute");
+const chatRoute = require("./routes/chatRoute");
+const sessionRoute = require("./routes/sessionRoute");
+const analyzeRoute = require("./routes/analyzeRoute");
+
+
+const { cleanupOldSessions } = require("./utils/sessionManager");
+
+setInterval(() => {
+  cleanupOldSessions();
+}, 60 * 60 * 1000);
 
 // Load .env only in dev
 if (process.env.NODE_ENV !== 'production') {
@@ -29,6 +39,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/contact', contactRoutes);
+app.use("/api/", uploadRoute);
+app.use("/api/", chatRoute);
+app.use("/api/", sessionRoute);
+app.use("/api/", analyzeRoute);
 
 // Error Handler
 app.use(errorHandler);

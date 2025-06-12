@@ -8,7 +8,7 @@ const fs = require('fs');
 // Upload new note (admin only)
 const uploadNote = async (req, res) => {
   try {
-    const { title, subject, course,sem,department } = req.body;
+    const { title, subject,sem,department } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ message: 'No file uploaded' });
