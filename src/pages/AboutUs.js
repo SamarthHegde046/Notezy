@@ -5,7 +5,7 @@ const AboutUs = () => (
   <div className="container">
     <h2>About Notezy</h2>
     <p>
-      Notezy is a student-driven initiative aimed at making study materials accessible to everyone. We provide a simple and secure platform for students to share and download notes easily.
+      Notezy is a student-driven initiative aimed at making study materials accessible to everyone. We provide a simple and secure platform for students to download notes easily.
     </p>
     <p>
       Our mission is to bridge the information gap and promote collaborative learning. Built by students, for students.

@@ -115,7 +115,7 @@ useEffect(() => {
 
   
   if (loading) {
-    return <div className="spinner">Loading dashboard...</div>;
+    return <div>Loading dashboard...</div>;
   }  
 
   return (
@@ -170,8 +170,7 @@ useEffect(() => {
     <option value="computerscience">Computer Science</option>
     <option value='electronics'>Electronics</option>
     <option value="aiml">AIML</option>
-    <option value="cseaiml">CSE(AIML)</option>
-    <option value="informationtechnology">Information Technology</option>
+    <option value="informationscience">Information Science</option>
     <option value="aids">AIDS</option>
   </select>
 

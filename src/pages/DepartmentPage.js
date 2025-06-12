@@ -21,8 +21,7 @@ const DepartmentPage = () => {
     computerscience: 'Computer Science',
     electronics: 'Electronics',
     aiml: 'AIML',
-    cseaiml: 'CSE(AIML)',
-    informationtechnology: 'Information Technology',
+    informationscience: 'Information Science',
     aids: 'AIDS'
   };
 

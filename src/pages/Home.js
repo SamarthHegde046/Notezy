@@ -4,7 +4,6 @@ import { BookOpen, Download, Search } from 'lucide-react';
 import './Home.css';
 import OptionsDropdown from '../components/OptionsDropdown';
 import MarqueeBanner from '../components/MarqueeBanner';
-
 const Home = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
@@ -51,9 +50,9 @@ const Home = () => {
           </p>
         </div>
       </div>
-
       {/* Main Selection */}
       <div className="selection-section">
+        <a href="/notezybot" class="glow-button">PDF Analyzer bot(Notezy AI)</a>
         <h2 className="section-title">Choose Your Course</h2>
         <OptionsDropdown onSelect={handleSelect} />
       </div>

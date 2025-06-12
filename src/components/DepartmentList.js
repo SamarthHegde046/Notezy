@@ -7,8 +7,7 @@ const departments = [
   'Computer Science',
   'Electronics',
   'AIML',
-  'CSE(AIML)',
-  'Information Technology',
+  'Information Science',
   'AIDS'
 ];
 

@@ -93,6 +93,9 @@
     display: block;
     margin-right: -12px;
   }
+  .navbar{
+    padding-bottom: 0px;
+  }
 
   .navbar-links {
     flex-direction: column;

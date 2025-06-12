@@ -21,6 +21,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import TermsConditions from './pages/TermsConditions';
+import Notezybot from './components/Notezybot';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/terms-and-conditions" element={<TermsConditions />} />
+            <Route path='/notezybot' element={<Notezybot/>}/>
 
             {SEM_OPTIONS.map(option => (
               <Route
