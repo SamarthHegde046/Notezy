@@ -39,7 +39,7 @@ const DepartmentPage = () => {
       } catch (err) {
         console.error('Failed to fetch notes:', err);
       } finally {
-        setLoading(false); // stop loading
+        setLoading(true); // stop loading
       }
     };
 

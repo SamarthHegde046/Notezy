@@ -3,22 +3,108 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-  color: #444;
+  justify-content: center;
+  margin-top: 60px;
+  padding: 40px 20px;
+  min-height: 200px;
+}
+
+.spinner-wrapper {
+  position: relative;
+  margin-bottom: 32px;
 }
 
 .spinner {
-  width: 2px;
-  height: 2px;
-  border: 5px solid #eee;
-  border-top: 5px solid #4a90e2;
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #4f46e5;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
 }
 
+.spinner-glow {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(17, 6, 214, 0.1) 0%, transparent 70%);
+  animation: pulse 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+.loading-text {
+  text-align: center;
+  max-width: 300px;
+}
+
+.loading-text h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: -0.025em;
+}
+
+.loading-text p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+@media (min-width: 600px) {
+  .spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+  z-index: 2;
+}
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .spinner-container {
+    color: #e5e7eb;
+  }
+  
+  .spinner {
+    border-color: #374151;
+    border-top-color: #6366f1;
+  }
+  
+  .loading-text h3 {
+    color: #f9fafb;
+  }
+  
+  .loading-text p {
+    color: #9ca3af;
+  }
+  
+  .spinner-glow {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
   }
 }
