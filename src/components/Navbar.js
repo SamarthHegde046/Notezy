@@ -50,6 +50,7 @@ const Navbar = () => {
         {!isAdmin ? (
           <>
             <li><Link to="https://results.vtu.ac.in/" onClick={closeMenu}>vtu results</Link></li>
+            <li><Link to="/notezybot" onClick={closeMenu}>notezy ai</Link></li>
           </>
         ) : (
           <>

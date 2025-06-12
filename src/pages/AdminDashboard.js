@@ -168,7 +168,7 @@ useEffect(() => {
   }}>
     <option value="">Select Department</option>
     <option value="computerscience">Computer Science</option>
-    <option value='electronics'>Electronics</option>
+    <option value='electronics'>Electronics and Communications</option>
     <option value="aiml">AIML</option>
     <option value="informationscience">Information Science</option>
     <option value="aids">AIDS</option>

@@ -104,10 +104,8 @@ const SuggestedQuestions = ({ questions, onQuestionClick }) => (
 const WelcomeScreen = ({ pdfFile, sessionId, onQuestionSelect }) => {
   const features = [
     { icon: "📄", title: "PDF Analysis", description: "Upload any PDF and get instant analysis of its content" },
-    { icon: "💬", title: "Natural Conversation", description: "Ask questions in plain language and get human-like responses" },
     { icon: "🔍", title: "Content Search", description: "Find specific information quickly within your documents" },
-    { icon: "🧠", title: "Smart Summarization", description: "Get key insights and summaries from complex documents" },
-    { icon: "⚡", title: "Instant Answers", description: "Get immediate responses to your questions about the PDF" }
+    { icon: "🧠", title: "Smart Summarization", description: "Get key insights and summaries from complex documents" }
   ];
 
   const suggestedQuestions = [
@@ -122,7 +120,7 @@ const WelcomeScreen = ({ pdfFile, sessionId, onQuestionSelect }) => {
     <div className="welcome-screen">
       <div className="welcome-header">
         <div className="welcome-icon">
-          💬
+          <img src={logo} alt="StudyNotes Logo" className="logo-img" />
         </div>
         <h2 className="welcome-title">
           Welcome to Notezy AI

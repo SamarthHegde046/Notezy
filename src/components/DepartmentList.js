@@ -5,7 +5,7 @@ import './DepartmentList.css';
 
 const departments = [
   'Computer Science',
-  'Electronics',
+  'Electronics and Communications',
   'AIML',
   'Information Science',
   'AIDS'

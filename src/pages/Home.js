@@ -52,7 +52,7 @@ const Home = () => {
       </div>
       {/* Main Selection */}
       <div className="selection-section">
-        <a href="/notezybot" class="glow-button">PDF Analyzer bot(Notezy AI)</a>
+        <a href="/notezybot" className="glow-button">PDF Analyzer bot(Notezy AI)</a>
         <h2 className="section-title">Choose Your Course</h2>
         <OptionsDropdown onSelect={handleSelect} />
       </div>
