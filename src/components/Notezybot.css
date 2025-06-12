@@ -66,14 +66,14 @@ body {
 }
 
 .header-icon {
-  width: 32px;
-  height: 32px;
+  width: 46px;
+  height: 46px;
   background: linear-gradient(135deg, #2563eb, #9333ea);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 10px;
   flex-shrink: 0;
 }
 
