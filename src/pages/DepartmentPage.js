@@ -19,7 +19,7 @@ const DepartmentPage = () => {
 
   const departmentMap = {
     computerscience: 'Computer Science',
-    electronics: 'Electronics and Communications',
+    electronicsandcommunications: 'Electronics and Communications',
     aiml: 'AIML',
     informationscience: 'Information Science',
     aids: 'AIDS'
