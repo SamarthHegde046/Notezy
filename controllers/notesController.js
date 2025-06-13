@@ -8,13 +8,16 @@ const fs = require('fs');
 // Upload new note (admin only)
 const uploadNote = async (req, res) => {
   try {
-    const { title, subject,sem,department } = req.body;
+    const { title, subject, sem, department } = req.body;
 
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
+    if (!req.file || !title || !subject || !sem || !department) {
+      return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Upload file buffer manually to Cloudinary
+    // Convert to array if not already
+    const departments = Array.isArray(department) ? department : [department];
+
+    // Upload once to Cloudinary
     const streamUpload = (fileBuffer) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
@@ -23,11 +26,8 @@ const uploadNote = async (req, res) => {
             resource_type: 'auto',
           },
           (error, result) => {
-            if (result) {
-              resolve(result);
-            } else {
-              reject(error);
-            }
+            if (result) resolve(result);
+            else reject(error);
           }
         );
         stream.end(fileBuffer);
@@ -36,16 +36,20 @@ const uploadNote = async (req, res) => {
 
     const result = await streamUpload(req.file.buffer);
 
+    // Save one document with all departments
     const newNote = await Note.create({
       title,
-      subject,
+      subject: subject,
       sem,
-      department,
+      department: departments.map(dep => dep),
       fileUrl: result.secure_url,
       publicId: result.public_id,
     });
 
-    res.status(201).json(newNote);
+    res.status(201).json({
+      message: 'Note uploaded successfully',
+      note: newNote,
+    });
   } catch (error) {
     console.error('Upload error:', error);
     res.status(500).json({ message: 'Server error during upload' });
@@ -53,10 +57,12 @@ const uploadNote = async (req, res) => {
 };
 
 
+
 const getDashboardData = asyncHandler(async (req, res) => {
   try {
     const notes = await Note.find().sort({ createdAt: -1 });
     const totalDownloads = notes.reduce((acc, note) => acc + (note.downloadCount||0),0);
+    const totalDepartmentUploads = notes.reduce((acc, note) => acc + (note.department?.length || 0), 0);
     const activeAdmins = await Admin.find({ isActive: true }).select('_id email');
     const downloadsBySubject = {};
 
@@ -77,6 +83,7 @@ const getDashboardData = asyncHandler(async (req, res) => {
     res.json({
       notes,
       totalDownloads,
+      totalDepartmentUploads,
       activeAdmins,
       downloadsPerSubject: downloadsData
     });

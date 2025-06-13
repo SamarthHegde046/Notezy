@@ -27,7 +27,7 @@ const noteSchema = new mongoose.Schema(
       required: true
     },
     department: {
-      type: String,
+      type: [String],
       required: true
     }
   },
