@@ -24,6 +24,7 @@ const AdminDashboard = () => {
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [displayedNotes, setDisplayedNotes] = useState([]);
+  const [totalDepartmentUploads, setTotalDepartmentUploads] = useState(0);
 
 
   const token = localStorage.getItem('token');
@@ -70,6 +71,7 @@ const AdminDashboard = () => {
   
         setNotes(res.data.notes);
         setDownloads(res.data.totalDownloads);
+        setTotalDepartmentUploads(res.data.totalDepartmentUploads);
         setAdmins(res.data.activeAdmins);
       } catch (err) {
         toast.error('Failed to load Dashboard data..');
@@ -124,7 +126,7 @@ useEffect(() => {
 
       <div className="dashboard-stats">
         <div className="stat-box">
-          <h3>{notes.length}</h3>
+          <h3>{totalDepartmentUploads}</h3>
           <p>Notes Uploaded</p>
         </div>
         <div className="stat-box">

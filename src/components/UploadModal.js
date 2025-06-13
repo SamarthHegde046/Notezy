@@ -14,43 +14,47 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
 
 
   const handleUpload = async () => {
-    if (!title || !subject || !file) {
-      toast.error('All fields are required!');
-      return;
-    }
+  if (!title || !subject || !file || !sem || department.length === 0) {
+    toast.error('All fields are required!');
+    return;
+  }
 
+  setUploading(true);
+
+  try {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('subject', subject);
     formData.append('file', file);
     formData.append('sem', sem);
-    formData.append('department', department);
+    
+    department.forEach((dept) => formData.append('department', dept));
 
-    setUploading(true);
-    try {
-      const res = await axios.post(`${process.env.REACT_APP_API_BASE}/notes`, formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round(
-            (progressEvent.loaded*100) / progressEvent.total
-          );
-          setUploadProgress(percentCompleted);
-        }
-      });
+    await axios.post(`${process.env.REACT_APP_API_BASE}/notes`, formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'multipart/form-data',
+      },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
+    });
 
-      onSuccess();
-      toast.success('Note uploaded successfully!');
-      onClose();
-      setUploadProgress(0);
-    } catch (err) {
-      toast.error('Something went wrong!');
-      setUploadProgress(0);
-    }
-    setUploading(false);
-  };
+    onSuccess();
+    toast.success('Note uploaded successfully for all selected departments!');
+    onClose();
+    setUploadProgress(0);
+  } catch (err) {
+    console.error(err);
+    toast.error('Something went wrong!');
+    setUploadProgress(0);
+  }
+
+  setUploading(false);
+};
 
   if (!isOpen) return null;
 
@@ -83,14 +87,20 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           <option value="Sem5">Sem6</option>
         </select>
 
-        <select value={department} onChange={(e) => setDepartment(e.target.value)}>
-          <option value="">Select Department</option>
+        <select
+          multiple
+          value={department}
+          onChange={(e) =>
+            setDepartment(Array.from(e.target.selectedOptions, (option) => option.value))
+          }
+        >
           <option value="computerscience">Computer Science</option>
           <option value="electronics">Electronics and Communications</option>
           <option value="aiml">AIML</option>
           <option value="informationscience">Information Science</option>
           <option value="aids">AIDS</option>
         </select>
+
 
 
 
