@@ -16,7 +16,7 @@ const Navbar = () => {
     logout();
     navigate('/');
     toast.success('Logged out successfully!');
-    setMenuOpen(false); // close menu on logout
+    setMenuOpen(false);
   };
 
   const toggleMenu = () => {
@@ -29,36 +29,77 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/" onClick={closeMenu}>
-          <img src={logo} alt="StudyNotes Logo" className="logo-img" />
-        </Link>
-        <Link to="/" className="brand-name" onClick={closeMenu}>Notezy</Link>
+      <div className="navbar-container">
+        <div className="navbar-logo">
+          <Link to="/" onClick={closeMenu} className="logo-link">
+            <img src={logo} alt="StudyNotes Logo" className="logo-img" />
+            <span className="brand-name">Notezy</span>
+          </Link>
+        </div>
+
+        <div className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
+          <ul className="navbar-links">
+            <li className="nav-item">
+              <button onClick={toggleTheme} className="theme-toggle-btn" title="Toggle theme">
+                <span className="theme-icon">{theme === 'light' ? '🌙' : '☀️'}</span>
+              </button>
+            </li>
+
+            {!isAdmin ? (
+              <>
+                <li className="nav-item">
+                  <Link to="/" onClick={closeMenu} className="nav-link">
+                    <span>Home</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="https://results.vtu.ac.in/" onClick={closeMenu} className="nav-link external-link">
+                    <span>VTU Results</span>
+                    <svg className="external-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15,3 21,3 21,9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/notezybot" onClick={closeMenu} className="nav-link ai-link">
+                    <span>Notezy AI</span>
+                    <div className="ai-sparkle">✨</div>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link to="/dashboard123" onClick={closeMenu} className="nav-link dashboard-link">
+                    <span>Dashboard</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button className="logout-btn" onClick={handleLogout}>
+                    <span>Logout</span>
+                    <svg className="logout-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                      <polyline points="16,17 21,12 16,7"></polyline>
+                      <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+
+        {/* Mobile menu overlay */}
+        <div className={`menu-overlay ${menuOpen ? 'active' : ''}`} onClick={closeMenu}></div>
       </div>
-
-      <div className="hamburger" onClick={toggleMenu}>
-        ☰
-      </div>
-
-      <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <li>
-          <button onClick={toggleTheme} className="theme-toggle-btn">
-            {theme === 'light' ? '🌙' : '☀️'}
-          </button>
-        </li>
-
-        {!isAdmin ? (
-          <>
-            <li><Link to="https://results.vtu.ac.in/" onClick={closeMenu}>vtu results</Link></li>
-            <li><Link to="/notezybot" onClick={closeMenu}>notezy ai</Link></li>
-          </>
-        ) : (
-          <>
-            <li><Link to="/dashboard123" onClick={closeMenu}>Dashboard</Link></li>
-            <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
-          </>
-        )}
-      </ul>
     </nav>
   );
 };
