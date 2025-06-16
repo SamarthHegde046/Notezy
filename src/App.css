@@ -68,7 +68,7 @@ body {
 .navbar-links li a,.modal-title, .modal-content, .modal-close, .close-btn , .brand-name ,.info-note,.search-empty-message{
   color: var(--text-color);
 }
-.note-card h3,.note-card p,.download-count{
+.note-card h3,.note-card p,.subject-label{
   color: var(--text-color);
 }
 .dipartment-page h2,.dipartment-page h1,.admin-list li,.admin-list h4,.note-listdash h4{
