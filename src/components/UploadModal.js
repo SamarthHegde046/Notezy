@@ -95,7 +95,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           }
         >
           <option value="computerscience">Computer Science</option>
-          <option value="electronics">Electronics and Communications</option>
+          <option value="electronicsandcommunications">Electronics and Communications</option>
           <option value="aiml">AIML</option>
           <option value="informationscience">Information Science</option>
           <option value="aids">AIDS</option>

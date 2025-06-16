@@ -11,7 +11,7 @@ const MarqueeBanner = () => {
       </div>
       <div className="scrolling-text">
         <p>
-           All Sem VTU Notes Available Soon &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
+           All Sem VTU Notes Available Soon(2022 scheme) &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
            📚 Only 4th Sem Notes Available now! &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
            📄 Download Question Papers
         </p>
