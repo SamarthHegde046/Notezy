@@ -63,6 +63,9 @@ const DepartmentPage = () => {
 
   return (
     <div className="department-page">
+      <div className="update-banner">
+      📢 New notes will be uploaded regularly. Please visit again later to check for updates!
+    </div>
       <h2>{department.toUpperCase()}</h2>
 
       <div className="filter-bar">
