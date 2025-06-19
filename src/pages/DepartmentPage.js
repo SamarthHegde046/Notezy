@@ -8,6 +8,7 @@ import SearchFilter from '../components/SearchFilter';
 import SubjectDropdown from '../components/SubjectDropdown';
 import { getAllNotes } from '../services/api';
 import './DepartmentPage.css';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const DepartmentPage = () => {
   const { sem, department } = useParams();
@@ -100,31 +101,41 @@ const DepartmentPage = () => {
             </div>
           )}
         </div>
+        <a
+          href={`https://wa.me/?text=${encodeURIComponent(
+            `Hey! Your friend shared this page with you. It contains useful notes. Check it out:${window.location.href}`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whatsapp-share"
+        >
+          <FaWhatsapp size={34} style={{margin:'8px'}}/>
+        </a>
 
         {selectedSubject && (
-  <>
-    <button
-      className="floating-feedback-button"
-      onClick={() => setShowFeedback(true)}
-      title="Give Feedback"
-    >
-      📝
-    </button>
+          <>
+            <button
+              className="floating-feedback-button"
+              onClick={() => setShowFeedback(true)}
+              title="Give Feedback"
+            >
+              📝
+            </button>
 
-    {showFeedback && (
-      <div className="feedback-modal-overlay" onClick={() => setShowFeedback(false)}>
-        <div className="feedback-modal" onClick={(e) => e.stopPropagation()}>
-          <button className="close-modal" onClick={() => setShowFeedback(false)}>×</button>
-          <FeedbackForm
-            sem={normalizedSem}
-            department={normalizedDepartment}
-            subject={selectedSubject}
-          />
-        </div>
-      </div>
-    )}
-  </>
-)}
+            {showFeedback && (
+              <div className="feedback-modal-overlay" onClick={() => setShowFeedback(false)}>
+                <div className="feedback-modal" onClick={(e) => e.stopPropagation()}>
+                  <button className="close-modal" onClick={() => setShowFeedback(false)}>×</button>
+                  <FeedbackForm
+                    sem={normalizedSem}
+                    department={normalizedDepartment}
+                    subject={selectedSubject}
+                  />
+                </div>
+              </div>
+            )}
+          </>
+        )}
 
       </div>
     </div>

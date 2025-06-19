@@ -167,14 +167,34 @@
 }
 
 /* Loading and Animation containers */
-.loading-container,
-.animation-container {
+.loading-container {
   grid-column: 1 / -1; /* Span across all columns */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 200px;
 }
+.whatsapp-share {
+  background-color: #25d366;
+  position: fixed;
+  bottom: 90px;
+  right: 15px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 999;
+  transition: background 0.3s ease;
+}
+
+.whatsapp-share:hover {
+  background-color: #20b358;
+}
+
 
 /* Animations */
 @keyframes slideDown {
@@ -329,7 +349,7 @@
 .floating-feedback-button {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  right: 15px;
   background-color: #0077cc;
   color: white;
   border: none;
