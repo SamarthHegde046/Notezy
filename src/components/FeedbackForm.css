@@ -1,0 +1,101 @@
+.feedback-form-container {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.feedback-form-container h2 {
+  text-align: center;
+  color: #0f172a;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feedback-form label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border 0.3s;
+  width: 100%;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.feedback-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.feedback-form button {
+  background-color: #0284c7;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #0369a1;
+}
+
+.feedback-form button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.submission-status {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #0f172a;
+  background-color: #e0f2fe;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* Mobile Optimized */
+@media (max-width: 768px) {
+  .feedback-form-container {
+    margin: 10px 0px;
+    padding: 6px;
+  }
+
+  .feedback-form-container h2 {
+    font-size: 1.1rem;
+  }
+  .feedback-form input ,.feedback-form textarea{
+    width: 90%;
+  }
+  .feedback-form input,
+  .feedback-form textarea,
+  .feedback-form button {
+    font-size: 0.9rem;
+  }
+}

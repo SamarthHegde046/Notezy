@@ -6,6 +6,7 @@ import UploadModal from '../components/UploadModal';
 import DashboardCharts from '../components/DashboardCharts';
 import { useNavigate } from 'react-router-dom';
 import SearchFilter from '../components/SearchFilter';
+import AdminFeedback from '../components/AdminFeedback';
 
 
 const AdminDashboard = () => {
@@ -25,7 +26,7 @@ const AdminDashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [displayedNotes, setDisplayedNotes] = useState([]);
   const [totalDepartmentUploads, setTotalDepartmentUploads] = useState(0);
-
+  const [feedbackStats, setFeedbackStats] = useState(null);
 
   const token = localStorage.getItem('token');
   if (!token) {
@@ -68,7 +69,8 @@ const AdminDashboard = () => {
         const res = await axios.get(`${process.env.REACT_APP_API_BASE}/notes/dashboard`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-  
+        const feedbackRes = await axios.get(`${process.env.REACT_APP_API_BASE}/feedback/admin/stats`);
+        setFeedbackStats(feedbackRes.data.data);
         setNotes(res.data.notes);
         setDownloads(res.data.totalDownloads);
         setTotalDepartmentUploads(res.data.totalDepartmentUploads);
@@ -137,6 +139,20 @@ useEffect(() => {
           <h3>{admins.length}</h3>
           <p>Active Admins</p>
         </div>
+        <div className="stat-box">
+              <h3>{feedbackStats.total}</h3>
+              <p>Total Feedback</p>
+        </div>
+        <div className="stat-box">
+              {feedbackStats.byDepartment.map((dept) => (
+                <div key={dept._id} className='stat-box'>
+                  <strong>{dept._id}</strong>: {dept.count}
+                </div>
+              ))}
+        </div>
+      </div>
+      <div className='stat-box'>
+        <AdminFeedback/>
       </div>
 
       <div className="admin-list">
