@@ -11,6 +11,7 @@ const uploadRoute = require("./routes/uploadRoute");
 const chatRoute = require("./routes/chatRoute");
 const sessionRoute = require("./routes/sessionRoute");
 const analyzeRoute = require("./routes/analyzeRoute");
+const feedbackRoute= require("./routes/feedbackRoute");
 
 
 const { cleanupOldSessions } = require("./utils/sessionManager");
@@ -43,6 +44,7 @@ app.use("/api/", uploadRoute);
 app.use("/api/", chatRoute);
 app.use("/api/", sessionRoute);
 app.use("/api/", analyzeRoute);
+app.use("/api/feedback",feedbackRoute);
 
 // Error Handler
 app.use(errorHandler);
