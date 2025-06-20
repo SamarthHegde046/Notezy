@@ -29,6 +29,11 @@ const AdminDashboard = () => {
   const [totalDepartmentUploads, setTotalDepartmentUploads] = useState(0);
   const [feedbackStats, setFeedbackStats] = useState(null);
   const [visitorCount, setVisitorCount] = useState(0);
+  const [target, setTarget] = useState(1000);
+  const [targetvisitors, setTargetvistors] = useState(1000);
+
+  const progress = Math.min((downloads / target) * 100, 100).toFixed(1);
+  const progressvisitors = Math.min((visitorCount / targetvisitors) * 100, 100).toFixed(1);
 
   const token = localStorage.getItem('token');
   if (!token) {
@@ -143,6 +148,24 @@ useEffect(() => {
         <div className="stat-box">
           <h3>{downloads}</h3>
           <p>Total Downloads</p>
+
+          <div className="progress-bar-container">
+            <div className="progress-bar">
+                <div 
+                  className="progress-fill" 
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+          </div>
+          <p>{progress}% of Target ({target})</p>
+
+          <input
+            type="number"
+            value={target}
+            onChange={(e) => setTarget(Number(e.target.value))}
+            className="target-input"
+            placeholder="Set target"
+          />
         </div>
         <div className="stat-box">
           <h3>{previews}</h3>
@@ -151,6 +174,22 @@ useEffect(() => {
         <div className="stat-box">
           <h3>{visitorCount}</h3>
           <p>Total Unique Visitors</p>
+          <div className="progress-bar-container">
+            <div className="progress-bar">
+                <div 
+                  className="progress-fill" 
+                  style={{ width: `${progressvisitors}%` }}
+                ></div>
+              </div>
+          </div>
+          <p>{progressvisitors}% of Target ({targetvisitors})</p>
+          <input
+            type="number"
+            value={targetvisitors}
+            onChange={(e) => setTargetvistors(Number(e.target.value))}
+            className="target-input"
+            placeholder="Set target"
+          />
         </div>
         <div className="stat-box">
               <h3>{feedbackStats.total}</h3>

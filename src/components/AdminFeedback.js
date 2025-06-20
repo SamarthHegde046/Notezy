@@ -44,6 +44,7 @@ const AdminFeedback = () => {
         {feedbacks.map(fb => (
           <div key={fb._id} className="feedback-card">
             <p><strong>Name:</strong> {fb.name}</p>
+            <p><strong>College:</strong> {fb.college}</p>
             <p><strong>Department:</strong> {fb.department}</p>
             <p><strong>Semester:</strong> {fb.sem}</p>
             <p><strong>Subject:</strong> {fb.subject}</p>
