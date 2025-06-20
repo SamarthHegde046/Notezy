@@ -8,6 +8,7 @@ import { SEM_OPTIONS } from './components/sems';
 import DepartmentPage from './pages/DepartmentPage';
 import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
+import { useEffect } from 'react';
 
 
 import Navbar from './components/Navbar';
@@ -24,6 +25,9 @@ import TermsConditions from './pages/TermsConditions';
 import Notezybot from './components/Notezybot';
 
 function App() {
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_BASE}/visit`, { method: 'POST' });
+  }, []);
   return (
     <ThemeProvider>
     <Router>

@@ -27,6 +27,7 @@ const AdminDashboard = () => {
   const [displayedNotes, setDisplayedNotes] = useState([]);
   const [totalDepartmentUploads, setTotalDepartmentUploads] = useState(0);
   const [feedbackStats, setFeedbackStats] = useState(null);
+  const [visitorCount, setVisitorCount] = useState(0);
 
   const token = localStorage.getItem('token');
   if (!token) {
@@ -84,6 +85,12 @@ const AdminDashboard = () => {
   
     fetchDashboardData();
   }, [token]);
+
+  useEffect(() => {
+  axios.post(`${process.env.REACT_APP_API_BASE}/visit`)
+    .then(res => setVisitorCount(res.data.totalVisitors))
+    .catch(err => console.error('Failed to fetch visitor count', err));
+}, []);
   
   
   const handleDelete = async (id) => {
@@ -138,6 +145,10 @@ useEffect(() => {
         <div className="stat-box">
           <h3>{admins.length}</h3>
           <p>Active Admins</p>
+        </div>
+        <div className="stat-box">
+          <h3>{visitorCount}</h3>
+          <p>Total Unique Visitors</p>
         </div>
         <div className="stat-box">
               <h3>{feedbackStats.total}</h3>
