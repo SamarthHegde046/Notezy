@@ -62,6 +62,7 @@ const getDashboardData = asyncHandler(async (req, res) => {
   try {
     const notes = await Note.find().sort({ createdAt: -1 });
     const totalDownloads = notes.reduce((acc, note) => acc + (note.downloadCount||0),0);
+    const totalPreviews = notes.reduce((acc, note) => acc + (note.previewCount || 0), 0);
     const totalDepartmentUploads = notes.reduce((acc, note) => acc + (note.department?.length || 0), 0);
     const activeAdmins = await Admin.find({ isActive: true }).select('_id email');
     const downloadsBySubject = {};
@@ -83,6 +84,7 @@ const getDashboardData = asyncHandler(async (req, res) => {
     res.json({
       notes,
       totalDownloads,
+      totalPreviews,
       totalDepartmentUploads,
       activeAdmins,
       downloadsPerSubject: downloadsData
@@ -147,6 +149,25 @@ const incrementDownload = async (req, res) => {
     res.status(500).json({ message: 'Failed to update download count' });
   }
 };
+// Increment preview count
+const incrementPreview = async (req, res) => {
+  try {
+    const note = await Note.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { previewCount: 1 } },
+      { new: true }
+    );
+
+    if (!note) {
+      return res.status(404).json({ message: 'Note not found' });
+    }
+
+    res.json({ success: true, previewCount: note.previewCount });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update preview count' });
+  }
+};
+
 // Delete a note
 const deleteNote = async (req, res) => {
   try {
@@ -174,6 +195,7 @@ module.exports = {
   getAllNotes,
   getNoteById,
   incrementDownload,
+  incrementPreview,
   getDashboardData,
   deleteNote,
 };

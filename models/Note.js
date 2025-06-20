@@ -22,6 +22,10 @@ const noteSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
+    previewCount: {
+      type: Number,
+      default: 0
+    },
     sem: {
       type: String,
       required: true

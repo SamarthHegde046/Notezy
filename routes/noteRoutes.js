@@ -7,6 +7,7 @@ const {
   getAllNotes,
   getNoteById,
   incrementDownload,
+  incrementPreview,
   getDashboardData,
   deleteNote
 } = require('../controllers/notesController');
@@ -38,6 +39,7 @@ router.get('/subjects', async (req, res) => {
 
 router.get('/:id', getNoteById);
 router.put('/:id/increment', incrementDownload);
+router.put('/:id/preview', incrementPreview);
 router.delete('/:id', protect, deleteNote);
 
 // Protected route (admin only)
