@@ -34,9 +34,11 @@ export const getAllNotes = async (filters = {}) => {
 };
 
 
+
   
 export const getNoteById = (id) => api.get(`/notes/${id}`);
 export const incrementDownload = (id) => api.put(`/notes/${id}/increment`);
+export const incrementPreview = (id) => api.put(`/notes/${id}/preview`);
 export const uploadNote = (data) => api.post('/notes', data);
 
 // Analytics APIs

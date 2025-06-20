@@ -1,12 +1,14 @@
 import { toast } from 'react-toastify';
 import './NoteCard.css';
 import { incrementDownload } from '../services/api';
+import { incrementPreview } from '../services/api';
 
 const NoteCard = ({ note }) => {
   const getDownloadUrl = (url) => {
     const parts = url.split('/upload/');
     return parts[0] + '/upload/fl_attachment/' + parts[1];
   };
+
      
   const handleDownload = async () => {
     try {
@@ -61,6 +63,7 @@ const NoteCard = ({ note }) => {
           target="_blank" 
           rel="noopener noreferrer" 
           className="btn btn-preview"
+          onClick={() => incrementPreview(note._id)}
         >
           <svg className="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>

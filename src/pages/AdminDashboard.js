@@ -12,6 +12,7 @@ import AdminFeedback from '../components/AdminFeedback';
 const AdminDashboard = () => {
   const [notes, setNotes] = useState([]);
   const [downloads, setDownloads] = useState(0);
+  const [previews, setPreviews] = useState(0);
   const [admins, setAdmins] = useState([]);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const openModal = () => setIsUploadOpen(true);
@@ -74,6 +75,7 @@ const AdminDashboard = () => {
         setFeedbackStats(feedbackRes.data.data);
         setNotes(res.data.notes);
         setDownloads(res.data.totalDownloads);
+        setPreviews(res.data.totalPreviews)
         setTotalDepartmentUploads(res.data.totalDepartmentUploads);
         setAdmins(res.data.activeAdmins);
       } catch (err) {
@@ -143,8 +145,8 @@ useEffect(() => {
           <p>Total Downloads</p>
         </div>
         <div className="stat-box">
-          <h3>{admins.length}</h3>
-          <p>Active Admins</p>
+          <h3>{previews}</h3>
+          <p>Total Previews</p>
         </div>
         <div className="stat-box">
           <h3>{visitorCount}</h3>
