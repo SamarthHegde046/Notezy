@@ -139,6 +139,7 @@ useEffect(() => {
   return (
     <div className="dashboard-container">
       <h2>Admin Dashboard</h2>
+      <a href='https://www.profitableratecpm.com/yp3cmrrud?key=029fd5d3dda449a233c515b43074c7c0'>click here</a>
 
       <div className="dashboard-stats">
         <div className="stat-box">
