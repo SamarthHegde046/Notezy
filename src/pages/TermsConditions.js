@@ -82,7 +82,7 @@ const TermsConditions = () => {
       <section>
         <h2>11. Contact Us</h2>
         <p>
-          If you have any questions or concerns about these Terms, please contact us at <a href="mailto:notezysupport@gmail.com">notezysupport@gmail.com</a>.
+          If you have any questions or concerns about these Terms, please contact us at <a href="mailto:notezyhelp@gmail.com">notezyhelp@gmail.com</a>.
         </p>
       </section>
     </div>
