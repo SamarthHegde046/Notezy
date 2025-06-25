@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import BookAnimation from '../components/BookAnimation';
 import FeedbackForm from '../components/FeedbackForm';  
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -10,10 +10,12 @@ import PopularNotesPopup from '../components/PopularNotesPopup';
 import { getAllNotes } from '../services/api';
 import './DepartmentPage.css';
 import { FaWhatsapp } from 'react-icons/fa';
+import { Sparkles, Upload } from 'lucide-react';
 import GlowingButton from '../components/GlowingButton';
 
 const DepartmentPage = () => {
   const { sem, department } = useParams();
+  const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
@@ -92,6 +94,16 @@ const DepartmentPage = () => {
     // Mark as shown for this session (in memory)
     const popupKey = `${normalizedSem}-${normalizedDepartment}-${selectedSubject}`;
     setPopupShownSubjects(prev => new Set([...prev, popupKey]));
+  };
+
+  // Handle Notezy AI navigation
+  const handleNotezybotClick = () => {
+    navigate('/notezybot');
+  };
+
+  // Handle Upload Notes
+  const handleUploadNotesClick = () => {
+    window.open('https://forms.gle/nd7wsDjrxv8fyh11A', '_blank');
   };
 
   return (
@@ -174,10 +186,44 @@ const DepartmentPage = () => {
           subject={selectedSubject}
           allNotes={notes}
         />
+        <div className="feedback-banner" onClick={() => setShowFeedback(true)}>
+        💡 We value your feedback to improve our website. <span className="click-here">Click here</span> to share your thoughts.
+
       </div>
-      <div className="feedback-banner" onClick={() => setShowFeedback(true)}>
-      💡 We value your feedback to improve our website. <span className="click-here">Click here</span> to share your thoughts.
-    </div>
+        {/* Bottom Notezy Features Section - Above Footer */}
+        <div className="bottom-notezy-features">
+          <div className="bottom-features-container">
+            <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
+            <div className="bottom-features-grid">
+              <div className="bottom-feature-card" onClick={handleNotezybotClick}>
+                <div className="bottom-feature-icon">
+                  <Sparkles className="sparkles-icon" />
+                </div>
+                <div className="bottom-feature-content">
+                  <h4 className="bottom-feature-title">Notezy AI Assistant</h4>
+                  <p className="bottom-feature-description">
+                    Upload your PDFs and get instant answers, summaries, and explanations with our AI-powered study companion.
+                  </p>
+                  <span className="bottom-feature-cta">Try Notezy AI →</span>
+                </div>
+              </div>
+              
+              <div className="bottom-feature-card" onClick={handleUploadNotesClick}>
+                <div className="bottom-feature-icon">
+                  <Upload className="upload-icon" />
+                </div>
+                <div className="bottom-feature-content">
+                  <h4 className="bottom-feature-title">Contribute Notes</h4>
+                  <p className="bottom-feature-description">
+                    Help your fellow students by sharing your study materials. Upload notes, assignments, and resources.
+                  </p>
+                  <span className="bottom-feature-cta">Upload Now →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

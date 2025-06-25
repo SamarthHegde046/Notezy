@@ -6,6 +6,15 @@
   overflow-x: hidden;
 }
 
+.feature-card.clickable {
+  transition: all 0.3s ease;
+}
+
+.feature-card.clickable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
 .homepage::before {
   content: '';
   position: absolute;
@@ -324,54 +333,24 @@
   }
 }
 .glow-button {
-  position: relative;
   display: inline-block;
-  padding: 12px 30px;
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 17px;
   color: #fff;
-  font-weight: 600;
-  background: #111;
-  border: 2px solid #0ff;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #4f8cff 0%, #2356c7 100%);
+  border: 1px solid #2356c7;
+  border-radius: 10px;
+  text-align: center;
   text-decoration: none;
-  overflow: hidden;
-  z-index: 0;
-  transition: background 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(60, 60, 60, 0.08);
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s, border 0.4s;
 }
 
 .glow-button:hover {
-  background: #0ff;
-  color: #111;
-}
-
-.glow-button::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  background: linear-gradient(45deg, #0ff, #00f, #0f0, #0ff);
-  background-size: 400%;
-  border-radius: 10px;
-  z-index: -1;
-  filter: blur(5px);
-  animation: animateGlow 4s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.glow-button:hover::before {
-  opacity: 1;
-}
-
-@keyframes animateGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: linear-gradient(135deg, #2356c7 0%, #4f8cff 100%);
+  border: 1px solid #4f8cff;
+  color: #e3f0ff;
+  box-shadow: 0 3px 12px rgba(60, 60, 60, 0.15);
 }
