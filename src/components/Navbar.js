@@ -74,6 +74,11 @@ const Navbar = () => {
                     <div className="ai-sparkle">✨</div>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to="https://forms.gle/nd7wsDjrxv8fyh11A" onClick={closeMenu} className="nav-link ai-link">
+                    <span>Upload Note</span>
+                  </Link>
+                </li>
               </>
             ) : (
               <>

@@ -15,7 +15,7 @@ const SearchFilter = ({ onSearch }) => {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search by subject, title, or keyword..."
+        placeholder="Search by subject, title.."
         value={query}
         onChange={handleChange}
       />

@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BookAnimation from '../components/BookAnimation';
-import FeedbackForm from '../components/FeedbackForm';
+import FeedbackForm from '../components/FeedbackForm';  
 import LoadingSpinner from '../components/LoadingSpinner';
 import NoteCard from '../components/NoteCard';
 import SearchFilter from '../components/SearchFilter';
 import SubjectDropdown from '../components/SubjectDropdown';
+import PopularNotesPopup from '../components/PopularNotesPopup';
 import { getAllNotes } from '../services/api';
 import './DepartmentPage.css';
 import { FaWhatsapp } from 'react-icons/fa';
+import GlowingButton from '../components/GlowingButton';
 
 const DepartmentPage = () => {
   const { sem, department } = useParams();
@@ -18,7 +20,9 @@ const DepartmentPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showFeedback, setShowFeedback] = useState(false); // modal control
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [showPopularNotes, setShowPopularNotes] = useState(false);
+  const [popupShownSubjects, setPopupShownSubjects] = useState(new Set()); // Track shown popups in memory
 
   const departmentMap = {
     computerscience: 'Computer Science',
@@ -65,6 +69,31 @@ const DepartmentPage = () => {
     setFilteredNotes(filtered);
   }, [selectedSubject, searchQuery, notes]);
 
+  // Handle popular notes popup with in-memory tracking
+  useEffect(() => {
+    if (selectedSubject && notes.length > 0) {
+      // Check if popup has been shown for this subject in this session (in memory)
+      const popupKey = `${normalizedSem}-${normalizedDepartment}-${selectedSubject}`;
+      
+      if (!popupShownSubjects.has(popupKey)) {
+        // Show popup after a small delay
+        const timer = setTimeout(() => {
+          setShowPopularNotes(true);
+        }, 1000);
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [selectedSubject, notes, normalizedSem, normalizedDepartment, popupShownSubjects]);
+
+  // Handle closing popular notes popup
+  const handleClosePopularNotes = () => {
+    setShowPopularNotes(false);
+    // Mark as shown for this session (in memory)
+    const popupKey = `${normalizedSem}-${normalizedDepartment}-${selectedSubject}`;
+    setPopupShownSubjects(prev => new Set([...prev, popupKey]));
+  };
+
   return (
     <div className="department-page">
       <h1>{departmentDisplayName}</h1>
@@ -80,6 +109,7 @@ const DepartmentPage = () => {
             selectedSubject={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
           />
+          <GlowingButton onClick={() => setShowPopularNotes(true)} />
         </div>
 
         <div className="notes-grid">
@@ -101,9 +131,10 @@ const DepartmentPage = () => {
             </div>
           )}
         </div>
+
         <a
           href={`https://wa.me/?text=${encodeURIComponent(
-            `Hey! Your friend shared this page with you. It contains useful notes. Check it out:${window.location.href}`
+            `Hey! Your friend shared this page with you. It contains ${selectedSubject} notes. Check it out:${window.location.href}`
           )}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -136,8 +167,17 @@ const DepartmentPage = () => {
             )}
           </>
         )}
-
+        <PopularNotesPopup
+          isOpen={showPopularNotes}
+          onClose={handleClosePopularNotes}
+          department={departmentDisplayName}
+          subject={selectedSubject}
+          allNotes={notes}
+        />
       </div>
+      <div className="feedback-banner" onClick={() => setShowFeedback(true)}>
+      💡 We value your feedback to improve our website. <span className="click-here">Click here</span> to share your thoughts.
+    </div>
     </div>
   );
 };

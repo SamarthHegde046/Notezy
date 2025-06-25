@@ -8,7 +8,7 @@ const OptionsDropdown = ({ onSelect }) => {
   };
 
   return (
-    <div className="sem-list"> {/* reuse same class for layout */}
+    <div className="sem-list">
       {SEM_OPTIONS.map((option, index) => (
         <div
           key={index}

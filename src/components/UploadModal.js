@@ -79,8 +79,8 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         <select value={sem} onChange={(e) => setSem(e.target.value)}>
           <option value="">Select Semester</option>
-          <option value="Sem1">Sem1</option>
-          <option value="Sem2">Sem2</option>
+          <option value="Physicscycle">Physics Cycle</option>
+          <option value="Chemistrycycle">Chemistry Cycle</option>
           <option value="Sem3">Sem3</option>
           <option value="Sem4">Sem4</option>
           <option value="Sem5">Sem5</option>

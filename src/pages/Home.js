@@ -52,8 +52,10 @@ const Home = () => {
       </div>
       {/* Main Selection */}
       <div className="selection-section">
-        <a href="/notezybot" className="glow-button">PDF Analyzer bot(Notezy AI)</a>
-        <h2 className="section-title">Choose Your Course</h2>
+        <a href="/notezybot" className="glow-button">PDF Analyzer bot(Notezy AI)</a><br></br><br></br>
+        <a href="https://forms.gle/nd7wsDjrxv8fyh11A" className="glow-button">Upload Notes</a>
+        <br></br>
+        <h1 className="section-title">Choose Your Sem</h1>
         <OptionsDropdown onSelect={handleSelect} />
       </div>
 
