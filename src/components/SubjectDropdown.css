@@ -1,14 +1,78 @@
+/* Container for better control */
+.subject-dropdown-container {
+  width: 100%;
+  max-width: 400px; /* Prevents it from getting too wide on large screens */
+  margin: 0 auto;
+}
+
 .subject-dropdown {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: white;
-    transition: box-shadow 0.2s ease;
-    width: 90%;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  appearance: none; /* Remove default styling */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+.subject-dropdown:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #999;
+}
+
+.subject-dropdown:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .subject-dropdown-container {
+    max-width: 100%;
+    padding: 0 16px;
   }
   
-  .subject-dropdown:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  .subject-dropdown {
+    font-size: 1.1rem;
+    padding: 14px 16px;
+    padding-right: 44px;
+    border-radius: 10px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .subject-dropdown-container {
+    padding: 0 12px;
   }
   
+  .subject-dropdown {
+    font-size: 1.2rem;
+    padding: 16px 14px;
+    padding-right: 48px;
+    border-radius: 12px;
+    background-size: 14px;
+    background-position: right 14px center;
+  }
+}
+
+/* Large screen styles */
+@media (min-width: 1200px) {
+  .subject-dropdown-container {
+    max-width: 400px;
+  }
+  
+  .subject-dropdown {
+    font-size: 1.1rem;
+    padding: 14px 18px;
+    padding-right: 45px;
+  }
+}

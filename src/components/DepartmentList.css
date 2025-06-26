@@ -1,39 +1,178 @@
+.department-list-wrapper {
+  padding: 40px 20px;
+  background: linear-gradient(to right, #f0f4ff, #fdfbff);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.department-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.subheading {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 8px;
+}
+
 .department-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.department-card {
+  background: linear-gradient(145deg, #e3f2fd, #ffffff);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: left;
+  border: 1px solid #dbeafe;
+}
+
+.department-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon {
+  color: white;
+  width: 24px;
+  height: 24px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin: 0;
+}
+
+.short-name {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.department-desc {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* ✅ Responsive Styles */
+@media (max-width: 768px) {
+  .department-list {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
   }
-  
+
   .department-card {
-    width: 100%;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    padding: 20px;
   }
-  
-  .department-card:hover {
-    transform: scale(1.002);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+  .heading {
+    font-size: 2rem;
   }
-  
-  .department-card h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 0;
-    padding: 0 20px;
-    text-align: center;
+
+  .subheading {
+    font-size: 1rem;
   }
-  
-  @media (max-width: 768px) {
-    .department-card h2 {
-      font-size: 1.2rem;
-    }
+
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
   }
-  
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .short-name,
+  .department-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.75rem;
+  }
+
+  .subheading {
+    font-size: 0.95rem;
+  }
+
+  .department-card {
+    padding: 18px;
+  }
+
+  .icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .short-name,
+  .department-desc {
+    font-size: 0.85rem;
+  }
+}
+
+
+.dept-extra {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.explore-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.explore-btn:hover {
+  background-color: #1366d6;
+}

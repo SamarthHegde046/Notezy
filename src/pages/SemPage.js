@@ -8,6 +8,15 @@ const SemPage = () => {
   const navigate = useNavigate();
   const sem = location.pathname.split('/')[1];
 
+  const SEM_OPTIONS = [
+  { label: 'Physics Cycle', value: 'Physicscycle' },
+  { label: 'Chemistry Cycle', value: 'Chemistrycycle' },
+  { label: 'Semester 3', value: 'Sem3' },
+  { label: 'Semester 4', value: 'Sem4' },
+  { label: 'Semester 5', value: 'Sem5' },
+  { label: 'Semester 6', value: 'Sem6' },
+];
+
   const handleNotezybotClick = () => {
     navigate('/notezybot');
   };
@@ -18,9 +27,10 @@ const SemPage = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>{sem} - Branches</h1>
+      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
+        {(SEM_OPTIONS.find(opt => opt.value.toLowerCase() === sem.toLowerCase())?.label || sem)} - Branches
+      </h1>
       <DepartmentList sem={sem} />
-
       <div className="bottom-notezy-features">
         <div className="bottom-features-container">
           <h3 className="bottom-features-title">Enhance Your Study Experience</h3>

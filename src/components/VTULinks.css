@@ -1,0 +1,114 @@
+.vtu-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.vtu-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 12px;
+}
+
+.header-icon {
+  font-size: 28px;
+  background: #2d3e50;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.vtu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px;
+}
+
+.vtu-card {
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.vtu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.vtu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+}
+
+.card-icon {
+  font-size: 28px;
+  color: #4facfe;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2d3e50;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.visit-button {
+  background-color: #4facfe;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.visit-button:hover {
+  background-color: #338ff4;
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .vtu-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .header-title {
+    font-size: 24px;
+  }
+}

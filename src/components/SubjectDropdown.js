@@ -10,13 +10,15 @@ const SubjectDropdown = ({ subjects, selectedSubject, onChange }) => {
   }, [subjects, selectedSubject, onChange]);
 
   return (
-    <select className="subject-dropdown" value={selectedSubject} onChange={onChange}>
-      {subjects.map((subject, index) => (
-        <option key={index} value={subject}>
-          {subject}
-        </option>
-      ))}
-    </select>
+    <div className="subject-dropdown-container">
+      <select className="subject-dropdown" value={selectedSubject} onChange={onChange}>
+        {subjects.map((subject, index) => (
+          <option key={index} value={subject}>
+            {subject}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

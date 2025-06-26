@@ -70,8 +70,7 @@ const DepartmentPage = () => {
 
     setFilteredNotes(filtered);
   }, [selectedSubject, searchQuery, notes]);
-
-  // Handle popular notes popup with in-memory tracking
+  
   useEffect(() => {
     if (selectedSubject && notes.length > 0) {
       // Check if popup has been shown for this subject in this session (in memory)
