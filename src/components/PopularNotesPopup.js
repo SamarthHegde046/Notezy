@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Download, Star, TrendingUp, BookOpen, Eye } from 'lucide-react';
+import { X, Download,TrendingUp, BookOpen, Eye } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { incrementDownload, incrementPreview } from '../services/api';
 import './PopularNotesPopup.css';
@@ -35,15 +35,6 @@ const PopularNotesPopup = ({ isOpen, onClose, department, subject, allNotes }) =
     }
   }, [isOpen, subject, allNotes]);
 
-  const getBadgeClass = (badge) => {
-    switch(badge) {
-      case 'Most Downloaded': return 'badge badge-red';
-      case 'Top Rated': return 'badge badge-yellow';
-      case 'Trending': return 'badge badge-green';
-      case 'Popular': return 'badge badge-blue';
-      default: return 'badge badge-gray';
-    }
-  };
 
   const formatNumber = (num) => {
     if (num >= 1000) {

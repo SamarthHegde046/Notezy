@@ -24,7 +24,7 @@ const DepartmentPage = () => {
   const [loading, setLoading] = useState(true);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showPopularNotes, setShowPopularNotes] = useState(false);
-  const [popupShownSubjects, setPopupShownSubjects] = useState(new Set()); // Track shown popups in memory
+  const [popupShownSubjects, setPopupShownSubjects] = useState(new Set());
 
   const departmentMap = {
     computerscience: 'Computer Science',
@@ -71,22 +71,6 @@ const DepartmentPage = () => {
     setFilteredNotes(filtered);
   }, [selectedSubject, searchQuery, notes]);
   
-  useEffect(() => {
-    if (selectedSubject && notes.length > 0) {
-      // Check if popup has been shown for this subject in this session (in memory)
-      const popupKey = `${normalizedSem}-${normalizedDepartment}-${selectedSubject}`;
-      
-      if (!popupShownSubjects.has(popupKey)) {
-        // Show popup after a small delay
-        const timer = setTimeout(() => {
-          setShowPopularNotes(true);
-        }, 1000);
-        
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [selectedSubject, notes, normalizedSem, normalizedDepartment, popupShownSubjects]);
-
   // Handle closing popular notes popup
   const handleClosePopularNotes = () => {
     setShowPopularNotes(false);
