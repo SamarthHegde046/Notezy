@@ -23,7 +23,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import TermsConditions from './pages/TermsConditions';
 import Notezybot from './components/Notezybot';
-import PopularNotesPopup from './components/PopularNotesPopup';
+import NotesChatbot from './components/NotesChatbot';
 
 function App() {
   useEffect(() => {
@@ -56,7 +56,8 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/terms-and-conditions" element={<TermsConditions />} />
             <Route path='/notezybot' element={<Notezybot/>}/>
-            <Route path='/notes' element={<PopularNotesPopup/>}/>
+            <Route path='/quicknotes' element={<NotesChatbot/>}/>
+
 
             {SEM_OPTIONS.map(option => (
               <Route

@@ -173,7 +173,6 @@ const DepartmentPage = () => {
         💡 We value your feedback to improve our website. <span className="click-here">Click here</span> to share your thoughts.
 
       </div>
-        {/* Bottom Notezy Features Section - Above Footer */}
         <div className="bottom-notezy-features">
           <div className="bottom-features-container">
             <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
