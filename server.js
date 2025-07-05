@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const GEMINI_API_KEY = 'AIzaSyAu2qUy8O1CQad3dvMW9VXlU22af7grz3k'; // Replace with your key
+const GEMINI_API_KEY = 'AIzaSyDAxoj0ow42uoDxgv8VBj2lRgss3FT1EcU'; // Replace with your key
 // BACKEND: routes/gemini-chat.js (or inline in app.js)
 app.post('/api/gemini-chat', async (req, res) => {
   const userInput = req.body.message;
@@ -79,18 +79,14 @@ If user asks about the bot (e.g., "who are you", "what can you do"):
 {
   "response": "I have plenty of notes across various subjects — just tell me what you need!"
 }
- Important Rules:
-- Detect reverse queries like "module 1 DBMS" or "get me BCS403 Module 5"
-- "Subject" or "code" is mandatory for note requests
-- "Title" is optional — if mentioned, match exactly
 - Accept short forms:
   - ada → Analysis and Design of Algorithms
   - dsa → Data Structures and Applications
   - ai → Artificial Intelligence
   - bio, biology → Biology for Engineers
   - cs → Control Systems
+  -dbms->Database Management System
   - Do NOT include explanations.
-- Respond accurately and concisely.
 Return ONLY clean JSON. No markdown, no triple backticks. Strictly valid JSON.
 
 User input:
