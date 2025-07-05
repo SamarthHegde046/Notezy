@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const axios = require('axios');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const { errorHandler } = require('./middleware/errorMiddleware');
@@ -35,6 +36,88 @@ connectDB();
 app.use(cors({ origin: [process.env.CLIENT_URL], credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+
+const GEMINI_API_KEY = 'AIzaSyAu2qUy8O1CQad3dvMW9VXlU22af7grz3k'; // Replace with your key
+// BACKEND: routes/gemini-chat.js (or inline in app.js)
+app.post('/api/gemini-chat', async (req, res) => {
+  const userInput = req.body.message;
+
+  try {
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        contents: [
+          {
+            parts: [
+              {
+                text: `
+You are a JSON-generating assistant for a note-sharing app. Given a user query, extract structured info.
+
+Extract:
+- "subject": Full subject name (like "Database Management System")
+- "code": Subject code (like "BCS403")
+- "module": Module number if mentioned (just number like "1", optional)
+- "title": Full title if mentioned (like "Module 2" or "MQP 1/2 - BCS403", optional)
+- "type": "module" | "qp" | "all" — "module" if user asks for module notes, "qp" for question papers, otherwise "all".
+
+If the user just says hi, hello, bye, etc., respond with:
+{
+  "response": "Hi there! How can I help you today?"
+}
+  
+If the user is just being friendly (e.g., “tq”,"tqnx", “thank you”,"thank u"), reply with:
+{
+  "response": "You're welcome!" 
+}
+If user asks about the bot (e.g., "who are you", "what can you do"):
+{
+  "response": "I'm your smart notes assistant! Ask me for any subject notes, modules, or question papers."
+}
+ If user asks how many notes you have:
+{
+  "response": "I have plenty of notes across various subjects — just tell me what you need!"
+}
+ Important Rules:
+- Detect reverse queries like "module 1 DBMS" or "get me BCS403 Module 5"
+- "Subject" or "code" is mandatory for note requests
+- "Title" is optional — if mentioned, match exactly
+- Accept short forms:
+  - ada → Analysis and Design of Algorithms
+  - dsa → Data Structures and Applications
+  - ai → Artificial Intelligence
+  - bio, biology → Biology for Engineers
+  - cs → Control Systems
+  - Do NOT include explanations.
+- Respond accurately and concisely.
+Return ONLY clean JSON. No markdown, no triple backticks. Strictly valid JSON.
+
+User input:
+"${userInput}"
+    `.trim()
+             }
+            ]
+          }
+        ]
+      }
+    );
+
+    const botReply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+
+    // Validate JSON
+    try {
+      const parsed = JSON.parse(botReply);
+      res.json(parsed);
+    } catch (jsonErr) {
+      res.status(400).json({ error: 'Invalid response format from Gemini.' });
+    }
+
+  } catch (err) {
+    console.error('Gemini API error:', err.response?.data || err.message);
+    res.status(500).json({ error: 'Gemini request failed.' });
+  }
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
