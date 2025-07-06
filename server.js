@@ -40,7 +40,6 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const GEMINI_API_KEY = 'AIzaSyDAxoj0ow42uoDxgv8VBj2lRgss3FT1EcU'; // Replace with your key
-// BACKEND: routes/gemini-chat.js (or inline in app.js)
 app.post('/api/gemini-chat', async (req, res) => {
   const userInput = req.body.message;
 
@@ -116,6 +115,10 @@ User input:
 });
 
 // Routes
+app.get('/ads.txt', (req, res) => {
+  res.redirect(301, 'https://srv.adstxtmanager.com/76177/notezy.online');
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/contact', contactRoutes);
