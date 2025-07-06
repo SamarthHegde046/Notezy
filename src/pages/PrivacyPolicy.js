@@ -5,6 +5,14 @@ const PrivacyPolicy = () => (
   <div className="container">
     <h1>Privacy Policy</h1>
       <p>Last updated: June 21, 2025</p>
+      <p>
+        Learn more at:{" "}
+        <a href="http://g.ezoic.net/privacy/notezy.online" target="_blank" rel="noopener noreferrer">
+          Ezoic Privacy Policy
+        </a>
+      </p>
+
+      <span id="ezoic-privacy-policy-embed"></span>
 
       <section>
         <h2>1. Introduction</h2>
