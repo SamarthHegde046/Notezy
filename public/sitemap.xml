@@ -35,7 +35,32 @@
   </url>
   <url>
     <loc>https://notezy.online/sem4</loc>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://notezy.online/sem4/aiml</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://notezy.online/sem4/computerscience</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://notezy.online/sem4/electronicsandcommunications</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://notezy.online/sem4/informationscience</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://notezy.online/sem4/aids</loc>
+    <priority>0.9</priority>
     <changefreq>daily</changefreq>
   </url>
 </urlset>
