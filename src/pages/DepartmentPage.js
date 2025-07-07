@@ -13,6 +13,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { Sparkles, Upload } from 'lucide-react';
 import GlowingButton from '../components/GlowingButton';
 import TelegramJoin from '../components/TelegramJoin';
+import WhatsappBanner from '../components/WhatsappBanner';
 
 const DepartmentPage = () => {
   const { sem, department } = useParams();
@@ -92,6 +93,7 @@ const DepartmentPage = () => {
 
   return (
     <div className="department-page">
+      <WhatsappBanner/>&nbsp;
       <TelegramJoin/>
       <h1>{departmentDisplayName}</h1>
       <div className="department-content">

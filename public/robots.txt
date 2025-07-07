@@ -4,3 +4,13 @@ Disallow: /dashboard123/
 Disallow: /login2005/
 Disallow: /register2005/
 Sitemap: https://notezy.online/sitemap.xml
+# Specific Rules
+User-agent: Googlebot
+Allow: /           # Allow full crawling for Googlebot
+
+User-agent: Bingbot
+Allow: /           # Allow full crawling for Bingbot
+
+# Custom Crawling Instructions
+User-agent: *
+Crawl-delay: 10     # Reduce the crawl rate to avoid server overload

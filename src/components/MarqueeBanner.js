@@ -11,9 +11,10 @@ const MarqueeBanner = () => {
       </div>
       <div className="scrolling-text">
         <p>
-           All Sem VTU Notes Available Soon(2022 scheme) &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
-           📚 Only 4th Sem Notes Available now! &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
-           📄 Download Question Papers
+           All Sem VTU Notes Available Now(2022 scheme) &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
+           Join <a href='https://chat.whatsapp.com/KjNhFILHZFL8MpTT4xmOTk'>whatsapp Channel</a>&nbsp;&nbsp;|
+           Join <a href='https://t.me/notezy_online'>Telegram Channel</a>&nbsp;&nbsp;|
+           📄 Download Question Papers and Solutions
         </p>
       </div>
     </div>

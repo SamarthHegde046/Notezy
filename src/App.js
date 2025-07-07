@@ -25,6 +25,7 @@ import AboutUs from './pages/AboutUs';
 import TermsConditions from './pages/TermsConditions';
 import Notezybot from './components/Notezybot';
 import NotesChatbot from './components/NotesChatbot';
+import WhatsappBanner from './components/WhatsappBanner';
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
             <Route path="/:sem/:department" element={<DepartmentPage/>} />
           </Routes>
           <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />
+          <WhatsappBanner/>
           <TelegramJoin/>
           <Footer />
         </main>
