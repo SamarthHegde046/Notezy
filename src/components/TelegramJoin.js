@@ -5,7 +5,7 @@ import './TelegramJoin.css';
 const TelegramJoin = () => {
   return (
     <a
-      href="https://t.me/boost/notezy_online" 
+      href="https://t.me/notezy_online" 
       target="_blank"
       rel="noopener noreferrer"
       className="telegram-banner"
