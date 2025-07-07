@@ -7,6 +7,7 @@ import SemPage from './pages/SemPage'
 import { SEM_OPTIONS } from './components/sems';
 import DepartmentPage from './pages/DepartmentPage';
 import Footer from './components/Footer';
+import TelegramJoin from './components/TelegramJoin';
 import { ThemeProvider } from './context/ThemeContext';
 import { useEffect } from 'react';
 
@@ -24,6 +25,8 @@ import AboutUs from './pages/AboutUs';
 import TermsConditions from './pages/TermsConditions';
 import Notezybot from './components/Notezybot';
 import NotesChatbot from './components/NotesChatbot';
+import BlogDetails from './pages/BlogDetails';
+import Blogs from './pages/Blogs';
 
 function App() {
   useEffect(() => {
@@ -57,6 +60,9 @@ function App() {
             <Route path="/terms-and-conditions" element={<TermsConditions />} />
             <Route path='/notezybot' element={<Notezybot/>}/>
             <Route path='/quicknotes' element={<NotesChatbot/>}/>
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blogs/:id" element={<BlogDetails />} />
+
 
 
             {SEM_OPTIONS.map(option => (
@@ -69,6 +75,7 @@ function App() {
             <Route path="/:sem/:department" element={<DepartmentPage/>} />
           </Routes>
           <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />
+          <TelegramJoin/>
           <Footer />
         </main>
       </div>
