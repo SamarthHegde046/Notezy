@@ -7,7 +7,6 @@ import SemPage from './pages/SemPage'
 import { SEM_OPTIONS } from './components/sems';
 import DepartmentPage from './pages/DepartmentPage';
 import Footer from './components/Footer';
-import TelegramJoin from './components/TelegramJoin';
 import { ThemeProvider } from './context/ThemeContext';
 import { useEffect } from 'react';
 
@@ -25,7 +24,7 @@ import AboutUs from './pages/AboutUs';
 import TermsConditions from './pages/TermsConditions';
 import Notezybot from './components/Notezybot';
 import NotesChatbot from './components/NotesChatbot';
-import WhatsappBanner from './components/WhatsappBanner';
+import ChannelJoinBanner from './components/ChannelJoinBanner';
 
 
 function App() {
@@ -73,8 +72,7 @@ function App() {
             <Route path="/:sem/:department" element={<DepartmentPage/>} />
           </Routes>
           <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />
-          <WhatsappBanner/>
-          <TelegramJoin/>
+          <ChannelJoinBanner/>&nbsp;
           <Footer />
         </main>
       </div>

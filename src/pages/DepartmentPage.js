@@ -12,8 +12,7 @@ import './DepartmentPage.css';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Sparkles, Upload } from 'lucide-react';
 import GlowingButton from '../components/GlowingButton';
-import TelegramJoin from '../components/TelegramJoin';
-import WhatsappBanner from '../components/WhatsappBanner';
+import ChannelJoinBanner from '../components/ChannelJoinBanner';
 
 const DepartmentPage = () => {
   const { sem, department } = useParams();
@@ -93,8 +92,7 @@ const DepartmentPage = () => {
 
   return (
     <div className="department-page">
-      <WhatsappBanner/>&nbsp;
-      <TelegramJoin/>
+      <ChannelJoinBanner/>
       <h1>{departmentDisplayName}</h1>
       <div className="department-content">
         <div className="update-banner">
