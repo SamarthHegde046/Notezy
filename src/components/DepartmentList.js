@@ -1,6 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './DepartmentList.css';
 import {
   Code,
   Cpu,
@@ -8,13 +6,14 @@ import {
   Database,
   BarChart3
 } from 'lucide-react';
+import './DepartmentList.css';
 
 const departments = [
   {
     id: 'computerscience',
     name: 'Computer Science',
     shortName: 'CSE',
-    description: 'Master the fundamentals of computing, algorithms, and software development. Learn to build secure, efficient software systems from scratch.',
+    description: 'Master the fundamentals of computing, algorithms, and software development with comprehensive VTU syllabus coverage. Access detailed notes, question papers, and study materials to build secure, efficient software systems from scratch.',
     icon: <Code className="icon" />,
     subjects: ['Data Structures', 'OS', 'DBMS', 'OOPs']
   },
@@ -22,7 +21,7 @@ const departments = [
     id: 'electronicsandcommunications',
     name: 'Electronics and Communications',
     shortName: 'ECE',
-    description: 'Design circuits, embedded systems, and explore signal processing. Dive deep into analog and digital communication technologies.',
+    description: 'Design circuits, embedded systems, and explore signal processing with VTU-aligned study materials. Download comprehensive notes and previous year question papers for analog and digital communication technologies.',
     icon: <Cpu className="icon" />,
     subjects: ['Digital Electronics', 'Microcontrollers', 'VLSI', 'Signals']
   },
@@ -30,7 +29,7 @@ const departments = [
     id: 'aiml',
     name: 'Artificial Intelligence & ML',
     shortName: 'AIML',
-    description: 'Learn to train machines to make decisions. Explore deep learning, neural networks, and real-world intelligent applications.',
+    description: 'Learn to train machines to make decisions with VTU curriculum-based notes and resources. Explore deep learning, neural networks through structured study materials and practical question banks.',
     icon: <Brain className="icon" />,
     subjects: ['Machine Learning', 'Neural Networks', 'Python', 'AI']
   },
@@ -38,7 +37,7 @@ const departments = [
     id: 'informationscience',
     name: 'Information Science',
     shortName: 'ISE',
-    description: 'Work with large-scale data systems, secure networks, and software engineering practices. A blend of IT and CS fundamentals.',
+    description: 'Work with large-scale data systems and secure networks using VTU-prescribed syllabus. Access comprehensive study notes, lab manuals, and question papers for IT and CS fundamentals.',
     icon: <Database className="icon" />,
     subjects: ['Cybersecurity', 'Database Design', 'Networks', 'Web Tech']
   },
@@ -46,26 +45,32 @@ const departments = [
     id: 'aids',
     name: 'AI & Data Science',
     shortName: 'AIDS',
-    description: 'Blend AI with data processing to extract insights and build predictive systems. Analyze data with real impact.',
+    description: 'Blend AI with data processing using VTU-approved curriculum and study materials. Download detailed notes, assignments, and previous year papers to extract insights and build predictive systems.',
     icon: <BarChart3 className="icon" />,
     subjects: ['Data Mining', 'Deep Learning', 'Big Data', 'Statistics'],
   }
 ];
 
 const DepartmentList = ({ sem }) => {
-  const navigate = useNavigate();
-
   const handleClick = (deptId) => {
-    navigate(`/${sem}/${deptId}`);
+    // Navigate to department page
+    console.log(`Navigating to /${sem}/${deptId}`)
   };
 
   return (
     <div className="department-list-wrapper">
-      <div className="department-header">
-        <h1 className="heading">Choose Your Department</h1>
-        <p className="subheading">Explore branches, check subjects, and discover career paths.</p>
+      {/* New Content Section */}
+      <div className="intro-section">
+        <div className="intro-text">
+          <h2>Choose Your Department</h2>
+          <p>
+            Access comprehensive notes, question papers, lab manuals, and study materials tailored for VTU students. 
+            Our resources are organized by semester and department to help you excel in your engineering journey.
+          </p>
+        </div>
       </div>
 
+      {/* Department List */}
       <div className="department-list">
         {departments.map((dept) => (
           <div
@@ -75,15 +80,20 @@ const DepartmentList = ({ sem }) => {
           >
             <div className="department-content">
               <div className="icon-wrapper">{dept.icon}</div>
-              <h1>{dept.name}</h1>
+              
+              <h2>{dept.name}</h2>
               <h4 className="short-name">{dept.shortName}</h4>
-              <p className="department-desc">{dept.description}</p>
+              <p className="department-desc">
+                {dept.description}
+              </p>
 
               <div className="dept-extra">
                 <p><strong>Core Subjects:</strong> {dept.subjects.join(', ')}</p>
               </div>
 
-              <button className="explore-btn">Explore Notes</button>
+              <button className="explore-btn">
+                Explore Notes
+              </button>
             </div>
           </div>
         ))}

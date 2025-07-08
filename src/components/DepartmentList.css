@@ -9,6 +9,33 @@
   text-align: center;
   margin-bottom: 40px;
 }
+.intro-section {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+}
+
+.intro-text {
+  background: linear-gradient(145deg, #e3f2fd, #ffffff);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.intro-text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.intro-text p {
+  font-size: 1.125rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
 
 .heading {
   font-size: 2.5rem;
@@ -42,7 +69,7 @@
 }
 
 .department-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-1px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
 }
 
@@ -92,7 +119,17 @@ h2 {
   .department-card {
     padding: 20px;
   }
-
+   .intro-text {
+    padding: 24px;
+  }
+  
+  .intro-text h2 {
+    font-size: 1.75rem;
+  }
+  
+  .intro-text p {
+    font-size: 1rem;
+  }
   .heading {
     font-size: 2rem;
   }

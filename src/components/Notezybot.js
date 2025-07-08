@@ -28,7 +28,7 @@ const MarkdownText = ({ text }) => {
 
 // Header Component
 const Header = ({ sessionId, onClearChat }) => (
-  <div className="header">
+  <div className="header_1">
     <div className="header-container">
       <div className="header-content">
         <div className="header-left">

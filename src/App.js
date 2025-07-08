@@ -71,7 +71,7 @@ function App() {
             ))}
             <Route path="/:sem/:department" element={<DepartmentPage/>} />
           </Routes>
-          <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />
+          <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />&nbsp;
           <ChannelJoinBanner/>&nbsp;
           <Footer />
         </main>

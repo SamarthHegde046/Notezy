@@ -1,44 +1,164 @@
-.sem-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 30px;
+/* OptionsDropdown.css */
+.semester-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.semester-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.semester-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .semester-grid {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 800px;
+    margin: 0 auto;
   }
-  
-  .sem-card {
-    width: 100%;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .semester-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  
-  .sem-card:hover {
-    transform: scale(1.002);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .sem-card h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 0;
-    padding: 0 20px;
-    text-align: center;
-  }
-  
-  @media (max-width: 768px) {
-    .sem-card h2 {
-      font-size: 1.5rem;
-    }
-    .sem-card{
-      width: 140%;
-      padding: 1px;
-      margin-left: -50px;
-    }
-  }
-  
+}
+
+.semester-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.semester-card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.semester-header {
+  padding: 32px 24px 24px;
+  color: white;
+  text-align: center;
+  position: relative;
+  /* Single blue gradient for all cards */
+    background: linear-gradient(135deg, #4f8cff 0%, #2356c7 100%);
+
+}
+
+.semester-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.semester-icon {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.semester-icon svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* Simple hover effect */
+.semester-card:hover .semester-icon {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.semester-card:hover .semester-icon svg {
+  transform: scale(1.1);
+}
+
+.semester-header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.semester-content {
+  padding: 24px;
+}
+
+.semester-description {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.subjects-section {
+  margin-bottom: 24px;
+}
+
+.subjects-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.subjects-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.subject-tag {
+  display: block;
+  font-size: 0.8rem;
+  background-color: #f8fafc;
+  color: #64748b;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.explore-button {
+  width: 100%;
+  background: linear-gradient(135deg, #4285f4 0%, #3b82f6 100%);
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.explore-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.explore-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
