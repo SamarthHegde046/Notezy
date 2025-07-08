@@ -7,6 +7,7 @@ import {
   BarChart3
 } from 'lucide-react';
 import './DepartmentList.css';
+import { useNavigate } from 'react-router-dom';
 
 const departments = [
   {
@@ -52,9 +53,10 @@ const departments = [
 ];
 
 const DepartmentList = ({ sem }) => {
+  const navigate = useNavigate();
+
   const handleClick = (deptId) => {
-    // Navigate to department page
-    console.log(`Navigating to /${sem}/${deptId}`)
+    navigate(`/${sem}/${deptId}`);
   };
 
   return (
