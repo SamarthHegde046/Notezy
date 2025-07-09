@@ -1,8 +1,8 @@
 /* components/NoteCard.css */
-
 .note-card {
   background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
   border: 1px solid rgba(0, 123, 255, 0.1);
+  min-width: 90%;
   border-radius: 16px;
   padding: 1.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -168,6 +168,7 @@
   .note-card {
     padding: 1.25rem;
     margin: 0.5rem;
+    min-width: 80%;
   }
   
   .note-card-header {

@@ -55,6 +55,12 @@ const NoteCard = ({ note }) => {
         <p className="note-subject">
           <span className="subject-label">Subject:</span> {note.subject}
         </p>
+        <p className="note-subject">
+          <span className="subject-label">Topics:</span> {note.description}
+        </p>
+        <p className="note-subject">
+          <span className="subject-label">By:</span> {note.by}
+        </p>
       </div>
       
       <div className="note-actions">

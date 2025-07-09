@@ -29,8 +29,14 @@ const AdminDashboard = () => {
   const [totalDepartmentUploads, setTotalDepartmentUploads] = useState(0);
   const [feedbackStats, setFeedbackStats] = useState(null);
   const [visitorCount, setVisitorCount] = useState(0);
-  const [target, setTarget] = useState(1000);
-  const [targetvisitors, setTargetvistors] = useState(1000);
+  const [target, setTarget] = useState(10000);
+  const [targetvisitors, setTargetvistors] = useState(10000);
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+    thumbnail: "",
+    tags: "",
+  });
 
   const progress = Math.min((downloads / target) * 100, 100).toFixed(1);
   const progressvisitors = Math.min((visitorCount / targetvisitors) * 100, 100).toFixed(1);
@@ -64,8 +70,42 @@ const AdminDashboard = () => {
       setLoading(false);
     }
   };
-  
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const tagsArray = formData.tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+
+    const payload = {
+      title: formData.title,
+      content: formData.content,
+      thumbnail: formData.thumbnail,
+      tags: tagsArray,
+    };
+
+    try {
+      const res = await fetch(`${process.env.REACT_APP_API_BASE}/blogs`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ Blog added!");
+        setFormData({ title: "", content: "", thumbnail: "", tags: "" });
+      } else {
+        console.error("Error:", data);
+        alert("❌ Failed to add blog: " + data.error);
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+      alert("❌ Server error: Could not connect to backend.");
+    }
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -205,7 +245,42 @@ useEffect(() => {
       <div className='stat-box'>
         <AdminFeedback/>
       </div>
-
+      <form onSubmit={handleSubmit} style={{ padding: "2rem", maxWidth: "600px", margin: "auto" }}>
+      <h2>Add New Blog</h2>
+      <input
+        type="text"
+        placeholder="Blog Title"
+        value={formData.title}
+        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+        required
+        style={{ display: "block", marginBottom: "1rem", width: "100%" }}
+      />
+      <textarea
+        placeholder="Blog Content (Markdown supported)"
+        rows={8}
+        value={formData.content}
+        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+        required
+        style={{ display: "block", marginBottom: "1rem", width: "100%" }}
+      />
+      <input
+        type="text"
+        placeholder="Thumbnail Image URL"
+        value={formData.thumbnail}
+        onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
+        style={{ display: "block", marginBottom: "1rem", width: "100%" }}
+      />
+      <input
+        type="text"
+        placeholder="Tags (comma-separated)"
+        value={formData.tags}
+        onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+        style={{ display: "block", marginBottom: "1rem", width: "100%" }}
+      />
+      <button type="submit" style={{ padding: "10px 20px" }}>
+        Add Blog
+      </button>
+    </form>
       <div className="admin-list">
         <h4>Admins Using This Site:</h4>
         <ul>

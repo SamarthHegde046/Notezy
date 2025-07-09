@@ -83,7 +83,7 @@ const DepartmentList = ({ sem }) => {
             <div className="department-content">
               <div className="icon-wrapper">{dept.icon}</div>
               
-              <h2>{dept.name}</h2>
+              <h1>{dept.name}</h1>
               <h4 className="short-name">{dept.shortName}</h4>
               <p className="department-desc">
                 {dept.description}

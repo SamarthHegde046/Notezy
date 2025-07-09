@@ -6,15 +6,17 @@ import { toast } from 'react-toastify';
 const UploadModal = ({ isOpen, onClose, onSuccess }) => {
   const [title, setTitle] = useState('');
   const [subject, setSubject] = useState('');
+  const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [sem, setSem] = useState('');
   const [department, setDepartment] = useState('');
+  const [by,setBy]=useState('');
 
 
   const handleUpload = async () => {
-  if (!title || !subject || !file || !sem || department.length === 0) {
+  if (!title || !subject || !description || !file || !sem || department.length === 0) {
     toast.error('All fields are required!');
     return;
   }
@@ -25,6 +27,8 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('subject', subject);
+    formData.append('description',description);
+    formData.append('by',by);
     formData.append('file', file);
     formData.append('sem', sem);
     
@@ -76,6 +80,20 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
+        <input
+          type="text"
+          placeholder="Description"
+          autoComplete="on"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Credits"
+          autoComplete="on"
+          value={by}
+          onChange={(e) => setBy(e.target.value)}
+        />
         <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         <select value={sem} onChange={(e) => setSem(e.target.value)}>
           <option value="">Select Semester</option>
@@ -84,7 +102,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           <option value="Sem3">Sem3</option>
           <option value="Sem4">Sem4</option>
           <option value="Sem5">Sem5</option>
-          <option value="Sem5">Sem6</option>
+          <option value="Sem6">Sem6</option>
         </select>
 
         <select
