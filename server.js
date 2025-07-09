@@ -14,6 +14,8 @@ const sessionRoute = require("./routes/sessionRoute");
 const analyzeRoute = require("./routes/analyzeRoute");
 const feedbackRoute= require("./routes/feedbackRoute");
 const visitorRoute = require('./routes/visitorRoute');
+const blogRoutes = require("./routes/blogRoutes");
+
 
 const { cleanupOldSessions } = require("./utils/sessionManager");
 
@@ -128,6 +130,7 @@ app.use("/api/", sessionRoute);
 app.use("/api/", analyzeRoute);
 app.use('/api', visitorRoute);
 app.use("/api/feedback",feedbackRoute);
+app.use("/api/blogs", blogRoutes);
 
 // Error Handler
 app.use(errorHandler);

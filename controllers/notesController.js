@@ -8,9 +8,9 @@ const fs = require('fs');
 // Upload new note (admin only)
 const uploadNote = async (req, res) => {
   try {
-    const { title, subject, sem, department } = req.body;
+    const { title, subject,description,by, sem, department } = req.body;
 
-    if (!req.file || !title || !subject || !sem || !department) {
+    if (!req.file || !title || !subject || !description|| !sem || !department) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -41,6 +41,8 @@ const uploadNote = async (req, res) => {
       title,
       subject: subject,
       sem,
+      description,
+      by,
       department: departments.map(dep => dep),
       fileUrl: result.secure_url,
       publicId: result.public_id,
@@ -68,7 +70,7 @@ const getDashboardData = asyncHandler(async (req, res) => {
     const downloadsBySubject = {};
 
     notes.forEach(note => {
-      const subject = note.subject?.toUpperCase(); // normalize casing
+      const subject = note.subject?.toUpperCase(); 
       if (downloadsBySubject[subject]) {
         downloadsBySubject[subject] += note.downloads;
       } else {

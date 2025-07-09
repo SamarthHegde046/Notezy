@@ -10,6 +10,14 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    description:{
+      type:String,
+      required:true
+    },
+    by:{
+      type:String,
+      default:"Admin"
+    },
     fileUrl: {
       type: String,
       required: true
