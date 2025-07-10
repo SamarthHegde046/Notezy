@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import DepartmentList from '../components/DepartmentList';
-import { Sparkles, Upload } from 'lucide-react'; // Assuming you are using lucide-react
+import { Sparkles, Upload } from 'lucide-react';
 
 const SemPage = () => {
   const location = useLocation();
@@ -9,13 +10,16 @@ const SemPage = () => {
   const sem = location.pathname.split('/')[1];
 
   const SEM_OPTIONS = [
-  { label: 'Physics Cycle', value: 'Physicscycle' },
-  { label: 'Chemistry Cycle', value: 'Chemistrycycle' },
-  { label: 'Semester 3', value: 'Sem3' },
-  { label: 'Semester 4', value: 'Sem4' },
-  { label: 'Semester 5', value: 'Sem5' },
-  { label: 'Semester 6', value: 'Sem6' },
-];
+    { label: 'Physics Cycle', value: 'Physicscycle' },
+    { label: 'Chemistry Cycle', value: 'Chemistrycycle' },
+    { label: 'Semester 3', value: 'Sem3' },
+    { label: 'Semester 4', value: 'Sem4' },
+    { label: 'Semester 5', value: 'Sem5' },
+    { label: 'Semester 6', value: 'Sem6' },
+  ];
+
+  const semLabel =
+    SEM_OPTIONS.find(opt => opt.value.toLowerCase() === sem.toLowerCase())?.label || sem;
 
   const handleNotezybotClick = () => {
     navigate('/notezybot');
@@ -26,12 +30,22 @@ const SemPage = () => {
   };
 
   return (
-    <div>
+    <main>
+      <Helmet>
+        <title>{semLabel} - VTU Branches | Notezy</title>
+        <meta
+          name="description"
+          content={`Explore available branches for ${semLabel}. Access notes, resources, and study materials at Notezy.`}
+        />
+      </Helmet>
+
       <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
-        {(SEM_OPTIONS.find(opt => opt.value.toLowerCase() === sem.toLowerCase())?.label || sem)} - Branches
+        {semLabel} - Branches
       </h1>
+
       <DepartmentList sem={sem} />
-      <div className="bottom-notezy-features">
+
+      <section className="bottom-notezy-features">
         <div className="bottom-features-container">
           <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
           <div className="bottom-features-grid">
@@ -62,8 +76,8 @@ const SemPage = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

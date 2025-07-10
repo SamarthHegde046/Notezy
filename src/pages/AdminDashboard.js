@@ -10,6 +10,7 @@ import AdminFeedback from '../components/AdminFeedback';
 
 
 const AdminDashboard = () => {
+  const [adminName, setAdminName] = useState('');
   const [notes, setNotes] = useState([]);
   const [downloads, setDownloads] = useState(0);
   const [previews, setPreviews] = useState(0);
@@ -123,6 +124,7 @@ const AdminDashboard = () => {
         setPreviews(res.data.totalPreviews)
         setTotalDepartmentUploads(res.data.totalDepartmentUploads);
         setAdmins(res.data.activeAdmins);
+        setAdminName(res.data.currentAdminName);
       } catch (err) {
         toast.error('Failed to load Dashboard data..');
       } finally {
@@ -177,7 +179,12 @@ useEffect(() => {
   }  
 
   return (
-    <div className="dashboard-container">
+    <section className="dashboard-container">
+      {adminName && (
+  <div className="welcome-box">
+    <h2> Welcome back, <span className="admin-name">{adminName}</span></h2>
+  </div>
+)}
       <h2>Admin Dashboard</h2>
       <div className="dashboard-stats">
         <div className="stat-box">
@@ -242,6 +249,26 @@ useEffect(() => {
               ))}
         </div>
       </div>
+      <div className="admin-list">
+        <h4>Admins Using This Site:</h4>
+        <ul>
+          {admins.map((admin) => (
+            <li key={admin._id}>{admin.email}— Last Login: {admin.lastLogin ? admin.lastLogin.toLocaleString() : 'Never'}</li>
+          ))}
+        </ul>
+        <button onClick={openModal} style={{
+        backgroundColor: '#3f51b5',
+        color: 'white',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '8px',
+        fontSize: '20px',
+        marginBottom: '20px',
+        cursor: 'pointer'
+        }}>
+        + Upload Note
+        </button>
+      </div>
       <div className='stat-box'>
         <AdminFeedback/>
       </div>
@@ -281,26 +308,6 @@ useEffect(() => {
         Add Blog
       </button>
     </form>
-      <div className="admin-list">
-        <h4>Admins Using This Site:</h4>
-        <ul>
-          {admins.map((admin) => (
-            <li key={admin._id}>{admin.email}</li>
-          ))}
-        </ul>
-        <button onClick={openModal} style={{
-        backgroundColor: '#3f51b5',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '16px',
-        marginBottom: '20px',
-        cursor: 'pointer'
-        }}>
-        + Upload Note
-        </button>
-      </div>
       <div className="filter-bar">
   <SearchFilter onSearch={setSearchQuery} />
 
@@ -411,7 +418,7 @@ useEffect(() => {
 
       </div>
       <DashboardCharts notes={notes} />
-    </div>
+    </section>
   );
 };
 

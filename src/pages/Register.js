@@ -35,7 +35,7 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
+    <section className="auth-container">
       <h2>Admin Register</h2>
       <form onSubmit={handleRegister} className="auth-form">
         <input
@@ -54,7 +54,7 @@ const Register = () => {
 
         <button type="submit">Register</button>
       </form>
-    </div>
+    </section>
   );
 };
 

@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
+    <section className="auth-container">
       <h2>Admin Login</h2>
       <form onSubmit={handleLogin} className="auth-form">
         <input
@@ -54,7 +54,7 @@ const Login = () => {
       </form>
     
       
-    </div>
+    </section>
   );
 };
 

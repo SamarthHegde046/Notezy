@@ -17,13 +17,14 @@ const Home = () => {
   const handleSelect = (value) => {
     navigate(`/${value}`);
   };
+
   const handleNotezybotClick = () => {
     navigate('/notezybot');
   };
 
   const handleUploadNotesClick = () => {
     window.open('https://forms.gle/nd7wsDjrxv8fyh11A', '_blank');
-  }
+  };
 
   const features = [
     {
@@ -61,11 +62,11 @@ const Home = () => {
   ];
 
   return (
-    <div className={`homepage ${isVisible ? 'fade-in' : ''}`}>
+    <main className={`homepage ${isVisible ? 'fade-in' : ''}`}>
       <MarqueeBanner />
-      
+
       {/* Hero Section */}
-      <div className="hero-section">
+      <section className="hero-section">
         <div className="hero-content">
           <h1 className="main-title">
             All VTU Notes & QP's
@@ -75,22 +76,22 @@ const Home = () => {
             Your one-stop destination for VTU study materials, question papers, and academic resources
           </p>
         </div>
-      </div>
-      
-      {/* Main Selection */}
-      <div className="selection-section">
-        <a href="/notezybot" className="glow-button">PDF Analyzer Bot-Notezy AI</a><br></br><br></br>
+      </section>
+
+      {/* Selection Area */}
+      <section className="selection-section">
+        <a href="/notezybot" className="glow-button">PDF Analyzer Bot-Notezy AI</a><br /><br />
         <a href="https://forms.gle/nd7wsDjrxv8fyh11A" className="glow-button">Upload Notes</a>
         <OptionsDropdown onSelect={handleSelect} />
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="features-section">
-        <h3 className="section-subtitle">Why Choose Us?</h3>
+      <section className="features-section">
+        <h2 className="section-subtitle">Why Choose Us?</h2>
         <div className="features-grid">
           {features.map((feature, index) => (
-            <div 
-              key={index} 
+            <article
+              key={index}
               className={`feature-card ${feature.clickable ? 'clickable' : ''}`}
               onClick={feature.clickable ? feature.action : undefined}
               style={feature.clickable ? { cursor: 'pointer' } : {}}
@@ -98,60 +99,59 @@ const Home = () => {
               <div className="feature-icon">
                 {feature.icon}
               </div>
-              <h4 className="feature-title">{feature.title}</h4>
+              <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
-            </div>
+            </article>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Call to Action */}
-      <div className="cta-section">
+      <section className="cta-section">
         <div className="cta-content">
-          <h3>Ready to ace your exams?</h3>
+          <h2>Ready to ace your exams?</h2>
           <p>Join thousands of students who trust us for their VTU preparation</p>
-          <button 
-            className="cta-button"
-            onClick={() => navigate('/browse-all')}
-          >
+          <button className="cta-button" onClick={() => navigate('/browse-all')}>
             Browse All Resources
           </button>
         </div>
-        <VTULinks/>
-      </div>
-      <div className="bottom-notezy-features">
-                <div className="bottom-features-container">
-                  <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
-                  <div className="bottom-features-grid">
-                    <div className="bottom-feature-card" onClick={handleNotezybotClick}>
-                      <div className="bottom-feature-icon">
-                        <Sparkles className="sparkles-icon" />
-                      </div>
-                      <div className="bottom-feature-content">
-                        <h4 className="bottom-feature-title">Notezy AI Assistant</h4>
-                        <p className="bottom-feature-description">
-                          Upload your PDFs and get instant answers, summaries, and explanations with our AI-powered study companion.
-                        </p>
-                        <span className="bottom-feature-cta">Try Notezy AI →</span>
-                      </div>
-                    </div>
-        
-                    <div className="bottom-feature-card" onClick={handleUploadNotesClick}>
-                      <div className="bottom-feature-icon">
-                        <Upload className="upload-icon" />
-                      </div>
-                      <div className="bottom-feature-content">
-                        <h4 className="bottom-feature-title">Contribute Notes</h4>
-                        <p className="bottom-feature-description">
-                          Help your fellow students by sharing your study materials. Upload notes, assignments, and resources.
-                        </p>
-                        <span className="bottom-feature-cta">Upload Now →</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <VTULinks />
+      </section>
+
+      {/* Bottom Features */}
+      <section className="bottom-notezy-features">
+        <div className="bottom-features-container">
+          <h2 className="bottom-features-title">Enhance Your Study Experience</h2>
+          <div className="bottom-features-grid">
+            <article className="bottom-feature-card" onClick={handleNotezybotClick}>
+              <div className="bottom-feature-icon">
+                <Sparkles className="sparkles-icon" />
               </div>
-    </div>
+              <div className="bottom-feature-content">
+                <h3 className="bottom-feature-title">Notezy AI Assistant</h3>
+                <p className="bottom-feature-description">
+                  Upload your PDFs and get instant answers, summaries, and explanations with our AI-powered study companion.
+                </p>
+                <span className="bottom-feature-cta">Try Notezy AI →</span>
+              </div>
+            </article>
+
+            <article className="bottom-feature-card" onClick={handleUploadNotesClick}>
+              <div className="bottom-feature-icon">
+                <Upload className="upload-icon" />
+              </div>
+              <div className="bottom-feature-content">
+                <h3 className="bottom-feature-title">Contribute Notes</h3>
+                <p className="bottom-feature-description">
+                  Help your fellow students by sharing your study materials. Upload notes, assignments, and resources.
+                </p>
+                <span className="bottom-feature-cta">Upload Now →</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

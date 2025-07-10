@@ -2,7 +2,7 @@
 import React from 'react';
 
 const PrivacyPolicy = () => (
-  <div className="container">
+  <section className="container">
     <h1>Privacy Policy</h1>
       <p>Last updated: June 21, 2025</p>
       <p>
@@ -83,10 +83,10 @@ const PrivacyPolicy = () => (
       <section>
         <h2>9. Contact Us</h2>
         <p>
-          If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:notezy.support@gmail.com">notezy.support@gmail.com</a>.
+          If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:notezyhelp@gmail.com">notezyhelp@gmail.com</a>.
         </p>
       </section>
-    </div>
+    </section>
   );
 
 export default PrivacyPolicy;

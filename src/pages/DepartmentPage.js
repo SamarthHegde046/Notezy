@@ -91,15 +91,12 @@ const DepartmentPage = () => {
   };
 
   return (
-    <div className="department-page">
+    <main className="department-page">
       <ChannelJoinBanner/>
       <h1>{departmentDisplayName}</h1>
-      <div className="department-content">
-        <div className="update-banner">
-          📢 New notes will be uploaded regularly. Please visit again later to check for updates!
-        </div>
+      <section className="department-content">
 
-        <div className="filter-bar">
+        <section className="filter-bar">
           <SearchFilter onSearch={setSearchQuery} />
           <SubjectDropdown
             subjects={subjects}
@@ -107,27 +104,29 @@ const DepartmentPage = () => {
             onChange={(e) => setSelectedSubject(e.target.value)}
           />
           <GlowingButton onClick={() => setShowPopularNotes(true)} />
-        </div>
+        </section>
 
-        <div className="notes-grid">
-          {loading ? (
-            <div className="loading-container">
-              <LoadingSpinner />
-            </div>
-          ) : notes.length === 0 ? (
-            <div className="animation-container">
-              <BookAnimation />
-            </div>
-          ) : !selectedSubject ? (
-            <p className="select-message">Select any subject to see notes</p>
-          ) : filteredNotes.length > 0 ? (
-            filteredNotes.map(note => <NoteCard key={note._id} note={note} />)
-          ) : (
-            <div className="animation-container">
-              <BookAnimation />
-            </div>
-          )}
-        </div>
+
+        <section className="notes-section">
+          <div className="notes-grid">
+            {loading ? (
+              <div className="loading-container"><LoadingSpinner /></div>
+            ) : notes.length === 0 ? (
+              <div className="animation-container"><BookAnimation /></div>
+            ) : !selectedSubject ? (
+              <p className="select-message">Select any subject to see notes</p>
+            ) : filteredNotes.length > 0 ? (
+              filteredNotes.map(note => (
+                <article key={note._id}>
+                  <NoteCard note={note} />
+                </article>
+              ))
+            ) : (
+              <div className="animation-container"><BookAnimation /></div>
+            )}
+          </div>
+        </section>
+
 
         <a
           href={`https://wa.me/?text=${encodeURIComponent(
@@ -141,7 +140,7 @@ const DepartmentPage = () => {
         </a>
 
         {selectedSubject && (
-          <>
+          <aside>
             <button
               className="floating-feedback-button"
               onClick={() => setShowFeedback(true)}
@@ -162,7 +161,7 @@ const DepartmentPage = () => {
                 </div>
               </div>
             )}
-          </>
+          </aside>
         )}
         <PopularNotesPopup
           isOpen={showPopularNotes}
@@ -175,7 +174,7 @@ const DepartmentPage = () => {
         💡 We value your feedback to improve our website. <span className="click-here">Click here</span> to share your thoughts.
 
       </div>
-        <div className="bottom-notezy-features">
+        <section className="bottom-notezy-features">
           <div className="bottom-features-container">
             <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
             <div className="bottom-features-grid">
@@ -206,9 +205,9 @@ const DepartmentPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </main>
   );
 };
 

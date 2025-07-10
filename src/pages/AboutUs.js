@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
   return (
-    <div className="about-container">
+    <section className="about-container">
       <h1>About Notezy</h1>
       <p className="intro">
         Notezy is a student-focused notes-sharing platform that helps learners access, share, and discover high-quality academic resources with ease.
@@ -46,7 +46,7 @@ const AboutUs = () => {
           Got suggestions or want to contribute? Email us at <a href="mailto:notezy.support@gmail.com">notezy.support@gmail.com</a>
         </p>
       </section>
-    </div>
+    </section>
   );
 };
 

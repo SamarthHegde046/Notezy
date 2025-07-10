@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import "./Blogs.css";
 
 function Blogs() {
@@ -15,41 +16,73 @@ function Blogs() {
           console.error("Invalid response:", data);
           setBlogs([]);
         }
+      })
+      .catch(err => {
+        console.error("Failed to fetch blogs:", err);
+        setBlogs([]);
       });
   }, []);
 
-  // Function to limit content preview to 50 words
   const getContentPreview = (content = "", wordCount = 50) => {
     return content.split(" ").slice(0, wordCount).join(" ") + " ...";
   };
 
   return (
-    <div className="blogs-container">
-      <h1>Our Latest Blogs</h1>
-      <div className="blog-list">
-        {blogs.map(blog => (
-          <div key={blog._id} className="blog-card">
-            <img src={blog.thumbnail} alt="thumbnail" />
-            <div className="blog-content">
-              <h3>{blog.title}</h3>
-              <p>{getContentPreview(blog.content)}</p>
+    <main className="blogs-container">
+      <Helmet>
+        <title>Blogs | Notezy</title>
+        <meta name="description" content="Explore insightful blogs on study tips, VTU resources, and academic hacks written by the Notezy team." />
+      </Helmet>
 
-              {/* Tags */}
-              <div className="blog-tags">
-                {blog.tags?.map((tag, i) => (
-                  <span className="tag-badge" key={i}>#{tag}</span>
-                ))}
+      <header className="blogs-header">
+        <h1>Our Latest Blogs</h1>
+        <p>Discover insights, tips, and stories from our team</p>
+      </header>
+
+      <section className="blog-grid">
+        {blogs.length === 0 ? (
+          <p className="no-blogs">No blogs found. Please check back later!</p>
+        ) : (
+          blogs.map(blog => (
+            <article key={blog._id} className="blog-card">
+              <div className="blog-image">
+                <img
+                  src={blog.thumbnail}
+                  alt={blog.title || "Blog Thumbnail"}
+                  loading="lazy"
+                />
               </div>
 
-              <div className="blog-footer">
-                <small>{new Date(blog.date).toLocaleDateString()}</small>
-                <Link to={`/blogs/${blog._id}`} className="read-more-btn">Read More →</Link>
+              <div className="blog-content">
+                <h3 className="blog-title">{blog.title}</h3>
+                <p className="blog-excerpt">{getContentPreview(blog.content)}</p>
+
+                {blog.tags?.length > 0 && (
+                  <div className="blog-tags">
+                    {blog.tags.map((tag, i) => (
+                      <span className="tag-badge" key={i}>#{tag}</span>
+                    ))}
+                  </div>
+                )}
+
+                <footer className="blog-footer">
+                  <time className="blog-date">
+                    {new Date(blog.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric"
+                    })}
+                  </time>
+                  <Link to={`/blogs/${blog._id}`} className="read-more-btn">
+                    Read More →
+                  </Link>
+                </footer>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+            </article>
+          ))
+        )}
+      </section>
+    </main>
   );
 }
 
