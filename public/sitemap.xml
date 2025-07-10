@@ -11,7 +11,7 @@
   <url>
     <loc>https://notezy.online/about-us</loc>
     <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
+    <changefreq>daily</changefreq>
   </url>
 
 
@@ -19,14 +19,14 @@
   <url>
     <loc>https://notezy.online/terms-and-conditions</loc>
     <priority>0.6</priority>
-    <changefreq>yearly</changefreq>
+    <changefreq>daily</changefreq>
   </url>
 
   <!-- Privacy Policy -->
   <url>
     <loc>https://notezy.online/privacy-policy</loc>
     <priority>0.6</priority>
-    <changefreq>yearly</changefreq>
+    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://notezy.online/notezybot</loc>
