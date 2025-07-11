@@ -41,6 +41,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
 
   if (admin && (await bcrypt.compare(password, admin.password))) {
     admin.isActive = true;
+    admin.lastLogin = new Date();
     await admin.save();
 
     res.json({ token: generateToken(admin._id) });

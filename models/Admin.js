@@ -3,9 +3,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const adminSchema = new mongoose.Schema({
+  name:{type:String},
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  isActive: { type: Boolean, default: false }, // track if admin is logged in
+  isActive: { type: Boolean, default: false },
+  lastLogin: {
+    type: Date,
+    default: null
+  }, 
 }, { timestamps: true });
 
 

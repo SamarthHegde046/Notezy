@@ -62,11 +62,12 @@ const uploadNote = async (req, res) => {
 
 const getDashboardData = asyncHandler(async (req, res) => {
   try {
+    const currentAdmin = await Admin.findById(req.admin.id).select('name email')
     const notes = await Note.find().sort({ createdAt: -1 });
     const totalDownloads = notes.reduce((acc, note) => acc + (note.downloadCount||0),0);
     const totalPreviews = notes.reduce((acc, note) => acc + (note.previewCount || 0), 0);
     const totalDepartmentUploads = notes.reduce((acc, note) => acc + (note.department?.length || 0), 0);
-    const activeAdmins = await Admin.find({ isActive: true }).select('_id email');
+    const activeAdmins = await Admin.find({ isActive: true }).select('_id email name lastLogin');
     const downloadsBySubject = {};
 
     notes.forEach(note => {
@@ -82,13 +83,31 @@ const getDashboardData = asyncHandler(async (req, res) => {
       subject,
       downloads: count
     }));
+    const formattedAdmins = activeAdmins.map(admin => ({
+      _id: admin._id,
+      email: admin.email,
+      name: admin.name,
+      lastLogin: admin.lastLogin
+        ? admin.lastLogin.toLocaleString('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+          })
+        : 'Never',
+    }));
+
 
     res.json({
+      currentAdminName: currentAdmin.name,
       notes,
       totalDownloads,
       totalPreviews,
       totalDepartmentUploads,
-      activeAdmins,
+      activeAdmins:formattedAdmins,
       downloadsPerSubject: downloadsData
     });
   } catch (error) {
