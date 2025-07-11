@@ -5,11 +5,11 @@ const FAQ_DATA = [
     category: "About Notezy Services",
     questions: [
       {
-        q: "What is Notezy and what services do you offer?",
+        q: "What is Notezy and what services do we offer?",
         a: "Notezy is a student-driven platform providing free VTU study materials and an AI chatbot to help students summarize information and understand complex topics easily.",
       },
       {
-        q: "How can I download VTU notes from your website?",
+        q: "How can I download VTU notes from our website?",
         a: "Simply visit notezy.online, navigate to your branch and semester, then download the required notes for free through our secure platform.",
       },
       {
