@@ -27,7 +27,7 @@ import NotesChatbot from './components/NotesChatbot';
 import ChannelJoinBanner from './components/ChannelJoinBanner';
 import BlogDetails from './pages/BlogDetails';
 import Blogs from './pages/Blogs';
-
+import Faq from './components/Faq';
 
 function App() {
   useEffect(() => {
@@ -76,6 +76,7 @@ function App() {
           </Routes>
           <ToastContainer position="bottom-right" autoClose={1000} pauseOnHover />&nbsp;
           <ChannelJoinBanner/>&nbsp;
+          <Faq/>
           <Footer />
         </main>
       </div>

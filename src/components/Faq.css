@@ -1,0 +1,32 @@
+.faq-container {
+  max-width: 100%;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.faq-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.faq-item {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+}
+
+.faq-question {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e40af;
+  border-bottom: 2px solid #1e40af;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.faq-answer {
+  font-size: 1rem;
+  line-height: 1.6;
+}

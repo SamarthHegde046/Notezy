@@ -70,13 +70,13 @@ body {
 .navbar-links li a,.modal-title, .modal-content, .modal-close, .close-btn , .brand-name ,.info-note,.search-empty-message{
   color: var(--text-color);
 }
-.note-card h3,.note-card p,.subject-label{
+.note-card h3,.note-card p,.subject-label,.welcome-title,h2{
   color: var(--text-color);
 }
 .dipartment-page h2,.dipartment-page h1,.admin-list li,.admin-list h4,.note-listdash h4{
   color: var(--text-color);
 }
-.dashboard-container {
+.dashboard-container ,.feature-card1{
   background: var(--bg-color);
 }
 
