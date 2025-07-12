@@ -16,7 +16,7 @@ const noteSchema = new mongoose.Schema(
     },
     by:{
       type:String,
-      default:"Admin"
+      default:"Admin",
     },
     fileUrl: {
       type: String,
