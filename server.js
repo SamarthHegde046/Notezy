@@ -61,7 +61,7 @@ Extract:
 - "code": Subject code (like "BCS403")
 - "module": Module number if mentioned (just number like "1", optional)
 - "title": Full title if mentioned (like "Module 2" or "MQP 1/2 - BCS403", optional)
-- "type": "module" | "qp" | "all" — "module" if user asks for module notes, "qp" for question papers, otherwise "all".
+- "type": "module" | "qp" or "question papers" | "all" — "module" if user asks for module notes, "qp" or "question paper(s)" for question papers, otherwise "all".
 
 If the user just says hi, hello, bye, etc., respond with:
 {
@@ -87,6 +87,7 @@ If user asks about the bot (e.g., "who are you", "what can you do"):
   - bio, biology → Biology for Engineers
   - cs → Control Systems
   -dbms->Database Management System
+  -uhv->Universal Human Values
   - Do NOT include explanations.
 Return ONLY clean JSON. No markdown, no triple backticks. Strictly valid JSON.
 
@@ -115,11 +116,7 @@ User input:
     res.status(500).json({ error: 'Gemini request failed.' });
   }
 });
-
-// Routes
-app.get('/ads.txt', (req, res) => {
-  res.redirect(301, 'https://srv.adstxtmanager.com/76177/notezy.online');
-});
+//Routes
 
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
