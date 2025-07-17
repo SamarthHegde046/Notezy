@@ -1,6 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Sitemap: https://notezy.online/sitemap.xml
+Sitemap: https://notezy.online/sitemap_notezy.xml
 # Specific Rules
 User-agent: Googlebot
 Allow: /           # Allow full crawling for Googlebot
