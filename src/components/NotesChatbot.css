@@ -771,7 +771,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .chatbot-container {
-    height: 90vh;
+    height: 85vh;
     border-radius: 0;
     max-width: 100%;
     border: none;
@@ -863,15 +863,15 @@
     padding: 0.8rem;
   }
   .logo-container{
-    margin-right: 300px;
+    margin-right: 320px;
   }
   .header-logo{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
   .header-text{
-    margin-top: -70px;
-    margin-right: 50px;
+    margin-top: -65px;
+    margin-right: 90px;
   }
 
   .header-title {

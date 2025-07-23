@@ -38,18 +38,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://notezy.online/sgpa-calculator</loc>
-    <lastmod>2025-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://notezy.online/cgpa-calculator</loc>
-    <lastmod>2025-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://notezy.online/notezybot</loc>
     <lastmod>2025-07-23</lastmod>
     <changefreq>weekly</changefreq>

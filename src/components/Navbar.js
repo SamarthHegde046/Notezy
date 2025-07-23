@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { AuthContext } from '../context/AuthContext';
@@ -12,6 +12,9 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
+
   const handleLogout = () => {
     logout();
     navigate('/');
@@ -20,16 +23,40 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
+  // ✅ Close navbar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuOpen && 
+        menuRef.current && 
+        !menuRef.current.contains(event.target) && 
+        hamburgerRef.current && 
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [menuOpen]);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
+        {/* Logo */}
         <div className="navbar-logo">
           <Link to="/" onClick={closeMenu} className="logo-link">
             <img src={logo} alt="StudyNotes Logo" className="logo-img" />
@@ -37,7 +64,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop menu */}
+        {/* Desktop Menu */}
         <div className="navbar-menu desktop-menu">
           <ul className="navbar-links">
             <li className="nav-item">
@@ -49,9 +76,7 @@ const Navbar = () => {
             {!isAdmin ? (
               <>
                 <li className="nav-item">
-                  <Link to="/" onClick={closeMenu} className="nav-link">
-                    <span>Home</span>
-                  </Link>
+                  <Link to="/" onClick={closeMenu} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="https://results.vtu.ac.in/" onClick={closeMenu} className="nav-link external-link">
@@ -84,18 +109,11 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link to="/dashboard123" onClick={closeMenu} className="nav-link dashboard-link">
-                    <span>Dashboard</span>
-                  </Link>
+                  <Link to="/dashboard123" onClick={closeMenu} className="nav-link dashboard-link">Dashboard</Link>
                 </li>
                 <li className="nav-item">
                   <button className="logout-btn" onClick={handleLogout}>
                     <span>Logout</span>
-                    <svg className="logout-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                      <polyline points="16,17 21,12 16,7"></polyline>
-                      <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
                   </button>
                 </li>
               </>
@@ -103,41 +121,39 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Mobile controls */}
+        {/* Mobile Controls */}
         <div className="mobile-controls">
           <button onClick={toggleTheme} className="theme-toggle-btn mobile-theme-btn" title="Toggle theme">
             <span className="theme-icon">{theme === 'light' ? '🌙' : '☀️'}</span>
           </button>
-          
-          <div className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+
+          {/* Hamburger Menu */}
+          <div 
+            ref={hamburgerRef}
+            className={`hamburger ${menuOpen ? 'active' : ''}`} 
+            onClick={toggleMenu}
+          >
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
 
-        {/* Mobile dropdown menu */}
-        <div className={`navbar-menu mobile-menu ${menuOpen ? 'active' : ''}`}>
+        {/* Mobile Dropdown Menu */}
+        <div ref={menuRef} className={`navbar-menu mobile-menu ${menuOpen ? 'active' : ''}`}>
           <ul className="navbar-links">
             {!isAdmin ? (
               <>
                 <li className="nav-item">
-                  <Link to="/" onClick={closeMenu} className="nav-link">
-                    <span>Home</span>
-                  </Link>
+                  <Link to="/" onClick={closeMenu} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="https://results.vtu.ac.in/" onClick={closeMenu} className="nav-link external-link">
                     <span>VTU Results</span>
-                    <svg className="external-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15,3 21,3 21,9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/quicknotes" onClick={closeMenu} className="nav-link ">
+                  <Link to="/quicknotes" onClick={closeMenu} className="nav-link">
                     <span>Quick Notes</span>
                     <span className="new-badge">NEW</span>
                   </Link>
@@ -169,18 +185,11 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link to="/dashboard123" onClick={closeMenu} className="nav-link dashboard-link">
-                    <span>Dashboard</span>
-                  </Link>
+                  <Link to="/dashboard123" onClick={closeMenu} className="nav-link dashboard-link">Dashboard</Link>
                 </li>
                 <li className="nav-item">
                   <button className="logout-btn" onClick={handleLogout}>
                     <span>Logout</span>
-                    <svg className="logout-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                      <polyline points="16,17 21,12 16,7"></polyline>
-                      <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
                   </button>
                 </li>
               </>

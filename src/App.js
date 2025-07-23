@@ -28,7 +28,7 @@ import ChannelJoinBanner from './components/ChannelJoinBanner';
 import BlogDetails from './pages/BlogDetails';
 import Blogs from './pages/Blogs';
 import Faq from './components/Faq';
-import { CgpaCalculator, Homesgpaandcgpa, SgpaCalculator } from './pages/Navcalculator';
+import {Homesgpaandcgpa} from './pages/Navcalculator';
 
 function App() {
   useEffect(() => {
@@ -65,8 +65,6 @@ function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:id" element={<BlogDetails />} />
             <Route path="/sgpa-and-cgpa-calculator-2022-scheme" element={<Homesgpaandcgpa />} />
-            <Route path="/sgpa-calculator" element={<SgpaCalculator />} />
-            <Route path="/cgpa-calculator" element={<CgpaCalculator />} />
 
 
             {SEM_OPTIONS.map(option => (

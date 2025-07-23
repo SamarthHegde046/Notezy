@@ -12,7 +12,7 @@ function BlogDetails() {
   const [error, setError] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [cloudMetrics, setCloudMetrics] = useState({ likesCount: 0, viewsCount: 0 });
-  const blogUrl = `${window.location.origin}`;
+  const blogUrl = "https://notezy.online/blogs";
 
   // Helper function to use local metrics (not a hook)
   const setLocalMetrics = (blogId) => {
