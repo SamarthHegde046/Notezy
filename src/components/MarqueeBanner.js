@@ -4,7 +4,7 @@ import './MarqueeBanner.css';
 
 const MarqueeBanner = () => {
   return (
-    <div className="marquee-banner">
+    <section className="marquee-banner">
       <div className="title-with-dot">
         <span className="blinking-dot"></span>
         <span className="update-text">Update!</span>
@@ -17,7 +17,7 @@ const MarqueeBanner = () => {
            📄 Download Question Papers and Solutions
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 

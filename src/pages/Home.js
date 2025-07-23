@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 import { BookOpen, Download, Search, Sparkles, Upload } from 'lucide-react';
 import './Home.css';
 import OptionsDropdown from '../components/OptionsDropdown';
@@ -60,9 +61,45 @@ const Home = () => {
       action: () => window.open('https://forms.gle/nd7wsDjrxv8fyh11A', '_blank')
     }
   ];
-
+  const pageTitle = "Notezy | VTU Notes, Question Papers & Study Materials";
+  const pageDescription =
+    "Access all VTU notes, previous year question papers, and CBCS 2022 study materials in one place. Quick search, AI-powered PDF analyzer & free downloads for students.";
+  const canonicalUrl = "https://notezy.online/";
   return (
     <main className={`homepage ${isVisible ? 'fade-in' : ''}`}>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta
+          name="keywords"
+          content="VTU notes, VTU question papers, CBCS 2022 scheme, VTU study materials, VTU syllabus, Notezy AI, free VTU resources, engineering notes, CSE, AIML, ECE, ISE"
+        />
+        <meta name="author" content="Notezy" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta
+          property="og:image"
+          content={`${window.location.origin}/feather-pen.png`}
+        />
+        <meta property="og:site_name" content="Notezy" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta
+          name="twitter:image"
+          content={`${window.location.origin}/feather-pen.png`}
+        />
+      </Helmet>
+
       <MarqueeBanner />
 
       {/* Hero Section */}
@@ -81,7 +118,8 @@ const Home = () => {
       {/* Selection Area */}
       <section className="selection-section">
         <a href="/notezybot" className="glow-button">PDF Analyzer Bot-Notezy AI</a><br /><br />
-        <a href="https://forms.gle/nd7wsDjrxv8fyh11A" className="glow-button">Upload Notes</a>
+        <a href="/quicknotes" className="glow-button">Quick Notes</a><br /><br />
+        <a href="/blogs" className="glow-button">Read Our Blogs</a>
         <OptionsDropdown onSelect={handleSelect} />
       </section>
 
@@ -105,7 +143,6 @@ const Home = () => {
           ))}
         </div>
       </section>
-
       {/* Call to Action */}
       <section className="cta-section">
         <div className="cta-content">

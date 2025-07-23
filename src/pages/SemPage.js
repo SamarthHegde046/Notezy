@@ -21,6 +21,10 @@ const SemPage = () => {
   const semLabel =
     SEM_OPTIONS.find(opt => opt.value.toLowerCase() === sem.toLowerCase())?.label || sem;
 
+  const pageTitle = `${semLabel} VTU Notes & Branches | Notezy`;
+  const pageDescription = `Browse VTU ${semLabel} branches and access free notes, study materials, previous year papers, and resources on Notezy. Built for VTU students.`;
+  const canonicalUrl = `https://notezy.online/${sem}`;
+
   const handleNotezybotClick = () => {
     navigate('/notezybot');
   };
@@ -32,15 +36,35 @@ const SemPage = () => {
   return (
     <main>
       <Helmet>
-        <title>{semLabel} - VTU Branches | Notezy</title>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
         <meta
-          name="description"
-          content={`Explore available branches for ${semLabel}. Access notes, resources, and study materials at Notezy.`}
+          name="keywords"
+          content={`VTU ${semLabel} notes, VTU ${semLabel} syllabus, VTU CBCS notes, ${semLabel} branches, VTU study materials, VTU 2022 scheme, Notezy`}
         />
+        <meta name="author" content="Notezy" />
+
+        {/* Canonical URL to avoid duplicate issues */}
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Open Graph for Facebook/LinkedIn */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Notezy" />
+        <meta property="og:image" content={`${window.location.origin}/feather-pen.png`} />
+        <meta property="og:image:alt" content="Notezy VTU Notes" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={`${window.location.origin}/feather-pen.png`} />
       </Helmet>
 
       <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
-        {semLabel} - Branches
+        {semLabel} - VTU Branches & Notes
       </h1>
 
       <DepartmentList sem={sem} />

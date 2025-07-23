@@ -1,13 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Sitemap: https://notezy.online/sitemap_notezy.xml
-# Specific Rules
-User-agent: Googlebot
-Allow: /           # Allow full crawling for Googlebot
-
-User-agent: Bingbot
-Allow: /           # Allow full crawling for Bingbot
-
-# Custom Crawling Instructions
+Allow: /           
 User-agent: *
 Crawl-delay: 10     # Reduce the crawl rate to avoid server overload

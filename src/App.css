@@ -73,7 +73,7 @@ body {
 .note-card h3,.note-card p,.subject-label,.welcome-title,h2{
   color: var(--text-color);
 }
-.dipartment-page h2,.dipartment-page h1,.admin-list li,.admin-list h4,.note-listdash h4{
+.dipartment-page h2,.dipartment-page h1,.admin-list li,.admin-list h4,.note-listdash h4,.blog-date{
   color: var(--text-color);
 }
 .dashboard-container ,.feature-card1{

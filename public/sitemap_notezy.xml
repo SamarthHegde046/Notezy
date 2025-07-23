@@ -1,71 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+
   <url>
     <loc>https://notezy.online/</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <changefreq>daily</changefreq>
   </url>
-
-  <!-- About Page -->
   <url>
     <loc>https://notezy.online/about-us</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>daily</changefreq>
   </url>
-
-
-  <!-- Terms Page -->
-  <url>
-    <loc>https://notezy.online/terms-and-conditions</loc>
-    <priority>0.6</priority>
-    <changefreq>daily</changefreq>
-  </url>
-
-  <!-- Privacy Policy -->
   <url>
     <loc>https://notezy.online/privacy-policy</loc>
-    <priority>0.6</priority>
-    <changefreq>daily</changefreq>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/terms-and-conditions</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/blogs</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/sgpa-and-cgpa-calculator-2022-scheme</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/sgpa-calculator</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/cgpa-calculator</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://notezy.online/notezybot</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://notezy.online/quicknotes</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://notezy.online/sem4</loc>
+    <loc>https://notezy.online/Physicscycle</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://notezy.online/sem4/aiml</loc>
+    <loc>https://notezy.online/Chemistrycycle</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://notezy.online/sem4/computerscience</loc>
+    <loc>https://notezy.online/Sem3</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://notezy.online/sem4/electronicsandcommunications</loc>
+    <loc>https://notezy.online/Sem4</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://notezy.online/sem4/informationscience</loc>
+    <loc>https://notezy.online/Sem4/aiml</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://notezy.online/sem4/aids</loc>
+    <loc>https://notezy.online/Sem4/computerscience</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://notezy.online/Sem4/aids</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/Sem4/electronicsandcommunications</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/Sem5</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://notezy.online/Sem6</loc>
+    <lastmod>2025-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

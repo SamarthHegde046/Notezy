@@ -42,7 +42,7 @@ const NoteCard = ({ note }) => {
   };
      
   return (
-    <div className="note-card">
+    <section className="note-card">
       <div className="note-card-header">
         <h3 className="note-title">{note.title}</h3>
         <div className="download-badge">
@@ -87,7 +87,7 @@ const NoteCard = ({ note }) => {
           Download
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

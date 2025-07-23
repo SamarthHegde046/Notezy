@@ -60,7 +60,7 @@ const DepartmentList = ({ sem }) => {
   };
 
   return (
-    <div className="department-list-wrapper">
+    <section className="department-list-wrapper">
       {/* New Content Section */}
       <div className="intro-section">
         <div className="intro-text">
@@ -100,7 +100,7 @@ const DepartmentList = ({ sem }) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

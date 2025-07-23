@@ -12,14 +12,14 @@ const SearchFilter = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
+    <section className="search-bar">
       <input
         type="text"
         placeholder="Search by subject, title.."
         value={query}
         onChange={handleChange}
       />
-    </div>
+    </section>
   );
 };
 

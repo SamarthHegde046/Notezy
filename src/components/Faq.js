@@ -95,7 +95,7 @@ const FAQ_DATA = [
 
 const Faq= () => {
   return (
-    <div className="faq-container">
+    <section className="faq-container">
       <h2>Frequently Asked Questions (FAQs)</h2>
       {FAQ_DATA.map((section, idx) => (
         <div key={idx} className="faq-category">
@@ -108,7 +108,7 @@ const Faq= () => {
           ))}
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

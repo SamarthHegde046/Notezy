@@ -104,7 +104,7 @@ const OptionsDropdown = ({ onSelect }) => {
   };
 
   return (
-    <div className="semester-container">
+    <section className="semester-container">
       <div className="semester-wrapper">
         <h1 className="semester-title">
           Choose Your Semester
@@ -165,7 +165,7 @@ const OptionsDropdown = ({ onSelect }) => {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
