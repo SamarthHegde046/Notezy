@@ -2,35 +2,83 @@ const express = require("express");
 const router = express.Router();
 const Blog = require("../models/Blog");
 
-// Create blog
-router.post("/", async (req, res) => {
+// Get blog metrics
+router.get("/:blogId/metrics", async (req, res) => {
   try {
-    const blog = new Blog(req.body);
-    await blog.save();
-    res.status(201).json(blog);
-  } catch (err) {
-    console.error("Blog Save Error:", err);
-    res.status(400).json({ error: err.message });
+    const { blogId } = req.params;
+
+    // Get or create blog metrics
+    const blog = await Blog.getOrCreateMetrics(blogId);
+
+    res.json({
+      likesCount: blog.likesCount,
+      viewsCount: blog.viewsCount,
+    });
+  } catch (error) {
+    console.error("Error fetching metrics:", error);
+    res.status(500).json({ error: "Failed to fetch metrics" });
   }
 });
 
+// Like a blog
+router.post("/:blogId/like", async (req, res) => {
+  try {
+    const { blogId } = req.params;
 
-// Get all blogs
+    const blog = await Blog.getOrCreateMetrics(blogId);
+    await blog.incrementLikes();
+
+    res.json({
+      likesCount: blog.likesCount,
+      viewsCount: blog.viewsCount,
+    });
+  } catch (error) {
+    console.error("Error liking blog:", error);
+    res.status(500).json({ error: "Failed to like blog" });
+  }
+});
+
+// Unlike a blog
+router.post("/:blogId/unlike", async (req, res) => {
+  try {
+    const { blogId } = req.params;
+
+    const blog = await Blog.getOrCreateMetrics(blogId);
+    await blog.decrementLikes();
+
+    res.json({
+      likesCount: blog.likesCount,
+      viewsCount: blog.viewsCount,
+    });
+  } catch (error) {
+    console.error("Error unliking blog:", error);
+    res.status(500).json({ error: "Failed to unlike blog" });
+  }
+});
+
+// Increment view count
+router.post("/:blogId/view", async (req, res) => {
+  try {
+    const { blogId } = req.params;
+
+    const blog = await Blog.getOrCreateMetrics(blogId);
+    await blog.incrementViews();
+
+    res.json({
+      likesCount: blog.likesCount,
+      viewsCount: blog.viewsCount,
+    });
+  } catch (error) {
+    console.error("Error incrementing views:", error);
+    res.status(500).json({ error: "Failed to increment views" });
+  }
+});
+
+// Get all blog metrics (for admin dashboard)
 router.get("/", async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ date: -1 });
+    const blogs = await Blog.find().sort({ updatedAt: -1 });
     res.json(blogs);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Get single blog
-router.get("/:id", async (req, res) => {
-  try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) return res.status(404).json({ error: "Blog not found" });
-    res.json(blog);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
