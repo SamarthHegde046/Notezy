@@ -5,13 +5,28 @@ import { incrementDownload, incrementPreview } from '../services/api';
 const NoteCard = ({ note }) => {
 
   
+  const getForceDownloadUrl = (url) => {
+    const match = url.match(/[-\w]{25,}/); // matches Google Drive file ID
+    if (match) {
+      const fileId = match[0];
+      return `https://drive.google.com/uc?export=download&id=${fileId}`;
+    }
+    return url; // fallback if not a drive link
+  };
 
   const handleDownload = async () => {
-  try {
-    await incrementDownload(note._id);
+    try {
+      await incrementDownload(note._id);
 
+      const downloadUrl = getForceDownloadUrl(note.fileUrl);
 
-    window.open(note.fileUrl, "_blank")
+      // ✅ Create a hidden anchor tag & trigger download
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = `${note.title}.pdf`; // suggested file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
     toast.success("Downloaded Succesfully!", {
       position: "top-right",
