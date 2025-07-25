@@ -22,10 +22,6 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    publicId: {
-      type: String,
-      required: true
-    },
     downloadCount: {
       type: Number,
       default: 0

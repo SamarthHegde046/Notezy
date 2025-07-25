@@ -7,7 +7,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "pdf_uploads",
     allowed_formats: ["pdf"],
-    resource_type: "raw", // for non-image files like PDFs
+    resource_type: "raw",
   },
 });
 

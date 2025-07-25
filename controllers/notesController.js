@@ -2,61 +2,38 @@
 const Note = require('../models/Note');
 const Admin = require('../models/Admin');
 const asyncHandler = require('express-async-handler');
-const cloudinary = require('../utils/cloudinary');
-const fs = require('fs');
 
 // Upload new note (admin only)
 const uploadNote = async (req, res) => {
   try {
-    const { title, subject,description,by, sem, department } = req.body;
+    const { title, subject, description, by, sem, department, fileUrl } = req.body;
 
-    if (!req.file || !title || !subject || !description|| !sem || !department) {
+    if (!title || !subject || !description || !sem || !department || !fileUrl) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Convert to array if not already
     const departments = Array.isArray(department) ? department : [department];
 
-    // Upload once to Cloudinary
-    const streamUpload = (fileBuffer) => {
-      return new Promise((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream(
-          {
-            folder: 'notes-app',
-            resource_type: 'auto',
-          },
-          (error, result) => {
-            if (result) resolve(result);
-            else reject(error);
-          }
-        );
-        stream.end(fileBuffer);
-      });
-    };
-
-    const result = await streamUpload(req.file.buffer);
-
-    // Save one document with all departments
     const newNote = await Note.create({
       title,
-      subject: subject,
+      subject,
       sem,
       description,
       by,
-      department: departments.map(dep => dep),
-      fileUrl: result.secure_url,
-      publicId: result.public_id,
+      department: departments,
+      fileUrl, 
     });
 
     res.status(201).json({
-      message: 'Note uploaded successfully',
-      note: newNote,
+      message: 'Note link saved successfully!',
+      note: newNote
     });
   } catch (error) {
-    console.error('Upload error:', error);
-    res.status(500).json({ message: 'Server error during upload' });
+    console.error('Save Link Error:', error);
+    res.status(500).json({ message: 'Server error while saving note link' });
   }
 };
+
 
 
 
@@ -189,7 +166,7 @@ const incrementPreview = async (req, res) => {
   }
 };
 
-// Delete a note
+//delete notes
 const deleteNote = async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
@@ -197,19 +174,14 @@ const deleteNote = async (req, res) => {
       return res.status(404).json({ message: 'Note not found' });
     }
 
-    // Delete file from Cloudinary (optional)
-    if (note.publicId) {
-      await cloudinary.uploader.destroy(note.publicId, { resource_type: 'raw' });
-    }
-
-    await Note.findByIdAndDelete(req.params.id)
-
-    res.json({ message: 'Note deleted successfully' });
+    await Note.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Note deleted successfully from database' });
   } catch (error) {
     console.error('Delete error:', error);
     res.status(500).json({ message: 'Server error while deleting note' });
   }
 };
+
 
 module.exports = {
   uploadNote,
