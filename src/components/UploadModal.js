@@ -7,7 +7,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
   const [title, setTitle] = useState('');
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [sem, setSem] = useState('');
@@ -16,7 +16,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
 
 
   const handleUpload = async () => {
-  if (!title || !subject || !description || !file || !sem || department.length === 0) {
+  if (!title || !subject || !description || !fileUrl || !sem || department.length === 0) {
     toast.error('All fields are required!');
     return;
   }
@@ -29,7 +29,7 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
     formData.append('subject', subject);
     formData.append('description',description);
     formData.append('by',by);
-    formData.append('file', file);
+    formData.append('fileUrl', fileUrl);
     formData.append('sem', sem);
     
     department.forEach((dept) => formData.append('department', dept));
@@ -94,7 +94,12 @@ const UploadModal = ({ isOpen, onClose, onSuccess }) => {
           value={by}
           onChange={(e) => setBy(e.target.value)}
         />
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+        <input
+          type="text"
+          placeholder="Google Drive Share Link"
+          value={fileUrl}
+          onChange={(e) => setFileUrl(e.target.value)}
+        />
         <select value={sem} onChange={(e) => setSem(e.target.value)}>
           <option value="">Select Semester</option>
           <option value="Physicscycle">Physics Cycle</option>

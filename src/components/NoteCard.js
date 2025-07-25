@@ -1,46 +1,39 @@
 import { toast } from 'react-toastify';
 import './NoteCard.css';
-import { incrementDownload } from '../services/api';
-import { incrementPreview } from '../services/api';
+import { incrementDownload, incrementPreview } from '../services/api';
 
 const NoteCard = ({ note }) => {
-  const getDownloadUrl = (url) => {
-    const parts = url.split('/upload/');
-    return parts[0] + '/upload/fl_attachment/' + parts[1];
+
+  const getDriveDownloadUrl = (url) => {
+    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      const fileId = match[1];
+      return `https://drive.google.com/uc?export=download&id=${fileId}`;
+    }
+    return url; // fallback to original if it’s already direct
   };
 
-     
   const handleDownload = async () => {
-    try {
-      await incrementDownload(note._id);
-     
-      const downloadUrl = getDownloadUrl(note.fileUrl);
-      const response = await fetch(downloadUrl);
-      const blob = await response.blob();
-     
-      const fileName = `${note.title.trim().replace(/\s+/g, '_')}.pdf`;
-     
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-      
-      toast.success('Downloaded successfully!', {
-        position: 'top-right',
-        autoClose: 2000,
-      });
-    } catch (error) {
-      console.error('Download failed:', error);
-      toast.error('Download failed. Please try again.', {
-        position: 'top-right',
-        autoClose: 2000,
-      });
-    }
+  try {
+    await incrementDownload(note._id);
+
+    const downloadUrl = getDriveDownloadUrl(note.fileUrl);
+
+    window.open(downloadUrl, "_blank");
+
+    toast.success("Downloaded Succesfully!", {
+      position: "top-right",
+      autoClose: 2000,
+    });
+  } catch (error) {
+    console.error("Download failed:", error);
+    toast.error("Download failed. Please try again.", {
+      position: "top-right",
+      autoClose: 2000,
+    });
+  }
   };
-     
+
   return (
     <section className="note-card">
       <div className="note-card-header">
