@@ -2,6 +2,7 @@
 const Note = require('../models/Note');
 const Admin = require('../models/Admin');
 const asyncHandler = require('express-async-handler');
+const axios = require("axios");
 
 //upload new note
 const uploadNote = async (req, res) => {
@@ -91,6 +92,43 @@ const getDashboardData = asyncHandler(async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch dashboard data' });
   }
 });
+
+const proxyDownload = async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+
+    if (!note) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    // Extract Google Drive File ID
+    const match = note.fileUrl.match(/[-\w]{25,}/);
+    if (!match) return res.status(400).json({ message: "Invalid file URL" });
+
+    const fileId = match[0];
+    const directDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+    // Stream the file from Drive
+    const response = await axios({
+      url: directDownloadUrl,
+      method: "GET",
+      responseType: "stream",
+    });
+
+    // Set headers for download
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${note.title.replace(/\s+/g, "_")}.pdf"`
+    );
+    res.setHeader("Content-Type", "application/pdf");
+
+    // Pipe the file to the client
+    response.data.pipe(res);
+  } catch (error) {
+    console.error("Proxy download failed:", error);
+    res.status(500).json({ message: "Download failed" });
+  }
+};
 
 // Get all notes
 const getAllNotes = async (req, res) => {
@@ -184,6 +222,7 @@ const deleteNote = async (req, res) => {
 
 module.exports = {
   uploadNote,
+  proxyDownload,
   getAllNotes,
   getNoteById,
   incrementDownload,

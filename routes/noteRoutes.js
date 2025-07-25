@@ -4,6 +4,7 @@ const router = express.Router();
 const Note = require('../models/Note');
 const {
   uploadNote,
+  proxyDownload,
   getAllNotes,
   getNoteById,
   incrementDownload,
@@ -40,6 +41,7 @@ router.get('/subjects', async (req, res) => {
 router.get('/:id', getNoteById);
 router.put('/:id/increment', incrementDownload);
 router.put('/:id/preview', incrementPreview);
+router.get("/:id/download", proxyDownload);
 router.delete('/:id', protect, deleteNote);
 
 // Protected route (admin only)
