@@ -1,33 +1,23 @@
 import { toast } from 'react-toastify';
 import './NoteCard.css';
 import { incrementDownload, incrementPreview } from '../services/api';
-
+const API_BASE = process.env.REACT_APP_API_BASE;
 const NoteCard = ({ note }) => {
 
   
-  const getForceDownloadUrl = (url) => {
-    const match = url.match(/[-\w]{25,}/); // matches Google Drive file ID
-    if (match) {
-      const fileId = match[0];
-      return `https://drive.google.com/uc?export=download&id=${fileId}`;
-    }
-    return url; // fallback if not a drive link
-  };
-
   const handleDownload = async () => {
     try {
       await incrementDownload(note._id);
 
-      const downloadUrl = getForceDownloadUrl(note.fileUrl);
+      const backendDownloadUrl = `${API_BASE}/notes/${note._id}/download`;
 
-      // ✅ Create a hidden anchor tag & trigger download
+      // Create a hidden link to trigger download
       const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.download = `${note.title}.pdf`; // suggested file name
+      link.href = backendDownloadUrl;
+      link.download = `${note.title}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
     toast.success("Downloaded Succesfully!", {
       position: "top-right",
       autoClose: 2000,
