@@ -4,22 +4,14 @@ import { incrementDownload, incrementPreview } from '../services/api';
 
 const NoteCard = ({ note }) => {
 
-  const getDriveDownloadUrl = (url) => {
-    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    if (match && match[1]) {
-      const fileId = match[1];
-      return `https://drive.google.com/uc?export=download&id=${fileId}`;
-    }
-    return url; // fallback to original if it’s already direct
-  };
+  
 
   const handleDownload = async () => {
   try {
     await incrementDownload(note._id);
 
-    const downloadUrl = getDriveDownloadUrl(note.fileUrl);
 
-    window.open(downloadUrl, "_blank");
+    window.open(note.fileUrl, "_blank")
 
     toast.success("Downloaded Succesfully!", {
       position: "top-right",
