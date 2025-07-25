@@ -3,7 +3,13 @@ const Note = require('../models/Note');
 const Admin = require('../models/Admin');
 const asyncHandler = require('express-async-handler');
 
-// Upload new note (admin only)
+const normalizeDriveLink = (url) => {
+  const match = url.match(/[-\w]{25,}/); // extract FILE_ID
+  if (!match) return url; 
+  const fileId = match[0];
+  return `https://drive.google.com/uc?export=download&id=${fileId}`;
+};
+
 const uploadNote = async (req, res) => {
   try {
     const { title, subject, description, by, sem, department, fileUrl } = req.body;
@@ -14,6 +20,9 @@ const uploadNote = async (req, res) => {
 
     const departments = Array.isArray(department) ? department : [department];
 
+    // ✅ Always save the direct download version of Google Drive URL
+    const finalFileUrl = normalizeDriveLink(fileUrl);
+
     const newNote = await Note.create({
       title,
       subject,
@@ -21,11 +30,11 @@ const uploadNote = async (req, res) => {
       description,
       by,
       department: departments,
-      fileUrl, 
+      fileUrl: finalFileUrl,
     });
 
     res.status(201).json({
-      message: 'Note link saved successfully!',
+      message: 'Note link saved successfully with direct download link!',
       note: newNote
     });
   } catch (error) {
@@ -33,7 +42,6 @@ const uploadNote = async (req, res) => {
     res.status(500).json({ message: 'Server error while saving note link' });
   }
 };
-
 
 
 
