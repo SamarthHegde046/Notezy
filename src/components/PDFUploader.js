@@ -147,7 +147,7 @@ const PDFUploader = ({ subjects, setSubjects, semester, onAutoFillSuccess }) => 
             </div>
             <div className="header-text">
               <h3>Upload VTU Result PDF</h3>
-              <p>Automatically fills your subject marks and get your SGPA in 2 second</p>
+              <p>Automatically fills your subject marks and get your SGPA in seconds</p>
             </div>
           </div>
         </div>

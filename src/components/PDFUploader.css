@@ -424,12 +424,13 @@
   
   .header-content {
     gap: 0.5rem;
+    margin-right: 50px;
   }
   .header-icon{
     margin-right: 240px;
   }
   .header-text{
-    margin-left: 150px;
+    margin-left: 100px;
     width: 80%;
   }
   
