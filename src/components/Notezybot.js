@@ -302,7 +302,7 @@ function Notezybot() {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 20MB
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -350,7 +350,7 @@ function Notezybot() {
     formData.append("pdf", file);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE}/upload`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE}/uploadpdf`, {
         method: 'POST',
         body: formData,
       });

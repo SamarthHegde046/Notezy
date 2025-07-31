@@ -22,16 +22,6 @@ label {
   font-size: 0.9rem;
 }
 
-select, input[type="number"], input[type="text"] {
-  padding: 0.3rem 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 0.3rem;
-  margin-bottom: 0.3rem;
-  min-width: 100px;
-  font-size: 0.9rem;
-}
-
 button {
   padding: 0.4rem 1rem;
   border: none;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { getGradePointFromMarks, getGradePointFromLetter } from '../services/calculator';
+import { getGradePointFromMarks } from '../services/calculator';
 import './SelectorGroup.css';
 
 const CSE_3RD_SEM_SUBJECTS = [
@@ -154,8 +154,8 @@ const CHEMISTRY_CIVIL_CYCLE_SUBJECTS = [
 ];
 
 const CHEMISTRY_CSE_CYCLE_SUBJECTS = [
-  { name: 'Mathematics - I/II for CSE Stream', credits: 4, code: 'BMATMx01' },
-  { name: 'Applied Chemistry for CSE Stream', credits: 4, code: 'BCHEMx02' },
+  { name: 'Mathematics - I/II for CSE Stream', credits: 4, code: 'BMATSx01' },
+  { name: 'Applied Chemistry for CSE Stream', credits: 4, code: 'BCHESx02' },
   { name: 'Computer-Aided Engineering Drawing', credits: 3, code: 'BCEDKx03' },
   { name: 'Engineering Science Course - I/II', credits: 3, code: 'BESCKx04x' },
   { name: 'Emerging Technology Course - I/II OR Programming Language Course - I/II', credits: 3, code: 'BETCKx05x / BPLCKx05x' },
@@ -1307,32 +1307,6 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
     setSubjects(updated);
   };
 
-  const handleAdd = () => {
-    setSubjects([
-      ...subjects,
-      mode === 'sgpa'
-        ? { credits: '', marks: '', grade: '', gradePoint: '' }
-        : { sgpa: '', credits: '' },
-    ]);
-  };
-
-  const handleRemove = idx => {
-    setSubjects(subjects.filter((_, i) => i !== idx));
-  };
-
-  const handleMarksOrGradeChange = (idx, field, value) => {
-    let gradePoint = '';
-    if (field === 'marks' && value !== '') {
-      gradePoint = getGradePointFromMarks(Number(value));
-    } else if (field === 'grade' && value !== '') {
-      gradePoint = getGradePointFromLetter(value);
-    }
-    const updated = subjects.map((subj, i) =>
-      i === idx ? { ...subj, [field]: value, gradePoint } : subj
-    );
-    setSubjects(updated);
-  };
-
   // Add refs for marks inputs
   const marksRefs = useRef([]);
   const sgpaRefs = useRef([]); // Always declare at top
@@ -1637,10 +1611,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>credits: {subj.credits}{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              {subj.code}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1681,10 +1653,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>credits: {subj.credits}{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              {subj.code}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1725,10 +1695,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>credits: {subj.credits}{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              {subj.code}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1769,10 +1737,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              Code: {subj.code} | Credits: {subj.credits}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1815,10 +1781,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              Code: {subj.code} | Credits: {subj.credits}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1860,10 +1824,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              Code: {subj.code} | Credits: {subj.credits}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1904,10 +1866,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              Code: {subj.code} | Credits: {subj.credits}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -1948,10 +1908,8 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
         </h3>
         {subjects.map((subj, idx) => (
           <div className="subject-card" key={subj.code + '-' + idx} style={{ background: '#e8edff', borderRadius: '16px', padding: '1.1rem 1.2rem 1.3rem 1.2rem', marginBottom: '1.2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1.5px solid #dbeafe' }}>
-            <div className="subject-title" style={{ color: '#1e40af', fontWeight: 700, fontSize: '1.35rem', marginBottom: '0.3rem' }}>{subj.name}</div>
-            <div style={{ color: '#3853a3', fontSize: '1.08rem', marginBottom: '1.1rem', fontWeight: 500 }}>
-              Code: {subj.code} | Credits: {subj.credits}
-            </div>
+            <div className="subject-title">{subj.name}</div>
+            <div style={{ color: '#555', marginBottom: '0.5rem' }}>Code: {subj.code} | Credits: {subj.credits}</div>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <input
                 type="number"
@@ -2823,86 +2781,6 @@ const SubjectInputForm = ({ subjects, setSubjects, mode = 'sgpa', semester, stre
       </div>
     );
   }
-  return (
-    <div className="section-card">
-      <h3>{mode === 'sgpa' ? 'Enter your marks for each subject' : 'Enter SGPA and credits for each semester'}</h3>
-      {subjects.map((subj, idx) => (
-        <div className="subject-card" key={idx}>
-          {mode === 'sgpa' ? (
-            <>
-              <div className="subject-title">Subject {idx + 1}</div>
-              <div className="subject-fields">
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="Credits"
-                  value={subj.credits}
-                  onChange={e => handleChange(idx, 'credits', e.target.value)}
-                  required
-                  className="subject-input"
-                />
-                <input
-                  type="number"
-                  min="0"
-                  max="100"
-                  placeholder="Marks"
-                  value={subj.marks}
-                  onChange={e => handleMarksOrGradeChange(idx, 'marks', e.target.value)}
-                  className="subject-input"
-                  ref={idx === 0 && firstInputRef ? firstInputRef : el => marksRefs.current[idx] = el}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      if (marksRefs.current[idx + 1]) {
-                        marksRefs.current[idx + 1].focus();
-                      }
-                    }
-                  }}
-                />
-                <input
-                  type="text"
-                  maxLength="2"
-                  placeholder="Grade (optional)"
-                  value={subj.grade}
-                  onChange={e => handleMarksOrGradeChange(idx, 'grade', e.target.value)}
-                  className="subject-input"
-                />
-                <span className="grade-point">GP: {subj.gradePoint}</span>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="subject-title">Semester {idx + 1}</div>
-              <div className="subject-fields">
-                <input
-                  type="number"
-                  min="0"
-                  max="10"
-                  step="0.01"
-                  placeholder="SGPA"
-                  value={subj.sgpa}
-                  onChange={e => handleChange(idx, 'sgpa', e.target.value)}
-                  required
-                  className="subject-input"
-                />
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="Credits"
-                  value={subj.credits}
-                  onChange={e => handleChange(idx, 'credits', e.target.value)}
-                  required
-                  className="subject-input"
-                />
-              </div>
-            </>
-          )}
-          <button type="button" onClick={() => handleRemove(idx)} disabled={subjects.length === 1} className="remove-btn">Remove</button>
-        </div>
-      ))}
-      <button type="button" onClick={handleAdd} className="add-btn">Add {mode === 'sgpa' ? 'Subject' : 'Semester'}</button>
-    </div>
-  );
 };
 
 export default SubjectInputForm; 

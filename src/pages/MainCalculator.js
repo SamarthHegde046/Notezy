@@ -1,10 +1,11 @@
-import React, { useState, useRef} from 'react';
+import React, { useState,useEffect, useRef} from 'react';
 import {Header,SchemeSelector,SemesterSelector,ResultDisplay,GradeTable,StreamSelector} from '../components/Vtucalculator';
 import SubjectInputForm from '../components/SubjectInputForm';
 import { calculateSGPA } from '../services/calculator';
 import { calculateCGPA } from '../services/calculator';
 import { sgpaToPercentage } from '../services/calculator';
 import './main.css';
+import PDFUploader from '../components/PDFUploader';
 
 const CSE_4TH_SEM_SUBJECTS = [
   { name: 'Analyze and Design of Algorithm', credits: 3, code: 'BCS401' },
@@ -29,6 +30,7 @@ const ECE_4TH_SEM_SUBJECTS = [
   { name: 'Universal Human Values Course', credits: 1, code: 'BUHK408' },
   { name: 'NSS / Sports / Yoga', credits: 0, code: 'BNSK459/BPEK459/BYOK459' },
 ];
+
 
 const isCSE4thSem = (semester, stream) => {
   if (semester !== '4th') return false;
@@ -55,6 +57,7 @@ const isECE4thSem = (semester, stream) => {
   );
 };
 
+
 function MainCalculator() {
   const [scheme, setScheme] = useState('2022');
   const [semester, setSemester] = useState('');
@@ -71,9 +74,11 @@ function MainCalculator() {
   const [cgpa, setCGPA] = useState(0);
   const [percentage, setPercentage] = useState('');
   const [showResult, setShowResult] = useState(false);
+  const [autoTrigger, setAutoTrigger] = useState(false);
   const resultRef = useRef(null);
   const semesterRef = useRef(null);
   const streamRef = useRef(null);
+  const autopdfRef=useRef(null);
   const firstMarksInputRef = useRef(null);
 
   const scrollToResult = () => {
@@ -98,7 +103,6 @@ function MainCalculator() {
         setShowResult(true);
         setTimeout(scrollToResult, 100); // scroll after result is shown
       } else if (isECE4thSem(semester, stream)) {
-        // Use fixed credits for ECE 4th sem
         const validSubjects = subjects.filter(
           s => s.marks !== '' && s.gradePoint !== '' && s.gradePoint !== undefined
         ).map((s, i) => ({
@@ -134,6 +138,8 @@ function MainCalculator() {
     }
   };
 
+  console.log("Rendered subjects:", subjects)
+
   const handleReset = () => {
     setScheme('2022');
     setSemester('');
@@ -144,6 +150,7 @@ function MainCalculator() {
     setCGPA(0);
     setPercentage('');
     setShowResult(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleModeChange = (newMode) => {
@@ -176,11 +183,22 @@ function MainCalculator() {
   const handleStreamChange = (newStream) => {
     setStream(newStream);
     setTimeout(() => {
-      if (firstMarksInputRef.current) {
-        firstMarksInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (autopdfRef.current) {
+        autopdfRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }, 100);
   };
+  useEffect(() => {
+  if (autoTrigger) {
+    const allFilled = subjects.every(
+      (s) => s.marks !== '' && s.gradePoint !== '' && s.gradePoint !== undefined
+    );
+    if (allFilled) {
+      handleCalculate();
+    }
+    setAutoTrigger(false); // reset trigger
+  }
+}, [subjects, autoTrigger]);
 
   return (
     <div className="app-container">
@@ -208,9 +226,37 @@ function MainCalculator() {
               </>
             )}
             {mode === 'sgpa' ? (
+              <>
+              {scheme && semester && stream && (
+                <div ref={autopdfRef}>
+                  <PDFUploader
+                    subjects={subjects}
+                    setSubjects={setSubjects}
+                    semester={semester}
+                    onAutoFillSuccess={() => setAutoTrigger(true)}
+                  />
+                  <p style={{
+                    textAlign: 'center',
+                    fontStyle: 'italic',
+                    margin: '1rem 0',
+                    color: '#4b5563',
+                    fontWeight: '500'
+                  }}>
+                    — Or manually enter marks below —
+                  </p>
+                </div>
+              )}
               <div>
-                <SubjectInputForm subjects={subjects} setSubjects={setSubjects} mode="sgpa" semester={semester} stream={stream} firstInputRef={firstMarksInputRef} />
+                  <SubjectInputForm
+                    subjects={subjects}
+                    setSubjects={setSubjects}
+                    mode="sgpa"
+                    semester={semester}
+                    stream={stream}
+                    firstInputRef={firstMarksInputRef}
+                  />
               </div>
+              </>
             ) : (
               <SubjectInputForm subjects={semesters} setSubjects={setSemesters} mode="cgpa" />
             )}

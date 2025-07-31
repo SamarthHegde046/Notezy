@@ -192,7 +192,7 @@ const NotesChatbot = () => {
               </div>
               <div className="example-query">
                 <FileText className="example-icon" />
-                "Question papers"
+                "BCS403 Question papers"
               </div>
             </div>
           </div>
