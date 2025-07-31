@@ -431,7 +431,7 @@
   }
   .header-text{
     margin-left: 130px;
-    margin-bottom: -20px;
+    padding: 6px;
     width: 80%;
   }
   
