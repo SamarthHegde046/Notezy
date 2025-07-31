@@ -9,12 +9,12 @@ import PDFUploader from '../components/PDFUploader';
 
 const CSE_4TH_SEM_SUBJECTS = [
   { name: 'Analyze and Design of Algorithm', credits: 3, code: 'BCS401' },
-  { name: 'Microcontrollers / Artificial Intelligence', credits: 4, code: 'BCS402' },
+  { name: 'Microcontrollers / Artificial Intelligence', credits: 4, code: 'BCS402 / BAD402' },
   { name: 'Database Management System', credits: 4, code: 'BCS403' },
   { name: 'Analyze and Design of Algorithm Lab', credits: 1, code: 'BCSL404' },
   { name: 'ESC/ETC/PLC', credits: 3, code: 'BCS40x' },
-  { name: 'Ability Enhancement Course/Skill Enhancement Course', credits: 1, code: 'BCS456X' },
-  { name: 'Biology for Engineers', credits: 2, code: 'BBOK407' },
+  { name: 'Ability Enhancement Course/Skill Enhancement Course', credits: 1, code: 'BCS456X / BDSL456C' },
+  { name: 'Biology for Engineers', credits: 2, code: 'BBOK407 / BBOC407' },
   { name: 'Universal Human Values Course', credits: 1, code: 'BUHK408' },
   { name: 'NSS / Sports / Yoga', credits: 0, code: 'BNSK459/BPEK459/BYOK459' },
 ];
