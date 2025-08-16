@@ -29,15 +29,15 @@ const MarkdownText = ({ text }) => {
 // Header Component
 const Header = ({ sessionId, onClearChat }) => (
   <div className="header_1">
-    <div className="header-container">
-      <div className="header-content">
-        <div className="header-left">
-          <div className="header-icon">
+    <div className="header-container1">
+      <div className="header-content1">
+        <div className="header-left1">
+          <div className="header-icon1">
             <img src={logo} alt="StudyNotes Logo" className="logo-img" />
           </div>
           <div>
-            <h1 className="header-title">Notezy AI</h1>
-            <p className="header-subtitle">Book Extractor & Explainer</p>
+            <h1 className="header-title1">Notezy AI</h1>
+            <p className="header-subtitle1">Book Extractor & Explainer</p>
           </div>
         </div>
         <div className="header-actions">

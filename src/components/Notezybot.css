@@ -60,14 +60,14 @@
   flex-shrink: 0;
 }
 
-.header-title {
+.header-title1 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
   text-align: center;
 }
 
-.header-subtitle {
+.header-subtitle1 {
   font-size: 12px;
   margin: 0;
   text-align: center;
@@ -757,12 +757,12 @@
     border-radius: 12px;
   }
 
-  .header-title {
+  .header-title1 {
     font-size: 20px;
     text-align: left;
   }
 
-  .header-subtitle {
+  .header-subtitle1 {
     font-size: 14px;
     text-align: left;
   }
