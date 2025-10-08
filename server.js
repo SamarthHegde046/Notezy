@@ -8,7 +8,6 @@ const authRoutes = require('./routes/authRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const contactRoutes = require('./routes/contact');
 
-const uploadRoute = require("./routes/uploadRoute");
 const chatRoute = require("./routes/chatRoute");
 const sessionRoute = require("./routes/sessionRoute");
 const analyzeRoute = require("./routes/analyzeRoute");
@@ -41,13 +40,13 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const GEMINI_API_KEY = 'AIzaSyDAxoj0ow42uoDxgv8VBj2lRgss3FT1EcU'; // Replace with your key
+const GEMINI_API_KEY = 'AIzaSyB0PG_S3DUIPYppTS790sfkxb-pZAyOaqg'; 
 app.post('/api/gemini-chat', async (req, res) => {
   const userInput = req.body.message;
 
   try {
     const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         contents: [
           {
@@ -61,7 +60,7 @@ Extract:
 - "code": Subject code (like "BCS403")
 - "module": Module number if mentioned (just number like "1", optional)
 - "title": Full title if mentioned (like "Module 2" or "MQP 1/2 - BCS403", optional)
-- "type": "module" | "qp" or "question papers" | "all" — "module" if user asks for module notes, "qp" or "question paper(s)" for question papers, otherwise "all".
+- "type": "module" | "qp" or "question papers" | "all" — "module" if user asks for module notes, "qp" or "question paper(s)" or "Question Paper(s)" for question papers, otherwise "all".
 
 If the user just says hi, hello, bye, etc., respond with:
 {
@@ -121,7 +120,6 @@ User input:
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/contact', contactRoutes);
-app.use("/api/", uploadRoute);
 app.use("/api/", chatRoute);
 app.use("/api/", sessionRoute);
 app.use("/api/", analyzeRoute);

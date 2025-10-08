@@ -1,5 +1,5 @@
 const axios = require("axios");
-GEMINI_API_KEY="AIzaSyCQTL9mWZIxS6jwudkUx4xrb6x4_Xk4H_Q";
+GEMINI_API_KEY="AIzaSyB0PG_S3DUIPYppTS790sfkxb-pZAyOaqg";
 const GEMINI_API_KE = GEMINI_API_KEY;
 if (!GEMINI_API_KE) {
   console.error("GEMINI_API_KEY is missing.");
@@ -27,7 +27,7 @@ ${question}
 {"response": "Based on the document, I can see that..."}`;
   try {
     const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KE}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KE}`,
       {
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
