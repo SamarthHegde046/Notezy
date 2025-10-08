@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { extractTextFromPDF } from '../services/pdfParser';
 import { extractSubjectMarksFromText } from '../services/geminiforsgpa';
 import { getGradePointFromMarks } from '../services/calculator';
 import './PDFUploader.css';
@@ -32,10 +31,11 @@ const PDFUploader = ({ subjects, setSubjects, semester, onAutoFillSuccess }) => 
     setUploadedFileName(file.name)
 
     try {
-      const text = await extractTextFromPDF(file);
       const { semester: detectedSemester, subjects: extractedData } =
-        await extractSubjectMarksFromText(text);
+        await extractSubjectMarksFromText(file);
 
+      console.log(extractedData);
+      
       if (!extractedData || extractedData.length === 0) {
         setApiError(true);
         return;

@@ -350,7 +350,7 @@ function Notezybot() {
     formData.append("pdf", file);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE}/uploadpdf`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE}/analyze`, {
         method: 'POST',
         body: formData,
       });

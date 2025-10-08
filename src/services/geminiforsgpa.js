@@ -1,41 +1,31 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// services/geminiforsgpa.js (now renamed logic, but you can keep filename same)
 
-const genAI = new GoogleGenerativeAI("AIzaSyABhaazjIdUWir72wn_wNaZKvttmMyCqxA");
+export async function extractSubjectMarksFromText(file) {
+  const formData = new FormData();
+  formData.append("pdf", file);
 
-export async function extractSubjectMarksFromText(pdfText) {
-  const prompt = `
-Given the following VTU result text, do two things:
-1. Extract subject codes and total marks in this format:
-   "subjects": [
-     { "code": "BCS401", "marks": 85 },
-     ...
-   ]
-2. Detect the semester number from the text (like 3rd, 4th etc). Only return the number in the format: "semester": 3
+  const response = await fetch("https://pdftextextractermodel-1.onrender.com/extract", {
+    method: "POST",
+    body: formData,
+  });
 
-Return the result in this JSON structure:
-{
-  "semester": <number>,
-  "subjects": [
-    { "code": "...", "marks": ... },
-    ...
-  ]
-}
-
-Here is the text:
-${pdfText}
-`;
-
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-  const result = await model.generateContent(prompt);
-  const response = result.response.text();
-
-  try {
-    const jsonStart = response.indexOf('{');
-    const jsonEnd = response.lastIndexOf('}');
-    const jsonString = response.substring(jsonStart, jsonEnd + 1);
-    return JSON.parse(jsonString);
-  } catch (err) {
-    console.error("❌ Failed to parse Gemini response:", err);
-    return { semester: null, subjects: [] };
+  if (!response.ok) {
+    throw new Error("❌ Failed to extract from PDF");
   }
+
+  const data = await response.json();
+
+  console.log(data);
+  
+
+  const semester = parseInt(data.SEM?.[0] || "0");
+  const subjects = (data.SUBCODE || []).map((code, index) => ({
+    code,
+    marks: parseInt(data.TMARK?.[index] || "0")
+  }));
+
+  return {
+    semester,
+    subjects
+  };
 }
