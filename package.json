@@ -18,7 +18,7 @@
     "express": "^5.1.0",
     "express-async-handler": "^1.2.0",
     "fs": "^0.0.1-security",
-    "googleapis": "^154.0.0",
+    "googleapis": "^154.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.2",
     "multer": "^1.4.5-lts.2",
