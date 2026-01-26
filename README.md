@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+#  Notezy - VTU Notes Sharing Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+**Notezy** is a student-driven platform designed to make VTU (Visvesvaraya Technological University) study materials accessible to everyone. Built by students, for students, Notezy provides a simple and secure platform for downloading and sharing VTU CBCS 2022 scheme academic notes, question papers, and study materials.
 
-In the project directory, you can run:
+🌐 **Live Website**: [notezy.online](https://notezy.online)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##  Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-  **Comprehensive Notes**: Complete study materials for all VTU subjects across multiple departments
+-  **Question Papers**: Previous year papers with solutions for exam preparation
+-  **Easy Search**: Find exactly what you need in seconds with intuitive navigation
+-  **Notezy Bot**: AI-powered chatbot for instant help and guidance
+-  **Quick Notes**: Interactive notes chat feature powered by Google's Generative AI
+-  **SGPA & CGPA Calculator**: Calculate your grades for VTU 2022 scheme
+-  **Responsive Design**: Works seamlessly across all devices
+-  **Dark Mode Support**: Theme toggle for comfortable reading
+-  **Upload Notes**: Contribute your own study materials to help fellow students
+-  **Blogs**: Educational content and resources for students
+-  **Admin Dashboard**: Secure admin panel for content management
+-  **Feedback System**: Share your thoughts and help improve the platform
+-  **WhatsApp Community**: Join the community for updates and discussions
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##  Technologies Used
 
-### `npm run build`
+### Frontend
+- **React** (v19.1.0) - UI library
+- **React Router** (v7.6.0) - Client-side routing
+- **Axios** - HTTP client for API calls
+- **React Toastify** - Toast notifications
+- **Lucide React** - Modern icon library
+- **React Icons** - Additional icon support
+- **Recharts** - Data visualization for admin dashboard
+- **React Helmet** - SEO management
+- **React Share** - Social media sharing capabilities
+- **PDF.js** - PDF rendering and preview
+- **JWT Decode** - Authentication token handling
+- **Google Generative AI** - AI chatbot functionality
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Styling
+- CSS3 with custom styling
+- Responsive design principles
+- Theme support (Light/Dark mode)
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##  Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### For Students
+1. **Browse Notes**: Navigate to your semester and department to find relevant notes
+2. **Download Materials**: Preview and download PDF notes and question papers
+3. **Use Notezy Bot**: Get instant help with academic queries
+4. **Calculate Grades**: Use the SGPA/CGPA calculator for VTU 2022 scheme
+5. **Share Feedback**: Help improve the platform by providing feedback
+6. **Contribute**: Upload your own notes using the contribution form
 
-### `npm run eject`
+### For Admins
+1. **Login**: Access the admin panel at `/login2005`
+2. **Dashboard**: View statistics and manage content at `/dashboard123`
+3. **Upload Content**: Add new notes, question papers, and materials
+4. **Manage Users**: Monitor platform usage and user activity
+5. **Review Feedback**: Read and respond to student feedback
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🌟 Key Features Explained
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### AI-Powered Features
+- **Notezy Bot**: Uses Google's Generative AI to answer student queries and provide study guidance
+- **Quick Notes**: Interactive chat feature for quick note-taking and Q&A
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### AI-Powered SGPA/CGPA Calculator
+- Supports VTU 2022 scheme
+- Easy-to-use interface for grade calculation
+- Auto Calculation for SGPA/CGPA
 
-## Learn More
+### Department & Semester Navigation
+Supports multiple departments:
+- Computer Science & Engineering (CSE)
+- Artificial Intelligence & Machine Learning (AIML)
+- Electronics & Communication Engineering (ECE)
+- Information Science & Engineering (ISE)
+- And more...
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### SEO Optimized
+- Proper meta tags for search engines
+- Sitemap for better indexing
+- Structured data markup
+- Open Graph and Twitter Card support
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##  Deployment
 
-### Analyzing the Bundle Size
+The application is deployed and accessible at [notezy.online](https://notezy.online)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Last Updated: January 2026*
