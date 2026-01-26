@@ -214,11 +214,11 @@ const CSE_5TH_SEM_SUBJECTS = [
   { name: 'Software Engineering & Project Management', credits: 3, code: 'BCS501' },
   { name: 'Computer Networks', credits: 4, code: 'BCS502' },
   { name: 'Theory of Computation', credits: 4, code: 'BCS503' },
-  { name: 'Web Technology Lab', credits: 1, code: 'BCSL504' },
-  { name: 'Professional Elective Course', credits: 3, code: 'BCS515x' },
-  { name: 'Mini Project', credits: 2, code: 'BCS586' },
+  { name: 'Web Technology Lab/Data Visualization Lab', credits: 1, code: 'BCSL504/BAIL504' },
+  { name: 'Professional Elective Course', credits: 3, code: 'BCS515x/BAI515B' },
+  { name: 'Mini Project', credits: 2, code: 'BCS586/BCI586' },
   { name: 'Research Methodology and IPR', credits: 3, code: 'BRMK557' },
-  { name: 'Environmental Studies', credits: 2, code: 'BESK508' },
+  { name: 'Environmental Studies', credits: 2, code: 'BESK508/BCS508' },
   { name: 'NSS/PE/Yoga', credits: 0, code: 'BNSK559/BPEK559/BYOK559' },
 ];
 

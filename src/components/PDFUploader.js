@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { extractTextFromPDF } from '../services/pdfParser';
 import { extractSubjectMarksFromText } from '../services/geminiforsgpa';
 import { getGradePointFromMarks } from '../services/calculator';
 import './PDFUploader.css';
@@ -31,11 +32,10 @@ const PDFUploader = ({ subjects, setSubjects, semester, onAutoFillSuccess }) => 
     setUploadedFileName(file.name)
 
     try {
+      const text = await extractTextFromPDF(file);
       const { semester: detectedSemester, subjects: extractedData } =
-        await extractSubjectMarksFromText(file);
+        await extractSubjectMarksFromText(text);
 
-      console.log(extractedData);
-      
       if (!extractedData || extractedData.length === 0) {
         setApiError(true);
         return;
@@ -147,7 +147,7 @@ const PDFUploader = ({ subjects, setSubjects, semester, onAutoFillSuccess }) => 
             </div>
             <div className="header-text">
               <h3>Upload VTU Result PDF</h3>
-              <p>Automatically fills your subject marks and get your SGPA in seconds</p>
+              <p>Automatically fills your subject marks and get your SGPA in 2 second</p>
             </div>
           </div>
         </div>

@@ -1,31 +1,61 @@
-// services/geminiforsgpa.js (now renamed logic, but you can keep filename same)
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export async function extractSubjectMarksFromText(file) {
-  const formData = new FormData();
-  formData.append("pdf", file);
+const genAI = new GoogleGenerativeAI("AIzaSyBApsyjm4wIZMRq_uFM5Ix3_9_BM20_Fyc");
 
-  const response = await fetch("https://pdftextextractermodel-1.onrender.com/extract", {
-    method: "POST",
-    body: formData,
-  });
+export async function extractSubjectMarksFromText(pdfText) {
+  const prompt = `
+You are a JSON API.
 
-  if (!response.ok) {
-    throw new Error("❌ Failed to extract from PDF");
+Extract VTU result data.
+
+Rules:
+- Output ONLY valid JSON
+- No markdown
+- No explanation
+
+JSON:
+{
+  "semester": number | null,
+  "subjects": [
+    { "code": string, "marks": number }
+  ]
+}
+
+Text:
+${pdfText}
+`;
+
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.text();
+
+    const parsed = safeParseJSON(responseText);
+
+    if (!parsed || !parsed.subjects) {
+      throw new Error("Invalid Gemini JSON");
+    }
+
+    return parsed;
+  } catch (error) {
+    console.error("❌ Gemini parsing failed:", error);
+    return { semester: null, subjects: [] };
   }
+}
 
-  const data = await response.json();
+// helper
+function safeParseJSON(text) {
+  try {
+    const cleaned = text
+      .replace(/```json/gi, '')
+      .replace(/```/g, '')
+      .trim();
 
-  console.log(data);
-  
+    const match = cleaned.match(/\{[\s\S]*\}/);
+    if (!match) return null;
 
-  const semester = parseInt(data.SEM?.[0] || "0");
-  const subjects = (data.SUBCODE || []).map((code, index) => ({
-    code,
-    marks: parseInt(data.TMARK?.[index] || "0")
-  }));
-
-  return {
-    semester,
-    subjects
-  };
+    return JSON.parse(match[0]);
+  } catch {
+    return null;
+  }
 }
