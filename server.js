@@ -14,6 +14,8 @@ const analyzeRoute = require("./routes/analyzeRoute");
 const feedbackRoute= require("./routes/feedbackRoute");
 const visitorRoute = require('./routes/visitorRoute');
 const blogRoutes = require("./routes/blogRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+
 
 
 const { cleanupOldSessions } = require("./utils/sessionManager");
@@ -40,7 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const GEMINI_API_KEY = 'AIzaSyB0PG_S3DUIPYppTS790sfkxb-pZAyOaqg'; 
+const GEMINI_API_KEY = 'AIzaSyBApsyjm4wIZMRq_uFM5Ix3_9_BM20_Fyc'; 
 app.post('/api/gemini-chat', async (req, res) => {
   const userInput = req.body.message;
 
@@ -126,6 +128,8 @@ app.use("/api/", analyzeRoute);
 app.use('/api', visitorRoute);
 app.use("/api/feedback",feedbackRoute);
 app.use("/api/blogs", blogRoutes);
+app.use("/api/admin", adminRoutes);
+
 
 // Error Handler
 app.use(errorHandler);
