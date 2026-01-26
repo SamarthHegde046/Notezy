@@ -26,7 +26,6 @@ const FeedbackForm = ({ sem, department, subject }) => {
     };
 
     try {
-      // Replace with your actual backend URL
       const response = await fetch(`${process.env.REACT_APP_API_BASE}/feedback/feedback`, {
         method: 'POST',
         headers: {

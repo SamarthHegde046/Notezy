@@ -7,7 +7,7 @@ import DashboardCharts from '../components/DashboardCharts';
 import { useNavigate } from 'react-router-dom';
 import SearchFilter from '../components/SearchFilter';
 import AdminFeedback from '../components/AdminFeedback';
-
+import AdminDriveUpload from '../components/AdminDriveUpload';
 
 const AdminDashboard = () => {
   const [adminName, setAdminName] = useState('');
@@ -226,6 +226,7 @@ useEffect(() => {
         + Upload Note
         </button>
       </div>
+      <AdminDriveUpload/>
       <div className='stat-box'>
         <AdminFeedback/>
       </div>
