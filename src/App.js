@@ -22,11 +22,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutUs from './pages/AboutUs';
 import TermsConditions from './pages/TermsConditions';
-import Notezybot from './components/Notezybot';
 import NotesChatbot from './components/NotesChatbot';
 import ChannelJoinBanner from './components/ChannelJoinBanner';
-import BlogDetails from './pages/BlogDetails';
-import Blogs from './pages/Blogs';
 import Faq from './components/Faq';
 import {Homesgpaandcgpa} from './pages/Navcalculator';
 
@@ -60,10 +57,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/terms-and-conditions" element={<TermsConditions />} />
-            <Route path='/notezybot' element={<Notezybot/>}/>
             <Route path='/quicknotes' element={<NotesChatbot/>}/>
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:id" element={<BlogDetails />} />
             <Route path="/sgpa-and-cgpa-calculator-2022-scheme" element={<Homesgpaandcgpa />} />
 
 

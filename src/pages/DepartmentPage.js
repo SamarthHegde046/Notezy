@@ -12,7 +12,7 @@ import PopularNotesPopup from '../components/PopularNotesPopup';
 import { getAllNotes } from '../services/api';
 import './DepartmentPage.css';
 import { FaWhatsapp } from 'react-icons/fa';
-import { Sparkles, Upload } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import GlowingButton from '../components/GlowingButton';
 import ChannelJoinBanner from '../components/ChannelJoinBanner';
 import quickNotesGif from "./open-book_15577982.gif";
@@ -28,7 +28,6 @@ const DepartmentPage = () => {
   const [loading, setLoading] = useState(true);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showPopularNotes, setShowPopularNotes] = useState(false);
-  const [popupShownSubjects, setPopupShownSubjects] = useState(new Set());
 
   const departmentMap = {
     computerscience: 'Computer Science',
@@ -82,14 +81,6 @@ const DepartmentPage = () => {
   // Handle closing popular notes popup
   const handleClosePopularNotes = () => {
     setShowPopularNotes(false);
-    // Mark as shown for this session (in memory)
-    const popupKey = `${normalizedSem}-${normalizedDepartment}-${selectedSubject}`;
-    setPopupShownSubjects(prev => new Set([...prev, popupKey]));
-  };
-
-  // Handle Notezy AI navigation
-  const handleNotezybotClick = () => {
-    navigate('/notezybot');
   };
 
   // Handle Upload Notes
@@ -213,19 +204,6 @@ const DepartmentPage = () => {
           <div className="bottom-features-container">
             <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
             <div className="bottom-features-grid">
-              <div className="bottom-feature-card" onClick={handleNotezybotClick}>
-                <div className="bottom-feature-icon">
-                  <Sparkles className="sparkles-icon" />
-                </div>
-                <div className="bottom-feature-content">
-                  <h4 className="bottom-feature-title">Notezy AI Assistant</h4>
-                  <p className="bottom-feature-description">
-                    Upload your PDFs and get instant answers, summaries, and explanations with our AI-powered study companion.
-                  </p>
-                  <span className="bottom-feature-cta">Try Notezy AI →</span>
-                </div>
-              </div>
-              
               <div className="bottom-feature-card" onClick={handleUploadNotesClick}>
                 <div className="bottom-feature-icon">
                   <Upload className="upload-icon" />

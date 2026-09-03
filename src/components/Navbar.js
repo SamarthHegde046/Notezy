@@ -89,12 +89,6 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/notezybot" onClick={closeMenu} className="nav-link ai-link">
-                    <span>Notezy AI</span>
-                    <div className="ai-sparkle">✨</div>
-                  </Link>
-                </li>
-                <li className="nav-item">
                   <Link to="/quicknotes" onClick={closeMenu} className="nav-link ai-link">
                     <span>Quick Notes</span>
                     <span className="new-badge">NEW</span>
@@ -159,12 +153,6 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/notezybot" onClick={closeMenu} className="nav-link ai-link">
-                    <span>Notezy AI</span>
-                    <div className="ai-sparkle">✨</div>
-                  </Link>
-                </li>
-                <li className="nav-item">
                   <Link to="https://forms.gle/nd7wsDjrxv8fyh11A" onClick={closeMenu} className="nav-link ai-link">
                     <span>Upload Notes</span>
                   </Link>
@@ -172,12 +160,6 @@ const Navbar = () => {
                 <li className="nav-item">
                   <Link to="/sgpa-and-cgpa-calculator-2022-scheme" onClick={closeMenu} className="nav-link ai-link">
                     <span>SGPA&CGPA Calculator</span>
-                    <span className="new-badge">NEW</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/blogs" onClick={closeMenu} className="nav-link ai-link">
-                    <span>Blogs</span>
                     <span className="new-badge">NEW</span>
                   </Link>
                 </li>

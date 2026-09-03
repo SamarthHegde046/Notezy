@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet";
-import { BookOpen, Download, Search, Sparkles, Upload } from 'lucide-react';
+import { BookOpen, Download, Search, Upload } from 'lucide-react';
 import './Home.css';
 import OptionsDropdown from '../components/OptionsDropdown';
 import MarqueeBanner from '../components/MarqueeBanner';
@@ -17,10 +17,6 @@ const Home = () => {
 
   const handleSelect = (value) => {
     navigate(`/${value}`);
-  };
-
-  const handleNotezybotClick = () => {
-    navigate('/notezybot');
   };
 
   const handleUploadNotesClick = () => {
@@ -45,13 +41,6 @@ const Home = () => {
       title: "Easy Search",
       description: "Find exactly what you need in seconds",
       clickable: false
-    },
-    {
-      icon: <Sparkles className="w-6 h-6" />,
-      title: "About Notezy",
-      description: "AI-powered PDF analyzer and smart study companion",
-      clickable: true,
-      action: () => navigate('/notezybot')
     },
     {
       icon: <Upload className="w-6 h-6" />,
@@ -117,9 +106,7 @@ const Home = () => {
 
       {/* Selection Area */}
       <section className="selection-section">
-        <a href="/notezybot" className="glow-button">PDF Analyzer Bot-Notezy AI</a><br /><br />
         <a href="/quicknotes" className="glow-button">Quick Notes</a><br /><br />
-        <a href="/blogs" className="glow-button">Read Our Blogs</a>
         <OptionsDropdown onSelect={handleSelect} />
       </section>
 
@@ -160,19 +147,6 @@ const Home = () => {
         <div className="bottom-features-container">
           <h2 className="bottom-features-title">Enhance Your Study Experience</h2>
           <div className="bottom-features-grid">
-            <article className="bottom-feature-card" onClick={handleNotezybotClick}>
-              <div className="bottom-feature-icon">
-                <Sparkles className="sparkles-icon" />
-              </div>
-              <div className="bottom-feature-content">
-                <h3 className="bottom-feature-title">Notezy AI Assistant</h3>
-                <p className="bottom-feature-description">
-                  Upload your PDFs and get instant answers, summaries, and explanations with our AI-powered study companion.
-                </p>
-                <span className="bottom-feature-cta">Try Notezy AI →</span>
-              </div>
-            </article>
-
             <article className="bottom-feature-card" onClick={handleUploadNotesClick}>
               <div className="bottom-feature-icon">
                 <Upload className="upload-icon" />

@@ -37,14 +37,6 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => navigate("/notezybot")} 
-                  className="nav-button"
-                >
-                  Notezy AI
-                </button>
-              </li>
-              <li>
                 <a 
                   href="https://forms.gle/nd7wsDjrxv8fyh11A"
                   className="nav-button"

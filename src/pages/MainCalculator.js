@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {Header,SchemeSelector,SemesterSelector,ResultDisplay,GradeTable,StreamSelector} from '../components/Vtucalculator';
 import SubjectInputForm from '../components/SubjectInputForm';
 import { calculateSGPA } from '../services/calculator';
@@ -87,7 +87,7 @@ function MainCalculator() {
     }
   };
 
-  const handleCalculate = () => {
+  const handleCalculate = useCallback(() => {
     if (mode === 'sgpa') {
       if (isCSE4thSem(semester, stream)) {
         // Use fixed credits for CSE/ISE/AIML 4th sem
@@ -136,7 +136,7 @@ function MainCalculator() {
       setShowResult(true);
       setTimeout(scrollToResult, 100);
     }
-  };
+  }, [mode, semester, stream, subjects, semesters]);
 
   console.log("Rendered subjects:", subjects)
 
@@ -198,7 +198,7 @@ function MainCalculator() {
     }
     setAutoTrigger(false); // reset trigger
   }
-}, [subjects, autoTrigger]);
+}, [subjects, autoTrigger, handleCalculate]);
 
   return (
     <div className="app-container">

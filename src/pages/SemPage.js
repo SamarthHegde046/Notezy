@@ -1,12 +1,11 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import DepartmentList from '../components/DepartmentList';
-import { Sparkles, Upload } from 'lucide-react';
+import { Upload } from 'lucide-react';
 
 const SemPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const sem = location.pathname.split('/')[1];
 
   const SEM_OPTIONS = [
@@ -24,10 +23,6 @@ const SemPage = () => {
   const pageTitle = `${semLabel} VTU Notes & Branches | Notezy`;
   const pageDescription = `Browse VTU ${semLabel} branches and access free notes, study materials, previous year papers, and resources on Notezy. Built for VTU students.`;
   const canonicalUrl = `https://notezy.online/${sem}`;
-
-  const handleNotezybotClick = () => {
-    navigate('/notezybot');
-  };
 
   const handleUploadNotesClick = () => {
     window.open('https://forms.gle/nd7wsDjrxv8fyh11A', '_blank');
@@ -73,19 +68,6 @@ const SemPage = () => {
         <div className="bottom-features-container">
           <h3 className="bottom-features-title">Enhance Your Study Experience</h3>
           <div className="bottom-features-grid">
-            <div className="bottom-feature-card" onClick={handleNotezybotClick}>
-              <div className="bottom-feature-icon">
-                <Sparkles className="sparkles-icon" />
-              </div>
-              <div className="bottom-feature-content">
-                <h4 className="bottom-feature-title">Notezy AI Assistant</h4>
-                <p className="bottom-feature-description">
-                  Upload your PDFs and get instant answers, summaries, and explanations with our AI-powered study companion.
-                </p>
-                <span className="bottom-feature-cta">Try Notezy AI →</span>
-              </div>
-            </div>
-
             <div className="bottom-feature-card" onClick={handleUploadNotesClick}>
               <div className="bottom-feature-icon">
                 <Upload className="upload-icon" />
